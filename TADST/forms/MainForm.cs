@@ -5,8 +5,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
@@ -98,6 +96,7 @@ namespace TADST
 
             cmbVerifySignatures.SelectedIndex = _activeProfile.VerifySignatures;
             cmbRequiredSecureId.SelectedIndex = _activeProfile.RequiredSecureId;
+            cmbAllowedFilePatching.SelectedIndex = _activeProfile.AllowFilePatching;
             chkRequiredBuild.Checked = _activeProfile.RequiredBuildEnabled;
             txtRequiredBuild.Text = _activeProfile.RequiredBuild.ToString(CultureInfo.InvariantCulture);
             chkKickDuplicates.Checked = _activeProfile.KickDuplicates;
@@ -271,6 +270,8 @@ namespace TADST
 
             chkHeadlessEnabled.Checked = _activeProfile.HeadlessEnabled;
             txtHeadlessIp.Text = _activeProfile.HeadlessIps;
+            txtLocalIp.Text = _activeProfile.LocalIps;
+
         }
 
         private void UpdateGuiProfile()
@@ -2112,6 +2113,7 @@ namespace TADST
         {
             _activeProfile.HeadlessEnabled = chkHeadlessEnabled.Checked;
             txtHeadlessIp.Enabled = chkHeadlessEnabled.Checked;
+            txtLocalIp.Enabled = chkHeadlessEnabled.Checked;
         }
 
         private void lstMissions_SelectedIndexChanged(object sender, EventArgs e)
@@ -2150,11 +2152,6 @@ namespace TADST
             _activeProfile.HeadlessIps = txtHeadlessIp.Text;
         }
 
-        private void grpMotd_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void chkEnableHT_CheckedChanged(object sender, EventArgs e)
         {
             _activeProfile.EnableHt = chkEnableHT.Checked;
@@ -2191,6 +2188,16 @@ namespace TADST
         private void chkEnableUpnp_CheckedChanged(object sender, EventArgs e)
         {
             _activeProfile.Upnp = chkEnableUpnp.Checked;
+        }
+
+        private void cmbAllowedFilePatching_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _activeProfile.AllowFilePatching = cmbAllowedFilePatching.SelectedIndex;
+        }
+
+        private void txtLocalIp_TextChanged(object sender, EventArgs e)
+        {
+            _activeProfile.LocalIps = txtLocalIp.Text;
         }
 
     }

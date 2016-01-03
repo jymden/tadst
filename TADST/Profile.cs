@@ -35,6 +35,7 @@ namespace TADST
         private bool _netlog;
         private bool _headlessEnabled;
         private string _headlessIps;
+        private string _localIps;
 
         private bool _disableVon;
         private int _vonQuality;
@@ -51,6 +52,7 @@ namespace TADST
         private bool _kickDuplicates;
         private bool _persistantBattlefield;
         private bool _battlEye;
+        private int _allowFilePatching;
 
         private List<string> _motd;
         private int _motdInterval;
@@ -116,6 +118,7 @@ namespace TADST
 
             HeadlessEnabled = false;
             HeadlessIps = "127.0.0.1";
+            LocalIps = "127.0.0.1";
 
             DefaultDifficulty = 1;
 
@@ -148,6 +151,7 @@ namespace TADST
 
             PersistantBattlefield = false;
             BattlEye = false;
+            AllowFilePatching = 0;
 
             MotdInterval = 3;
 
@@ -350,7 +354,8 @@ namespace TADST
                 " \"-config=" + configFile + "\"" +
                 " \"-cfg=" + basicConfigFile + "\"" +
                 " \"-profiles=" + profileFolder + "\"" +
-                " -name=" + ProfileName;
+                " -name=" + ProfileName +
+                " -filePatching";
 
             if (Netlog) parameters += " -netlog";
 
@@ -813,6 +818,18 @@ namespace TADST
         {
             get { return _upnp; }
             set { _upnp = value; }
+        }
+
+        public int AllowFilePatching
+        {
+            get { return _allowFilePatching; }
+            set { _allowFilePatching = value; }
+        }
+
+        public string LocalIps
+        {
+            get { return _localIps; }
+            set { _localIps = value; }
         }
     }
 }

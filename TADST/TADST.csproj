@@ -77,59 +77,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsIsInfoForm.cs">
+    <Compile Include="forms\AsIsInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AsIsInfoForm.Designer.cs">
+    <Compile Include="forms\AsIsInfoForm.Designer.cs">
       <DependentUpon>AsIsInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DifficultyFactory.cs" />
     <Compile Include="DifficultyItem.cs" />
     <Compile Include="DifficultySetting.cs" />
     <Compile Include="FileHandler.cs" />
-    <Compile Include="InformationForm.cs">
+    <Compile Include="forms\InformationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InformationForm.Designer.cs">
+    <Compile Include="forms\InformationForm.Designer.cs">
       <DependentUpon>InformationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mission.cs" />
     <Compile Include="MissionParameter.cs" />
     <Compile Include="Mod.cs" />
-    <Compile Include="NewProfileForm.cs">
+    <Compile Include="forms\NewProfileForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewProfileForm.Designer.cs">
+    <Compile Include="forms\NewProfileForm.Designer.cs">
       <DependentUpon>NewProfileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Profile.cs" />
     <Compile Include="ProfileHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MonitorForm.cs">
+    <Compile Include="forms\MonitorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MonitorForm.Designer.cs">
+    <Compile Include="forms\MonitorForm.Designer.cs">
       <DependentUpon>MonitorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
-    <EmbeddedResource Include="AsIsInfoForm.resx">
+    <EmbeddedResource Include="forms\AsIsInfoForm.resx">
       <DependentUpon>AsIsInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InformationForm.resx">
+    <EmbeddedResource Include="forms\InformationForm.resx">
       <DependentUpon>InformationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewProfileForm.resx">
+    <EmbeddedResource Include="forms\NewProfileForm.resx">
       <DependentUpon>NewProfileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -141,7 +141,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MonitorForm.resx">
+    <EmbeddedResource Include="forms\MonitorForm.resx">
       <DependentUpon>MonitorForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\Profile.datasource" />
@@ -181,6 +181,7 @@
   <ItemGroup>
     <Content Include="launcher.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -35,6 +35,8 @@
             this.chkEnableUpnp = new System.Windows.Forms.CheckBox();
             this.btnPortCheck = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtLocalIp = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.txtHeadlessIp = new System.Windows.Forms.TextBox();
             this.chkHeadlessEnabled = new System.Windows.Forms.CheckBox();
@@ -75,6 +77,8 @@
             this.lblHostName = new System.Windows.Forms.Label();
             this.txtServerName = new System.Windows.Forms.TextBox();
             this.tabServerRules = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cmbAllowedFilePatching = new System.Windows.Forms.ComboBox();
             this.chkBattlEye = new System.Windows.Forms.CheckBox();
             this.chkPersistentBattlefield = new System.Windows.Forms.CheckBox();
             this.cmbRequiredSecureId = new System.Windows.Forms.ComboBox();
@@ -274,7 +278,7 @@
             this.tabContainer.Location = new System.Drawing.Point(1, 2);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.SelectedIndex = 0;
-            this.tabContainer.Size = new System.Drawing.Size(572, 337);
+            this.tabContainer.Size = new System.Drawing.Size(572, 399);
             this.tabContainer.TabIndex = 0;
             this.tabContainer.Click += new System.EventHandler(this.tabContainer_Click);
             // 
@@ -300,14 +304,14 @@
             this.tabServerDetails.Location = new System.Drawing.Point(4, 23);
             this.tabServerDetails.Name = "tabServerDetails";
             this.tabServerDetails.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServerDetails.Size = new System.Drawing.Size(564, 310);
+            this.tabServerDetails.Size = new System.Drawing.Size(564, 372);
             this.tabServerDetails.TabIndex = 0;
             this.tabServerDetails.Text = "Details";
             // 
             // chkEnableUpnp
             // 
             this.chkEnableUpnp.AutoSize = true;
-            this.chkEnableUpnp.Location = new System.Drawing.Point(490, 88);
+            this.chkEnableUpnp.Location = new System.Drawing.Point(490, 71);
             this.chkEnableUpnp.Name = "chkEnableUpnp";
             this.chkEnableUpnp.Size = new System.Drawing.Size(56, 17);
             this.chkEnableUpnp.TabIndex = 66;
@@ -320,7 +324,7 @@
             // 
             // btnPortCheck
             // 
-            this.btnPortCheck.Location = new System.Drawing.Point(488, 50);
+            this.btnPortCheck.Location = new System.Drawing.Point(488, 40);
             this.btnPortCheck.Name = "btnPortCheck";
             this.btnPortCheck.Size = new System.Drawing.Size(58, 23);
             this.btnPortCheck.TabIndex = 63;
@@ -332,31 +336,53 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.DarkOrange;
+            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Controls.Add(this.txtLocalIp);
             this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.txtHeadlessIp);
             this.groupBox1.Controls.Add(this.chkHeadlessEnabled);
-            this.groupBox1.Location = new System.Drawing.Point(383, 120);
+            this.groupBox1.Location = new System.Drawing.Point(8, 284);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(173, 97);
+            this.groupBox1.Size = new System.Drawing.Size(550, 82);
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Headless Client";
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(34, 50);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(85, 13);
+            this.label24.TabIndex = 67;
+            this.label24.Text = "Local Clients IPs";
+            // 
+            // txtLocalIp
+            // 
+            this.txtLocalIp.Enabled = false;
+            this.txtLocalIp.Location = new System.Drawing.Point(125, 47);
+            this.txtLocalIp.Name = "txtLocalIp";
+            this.txtLocalIp.Size = new System.Drawing.Size(419, 20);
+            this.txtLocalIp.TabIndex = 66;
+            this.toolTip1.SetToolTip(this.txtLocalIp, "Add Headless Clients IP\'s .\r\nIf more than one, separate with commas\r\n\r\nDoubleclic" +
+        "k for default: 127.0.0.1");
+            this.txtLocalIp.TextChanged += new System.EventHandler(this.txtLocalIp_TextChanged);
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(12, 58);
+            this.label23.Location = new System.Drawing.Point(79, 20);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(24, 13);
+            this.label23.Size = new System.Drawing.Size(40, 13);
             this.label23.TabIndex = 65;
-            this.label23.Text = "IP\'s";
+            this.label23.Text = "HC IPs";
             // 
             // txtHeadlessIp
             // 
             this.txtHeadlessIp.Enabled = false;
-            this.txtHeadlessIp.Location = new System.Drawing.Point(38, 55);
+            this.txtHeadlessIp.Location = new System.Drawing.Point(125, 17);
             this.txtHeadlessIp.Name = "txtHeadlessIp";
-            this.txtHeadlessIp.Size = new System.Drawing.Size(125, 20);
+            this.txtHeadlessIp.Size = new System.Drawing.Size(419, 20);
             this.txtHeadlessIp.TabIndex = 65;
             this.toolTip1.SetToolTip(this.txtHeadlessIp, "Add Headless Clients IP\'s .\r\nIf more than one, separate with commas\r\n\r\nDoubleclic" +
         "k for default: 127.0.0.1");
@@ -366,18 +392,18 @@
             // chkHeadlessEnabled
             // 
             this.chkHeadlessEnabled.AutoSize = true;
-            this.chkHeadlessEnabled.Location = new System.Drawing.Point(17, 28);
+            this.chkHeadlessEnabled.Location = new System.Drawing.Point(10, 19);
             this.chkHeadlessEnabled.Name = "chkHeadlessEnabled";
-            this.chkHeadlessEnabled.Size = new System.Drawing.Size(77, 17);
+            this.chkHeadlessEnabled.Size = new System.Drawing.Size(59, 17);
             this.chkHeadlessEnabled.TabIndex = 15;
-            this.chkHeadlessEnabled.Text = "Enable HC";
+            this.chkHeadlessEnabled.Text = "Enable";
             this.toolTip1.SetToolTip(this.chkHeadlessEnabled, "Check to enable headless client support on server");
             this.chkHeadlessEnabled.UseVisualStyleBackColor = true;
             this.chkHeadlessEnabled.CheckedChanged += new System.EventHandler(this.chkHeadlessEnabled_CheckedChanged);
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(409, 51);
+            this.txtPort.Location = new System.Drawing.Point(409, 42);
             this.txtPort.MaxLength = 5;
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(65, 20);
@@ -394,9 +420,9 @@
             this.VoN.Controls.Add(this.chkDisableVon);
             this.VoN.Controls.Add(this.lblCodeQuality);
             this.VoN.Controls.Add(this.numCodecQuality);
-            this.VoN.Location = new System.Drawing.Point(383, 226);
+            this.VoN.Location = new System.Drawing.Point(385, 196);
             this.VoN.Name = "VoN";
-            this.VoN.Size = new System.Drawing.Size(173, 72);
+            this.VoN.Size = new System.Drawing.Size(173, 82);
             this.VoN.TabIndex = 59;
             this.VoN.TabStop = false;
             this.VoN.Text = "Voice Over Net";
@@ -470,9 +496,9 @@
             this.groupBox2.Controls.Add(this.txtPidfile);
             this.groupBox2.Controls.Add(this.lblConsoleLogfile);
             this.groupBox2.Controls.Add(this.chkNetlog);
-            this.groupBox2.Location = new System.Drawing.Point(8, 120);
+            this.groupBox2.Location = new System.Drawing.Point(8, 93);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(368, 178);
+            this.groupBox2.Size = new System.Drawing.Size(368, 185);
             this.groupBox2.TabIndex = 58;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Server Logging";
@@ -749,7 +775,7 @@
             // lblMaxPLayers
             // 
             this.lblMaxPLayers.AutoSize = true;
-            this.lblMaxPLayers.Location = new System.Drawing.Point(342, 90);
+            this.lblMaxPLayers.Location = new System.Drawing.Point(342, 72);
             this.lblMaxPLayers.Name = "lblMaxPLayers";
             this.lblMaxPLayers.Size = new System.Drawing.Size(64, 13);
             this.lblMaxPLayers.TabIndex = 55;
@@ -757,7 +783,7 @@
             // 
             // numMaxPlayers
             // 
-            this.numMaxPlayers.Location = new System.Drawing.Point(409, 86);
+            this.numMaxPlayers.Location = new System.Drawing.Point(409, 68);
             this.numMaxPlayers.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -773,7 +799,7 @@
             // lblPort
             // 
             this.lblPort.AutoSize = true;
-            this.lblPort.Location = new System.Drawing.Point(380, 55);
+            this.lblPort.Location = new System.Drawing.Point(380, 46);
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(26, 13);
             this.lblPort.TabIndex = 53;
@@ -782,7 +808,7 @@
             // lblAdminPassword
             // 
             this.lblAdminPassword.AutoSize = true;
-            this.lblAdminPassword.Location = new System.Drawing.Point(15, 89);
+            this.lblAdminPassword.Location = new System.Drawing.Point(15, 71);
             this.lblAdminPassword.Name = "lblAdminPassword";
             this.lblAdminPassword.Size = new System.Drawing.Size(85, 13);
             this.lblAdminPassword.TabIndex = 49;
@@ -790,7 +816,7 @@
             // 
             // txtAdminPassword
             // 
-            this.txtAdminPassword.Location = new System.Drawing.Point(103, 85);
+            this.txtAdminPassword.Location = new System.Drawing.Point(103, 67);
             this.txtAdminPassword.Name = "txtAdminPassword";
             this.txtAdminPassword.Size = new System.Drawing.Size(201, 20);
             this.txtAdminPassword.TabIndex = 4;
@@ -801,7 +827,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(103, 50);
+            this.txtPassword.Location = new System.Drawing.Point(103, 41);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(201, 20);
             this.txtPassword.TabIndex = 1;
@@ -812,7 +838,7 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(47, 54);
+            this.lblPassword.Location = new System.Drawing.Point(47, 45);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(53, 13);
             this.lblPassword.TabIndex = 47;
@@ -840,6 +866,8 @@
             // tabServerRules
             // 
             this.tabServerRules.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.tabServerRules.Controls.Add(this.label19);
+            this.tabServerRules.Controls.Add(this.cmbAllowedFilePatching);
             this.tabServerRules.Controls.Add(this.chkBattlEye);
             this.tabServerRules.Controls.Add(this.chkPersistentBattlefield);
             this.tabServerRules.Controls.Add(this.cmbRequiredSecureId);
@@ -855,14 +883,37 @@
             this.tabServerRules.Location = new System.Drawing.Point(4, 23);
             this.tabServerRules.Name = "tabServerRules";
             this.tabServerRules.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServerRules.Size = new System.Drawing.Size(564, 310);
+            this.tabServerRules.Size = new System.Drawing.Size(564, 372);
             this.tabServerRules.TabIndex = 1;
             this.tabServerRules.Text = "Rules";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(24, 182);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(108, 13);
+            this.label19.TabIndex = 52;
+            this.label19.Text = "Allowed File Patching";
+            // 
+            // cmbAllowedFilePatching
+            // 
+            this.cmbAllowedFilePatching.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAllowedFilePatching.FormattingEnabled = true;
+            this.cmbAllowedFilePatching.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2"});
+            this.cmbAllowedFilePatching.Location = new System.Drawing.Point(134, 179);
+            this.cmbAllowedFilePatching.Name = "cmbAllowedFilePatching";
+            this.cmbAllowedFilePatching.Size = new System.Drawing.Size(72, 21);
+            this.cmbAllowedFilePatching.TabIndex = 51;
+            this.cmbAllowedFilePatching.SelectedIndexChanged += new System.EventHandler(this.cmbAllowedFilePatching_SelectedIndexChanged);
             // 
             // chkBattlEye
             // 
             this.chkBattlEye.AutoSize = true;
-            this.chkBattlEye.Location = new System.Drawing.Point(24, 278);
+            this.chkBattlEye.Location = new System.Drawing.Point(24, 280);
             this.chkBattlEye.Name = "chkBattlEye";
             this.chkBattlEye.Size = new System.Drawing.Size(65, 17);
             this.chkBattlEye.TabIndex = 50;
@@ -876,7 +927,7 @@
             // chkPersistentBattlefield
             // 
             this.chkPersistentBattlefield.AutoSize = true;
-            this.chkPersistentBattlefield.Location = new System.Drawing.Point(24, 255);
+            this.chkPersistentBattlefield.Location = new System.Drawing.Point(24, 257);
             this.chkPersistentBattlefield.Name = "chkPersistentBattlefield";
             this.chkPersistentBattlefield.Size = new System.Drawing.Size(121, 17);
             this.chkPersistentBattlefield.TabIndex = 49;
@@ -895,21 +946,23 @@
             "none",
             "1",
             "2"});
-            this.cmbRequiredSecureId.Location = new System.Drawing.Point(134, 179);
+            this.cmbRequiredSecureId.Location = new System.Drawing.Point(134, 326);
             this.cmbRequiredSecureId.Name = "cmbRequiredSecureId";
             this.cmbRequiredSecureId.Size = new System.Drawing.Size(72, 21);
             this.cmbRequiredSecureId.TabIndex = 48;
             this.toolTip1.SetToolTip(this.cmbRequiredSecureId, resources.GetString("cmbRequiredSecureId.ToolTip"));
+            this.cmbRequiredSecureId.Visible = false;
             this.cmbRequiredSecureId.SelectedIndexChanged += new System.EventHandler(this.cmbRequiredSecureId_SelectedIndexChanged);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(23, 182);
+            this.label21.Location = new System.Drawing.Point(23, 329);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(101, 13);
             this.label21.TabIndex = 47;
             this.label21.Text = "Required Secure ID";
+            this.label21.Visible = false;
             // 
             // label14
             // 
@@ -938,7 +991,7 @@
             // txtRequiredBuild
             // 
             this.txtRequiredBuild.Enabled = false;
-            this.txtRequiredBuild.Location = new System.Drawing.Point(134, 206);
+            this.txtRequiredBuild.Location = new System.Drawing.Point(134, 208);
             this.txtRequiredBuild.MaxLength = 6;
             this.txtRequiredBuild.Name = "txtRequiredBuild";
             this.txtRequiredBuild.Size = new System.Drawing.Size(72, 20);
@@ -950,7 +1003,7 @@
             // chkRequiredBuild
             // 
             this.chkRequiredBuild.AutoSize = true;
-            this.chkRequiredBuild.Location = new System.Drawing.Point(24, 209);
+            this.chkRequiredBuild.Location = new System.Drawing.Point(24, 211);
             this.chkRequiredBuild.Name = "chkRequiredBuild";
             this.chkRequiredBuild.Size = new System.Drawing.Size(95, 17);
             this.chkRequiredBuild.TabIndex = 43;
@@ -965,16 +1018,15 @@
             this.grpMotd.Controls.Add(this.txtMotd);
             this.grpMotd.Location = new System.Drawing.Point(220, 12);
             this.grpMotd.Name = "grpMotd";
-            this.grpMotd.Size = new System.Drawing.Size(336, 283);
+            this.grpMotd.Size = new System.Drawing.Size(336, 354);
             this.grpMotd.TabIndex = 42;
             this.grpMotd.TabStop = false;
             this.grpMotd.Text = "Message Of The Day";
-            this.grpMotd.Enter += new System.EventHandler(this.grpMotd_Enter);
             // 
             // lblMotdInterval
             // 
             this.lblMotdInterval.AutoSize = true;
-            this.lblMotdInterval.Location = new System.Drawing.Point(129, 257);
+            this.lblMotdInterval.Location = new System.Drawing.Point(129, 331);
             this.lblMotdInterval.Name = "lblMotdInterval";
             this.lblMotdInterval.Size = new System.Drawing.Size(143, 13);
             this.lblMotdInterval.TabIndex = 37;
@@ -982,7 +1034,7 @@
             // 
             // numMotdInterval
             // 
-            this.numMotdInterval.Location = new System.Drawing.Point(274, 254);
+            this.numMotdInterval.Location = new System.Drawing.Point(274, 328);
             this.numMotdInterval.Maximum = new decimal(new int[] {
             31536000,
             0,
@@ -1000,7 +1052,7 @@
             this.txtMotd.Multiline = true;
             this.txtMotd.Name = "txtMotd";
             this.txtMotd.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtMotd.Size = new System.Drawing.Size(322, 229);
+            this.txtMotd.Size = new System.Drawing.Size(322, 303);
             this.txtMotd.TabIndex = 5;
             this.toolTip1.SetToolTip(this.txtMotd, "MOTD will scroll by in the server chat, line by line.\r\nBlank lines will count as " +
         "emtpy linebreak and takr the time of\r\na normal line.");
@@ -1108,7 +1160,7 @@
             // chkKickDuplicates
             // 
             this.chkKickDuplicates.AutoSize = true;
-            this.chkKickDuplicates.Location = new System.Drawing.Point(24, 232);
+            this.chkKickDuplicates.Location = new System.Drawing.Point(24, 234);
             this.chkKickDuplicates.Name = "chkKickDuplicates";
             this.chkKickDuplicates.Size = new System.Drawing.Size(100, 17);
             this.chkKickDuplicates.TabIndex = 40;
@@ -1124,7 +1176,7 @@
             this.tabMissions.Location = new System.Drawing.Point(4, 23);
             this.tabMissions.Name = "tabMissions";
             this.tabMissions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMissions.Size = new System.Drawing.Size(564, 310);
+            this.tabMissions.Size = new System.Drawing.Size(564, 372);
             this.tabMissions.TabIndex = 2;
             this.tabMissions.Text = "Missions";
             // 
@@ -1149,7 +1201,7 @@
             this.grpMissions.Controls.Add(this.lstMissions);
             this.grpMissions.Location = new System.Drawing.Point(12, 11);
             this.grpMissions.Name = "grpMissions";
-            this.grpMissions.Size = new System.Drawing.Size(541, 293);
+            this.grpMissions.Size = new System.Drawing.Size(541, 355);
             this.grpMissions.TabIndex = 4;
             this.grpMissions.TabStop = false;
             this.grpMissions.Text = "Mission Cycle List";
@@ -1158,7 +1210,7 @@
             // 
             this.btnAllMissionsDiff.ImageIndex = 17;
             this.btnAllMissionsDiff.ImageList = this.imageList1;
-            this.btnAllMissionsDiff.Location = new System.Drawing.Point(352, 257);
+            this.btnAllMissionsDiff.Location = new System.Drawing.Point(352, 324);
             this.btnAllMissionsDiff.Name = "btnAllMissionsDiff";
             this.btnAllMissionsDiff.Size = new System.Drawing.Size(30, 25);
             this.btnAllMissionsDiff.TabIndex = 52;
@@ -1172,7 +1224,7 @@
             this.btnSort.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSort.ImageIndex = 16;
             this.btnSort.ImageList = this.imageList1;
-            this.btnSort.Location = new System.Drawing.Point(403, 257);
+            this.btnSort.Location = new System.Drawing.Point(403, 324);
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(53, 25);
             this.btnSort.TabIndex = 51;
@@ -1208,7 +1260,7 @@
             // 
             this.btnMissionDown.ImageIndex = 15;
             this.btnMissionDown.ImageList = this.imageList1;
-            this.btnMissionDown.Location = new System.Drawing.Point(185, 257);
+            this.btnMissionDown.Location = new System.Drawing.Point(185, 324);
             this.btnMissionDown.Name = "btnMissionDown";
             this.btnMissionDown.Size = new System.Drawing.Size(30, 25);
             this.btnMissionDown.TabIndex = 48;
@@ -1220,7 +1272,7 @@
             // 
             this.btnMissionUp.ImageIndex = 14;
             this.btnMissionUp.ImageList = this.imageList1;
-            this.btnMissionUp.Location = new System.Drawing.Point(149, 257);
+            this.btnMissionUp.Location = new System.Drawing.Point(149, 324);
             this.btnMissionUp.Name = "btnMissionUp";
             this.btnMissionUp.Size = new System.Drawing.Size(30, 25);
             this.btnMissionUp.TabIndex = 47;
@@ -1250,7 +1302,7 @@
             // lblDifficulty
             // 
             this.lblDifficulty.AutoSize = true;
-            this.lblDifficulty.Location = new System.Drawing.Point(231, 263);
+            this.lblDifficulty.Location = new System.Drawing.Point(231, 330);
             this.lblDifficulty.Name = "lblDifficulty";
             this.lblDifficulty.Size = new System.Drawing.Size(47, 13);
             this.lblDifficulty.TabIndex = 44;
@@ -1265,7 +1317,7 @@
             "regular",
             "veteran",
             "expert"});
-            this.cmbDifficulty.Location = new System.Drawing.Point(280, 259);
+            this.cmbDifficulty.Location = new System.Drawing.Point(280, 326);
             this.cmbDifficulty.Name = "cmbDifficulty";
             this.cmbDifficulty.Size = new System.Drawing.Size(67, 21);
             this.cmbDifficulty.TabIndex = 5;
@@ -1295,7 +1347,7 @@
             this.btnRefreshMissions.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRefreshMissions.ImageIndex = 10;
             this.btnRefreshMissions.ImageList = this.imageList1;
-            this.btnRefreshMissions.Location = new System.Drawing.Point(462, 257);
+            this.btnRefreshMissions.Location = new System.Drawing.Point(462, 324);
             this.btnRefreshMissions.Name = "btnRefreshMissions";
             this.btnRefreshMissions.Size = new System.Drawing.Size(67, 25);
             this.btnRefreshMissions.TabIndex = 6;
@@ -1307,7 +1359,7 @@
             // 
             // btnSelectNoneMissions
             // 
-            this.btnSelectNoneMissions.Location = new System.Drawing.Point(51, 257);
+            this.btnSelectNoneMissions.Location = new System.Drawing.Point(51, 324);
             this.btnSelectNoneMissions.Name = "btnSelectNoneMissions";
             this.btnSelectNoneMissions.Size = new System.Drawing.Size(43, 25);
             this.btnSelectNoneMissions.TabIndex = 3;
@@ -1317,7 +1369,7 @@
             // 
             // btnSelectAllMissions
             // 
-            this.btnSelectAllMissions.Location = new System.Drawing.Point(14, 257);
+            this.btnSelectAllMissions.Location = new System.Drawing.Point(14, 324);
             this.btnSelectAllMissions.Name = "btnSelectAllMissions";
             this.btnSelectAllMissions.Size = new System.Drawing.Size(31, 25);
             this.btnSelectAllMissions.TabIndex = 2;
@@ -1327,7 +1379,7 @@
             // 
             // btnInvertMissionSelection
             // 
-            this.btnInvertMissionSelection.Location = new System.Drawing.Point(100, 257);
+            this.btnInvertMissionSelection.Location = new System.Drawing.Point(100, 324);
             this.btnInvertMissionSelection.Name = "btnInvertMissionSelection";
             this.btnInvertMissionSelection.Size = new System.Drawing.Size(43, 25);
             this.btnInvertMissionSelection.TabIndex = 4;
@@ -1343,7 +1395,7 @@
             this.lstMissions.HorizontalScrollbar = true;
             this.lstMissions.Location = new System.Drawing.Point(14, 52);
             this.lstMissions.Name = "lstMissions";
-            this.lstMissions.Size = new System.Drawing.Size(515, 199);
+            this.lstMissions.Size = new System.Drawing.Size(515, 259);
             this.lstMissions.TabIndex = 1;
             this.lstMissions.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lstMissions_ItemCheck);
             this.lstMissions.SelectedIndexChanged += new System.EventHandler(this.lstMissions_SelectedIndexChanged);
@@ -1359,7 +1411,7 @@
             this.tabMods.Location = new System.Drawing.Point(4, 23);
             this.tabMods.Name = "tabMods";
             this.tabMods.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMods.Size = new System.Drawing.Size(564, 310);
+            this.tabMods.Size = new System.Drawing.Size(564, 372);
             this.tabMods.TabIndex = 3;
             this.tabMods.Text = "Mods";
             // 
@@ -1381,7 +1433,7 @@
             this.grpMods.Controls.Add(this.lstMods);
             this.grpMods.Location = new System.Drawing.Point(12, 10);
             this.grpMods.Name = "grpMods";
-            this.grpMods.Size = new System.Drawing.Size(541, 294);
+            this.grpMods.Size = new System.Drawing.Size(541, 356);
             this.grpMods.TabIndex = 2;
             this.grpMods.TabStop = false;
             this.grpMods.Text = "Available Mods";
@@ -1391,7 +1443,7 @@
             this.btnSortMods.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSortMods.ImageIndex = 16;
             this.btnSortMods.ImageList = this.imageList1;
-            this.btnSortMods.Location = new System.Drawing.Point(403, 258);
+            this.btnSortMods.Location = new System.Drawing.Point(403, 325);
             this.btnSortMods.Name = "btnSortMods";
             this.btnSortMods.Size = new System.Drawing.Size(53, 25);
             this.btnSortMods.TabIndex = 55;
@@ -1443,11 +1495,11 @@
             // 
             this.removeModBTN.ImageIndex = 9;
             this.removeModBTN.ImageList = this.imageList1;
-            this.removeModBTN.Location = new System.Drawing.Point(354, 258);
+            this.removeModBTN.Location = new System.Drawing.Point(354, 325);
             this.removeModBTN.Name = "removeModBTN";
             this.removeModBTN.Size = new System.Drawing.Size(30, 25);
             this.removeModBTN.TabIndex = 20;
-            this.toolTip1.SetToolTip(this.removeModBTN, "Remove selected folder from list. \r\nThis will NOT delete the folder form disk");
+            this.toolTip1.SetToolTip(this.removeModBTN, "Remove selected folder from list. \r\nThis will NOT delete the folder from disk");
             this.removeModBTN.UseVisualStyleBackColor = true;
             this.removeModBTN.Click += new System.EventHandler(this.removeModBTN_Click);
             // 
@@ -1455,7 +1507,7 @@
             // 
             this.modUpBTN.ImageIndex = 14;
             this.modUpBTN.ImageList = this.imageList1;
-            this.modUpBTN.Location = new System.Drawing.Point(149, 258);
+            this.modUpBTN.Location = new System.Drawing.Point(149, 325);
             this.modUpBTN.Name = "modUpBTN";
             this.modUpBTN.Size = new System.Drawing.Size(30, 25);
             this.modUpBTN.TabIndex = 19;
@@ -1466,7 +1518,7 @@
             // 
             this.modDownBTN.ImageIndex = 15;
             this.modDownBTN.ImageList = this.imageList1;
-            this.modDownBTN.Location = new System.Drawing.Point(185, 258);
+            this.modDownBTN.Location = new System.Drawing.Point(185, 325);
             this.modDownBTN.Name = "modDownBTN";
             this.modDownBTN.Size = new System.Drawing.Size(30, 25);
             this.modDownBTN.TabIndex = 18;
@@ -1475,7 +1527,7 @@
             // 
             // btnSelectNoneMods
             // 
-            this.btnSelectNoneMods.Location = new System.Drawing.Point(51, 258);
+            this.btnSelectNoneMods.Location = new System.Drawing.Point(51, 325);
             this.btnSelectNoneMods.Name = "btnSelectNoneMods";
             this.btnSelectNoneMods.Size = new System.Drawing.Size(43, 25);
             this.btnSelectNoneMods.TabIndex = 16;
@@ -1485,7 +1537,7 @@
             // 
             // btnSelectAllMods
             // 
-            this.btnSelectAllMods.Location = new System.Drawing.Point(14, 258);
+            this.btnSelectAllMods.Location = new System.Drawing.Point(14, 325);
             this.btnSelectAllMods.Name = "btnSelectAllMods";
             this.btnSelectAllMods.Size = new System.Drawing.Size(31, 25);
             this.btnSelectAllMods.TabIndex = 15;
@@ -1495,7 +1547,7 @@
             // 
             // btnInvertMods
             // 
-            this.btnInvertMods.Location = new System.Drawing.Point(100, 258);
+            this.btnInvertMods.Location = new System.Drawing.Point(100, 325);
             this.btnInvertMods.Name = "btnInvertMods";
             this.btnInvertMods.Size = new System.Drawing.Size(43, 25);
             this.btnInvertMods.TabIndex = 17;
@@ -1508,7 +1560,7 @@
             this.btnRefreshMods.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRefreshMods.ImageIndex = 10;
             this.btnRefreshMods.ImageList = this.imageList1;
-            this.btnRefreshMods.Location = new System.Drawing.Point(462, 258);
+            this.btnRefreshMods.Location = new System.Drawing.Point(462, 325);
             this.btnRefreshMods.Name = "btnRefreshMods";
             this.btnRefreshMods.Size = new System.Drawing.Size(67, 25);
             this.btnRefreshMods.TabIndex = 14;
@@ -1522,7 +1574,7 @@
             // 
             this.btnAddModFolder.ImageIndex = 8;
             this.btnAddModFolder.ImageList = this.imageList1;
-            this.btnAddModFolder.Location = new System.Drawing.Point(318, 258);
+            this.btnAddModFolder.Location = new System.Drawing.Point(318, 325);
             this.btnAddModFolder.Name = "btnAddModFolder";
             this.btnAddModFolder.Size = new System.Drawing.Size(30, 25);
             this.btnAddModFolder.TabIndex = 2;
@@ -1538,7 +1590,7 @@
             this.lstMods.FormattingEnabled = true;
             this.lstMods.Location = new System.Drawing.Point(14, 53);
             this.lstMods.Name = "lstMods";
-            this.lstMods.Size = new System.Drawing.Size(515, 199);
+            this.lstMods.Size = new System.Drawing.Size(515, 259);
             this.lstMods.TabIndex = 0;
             this.lstMods.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lstMods_ItemCheck);
             this.lstMods.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstMods_DragDrop);
@@ -1555,7 +1607,7 @@
             this.tabDiffSettings.Location = new System.Drawing.Point(4, 23);
             this.tabDiffSettings.Name = "tabDiffSettings";
             this.tabDiffSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDiffSettings.Size = new System.Drawing.Size(564, 310);
+            this.tabDiffSettings.Size = new System.Drawing.Size(564, 372);
             this.tabDiffSettings.TabIndex = 4;
             this.tabDiffSettings.Text = "Difficulty";
             // 
@@ -1564,7 +1616,7 @@
             this.groupBox9.Controls.Add(this.lblProfileDifficultyInfo);
             this.groupBox9.Location = new System.Drawing.Point(338, 10);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(215, 189);
+            this.groupBox9.Size = new System.Drawing.Size(215, 356);
             this.groupBox9.TabIndex = 33;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Info";
@@ -1597,7 +1649,7 @@
             this.grpProfileDifficulty.Controls.Add(this.label8);
             this.grpProfileDifficulty.Location = new System.Drawing.Point(12, 10);
             this.grpProfileDifficulty.Name = "grpProfileDifficulty";
-            this.grpProfileDifficulty.Size = new System.Drawing.Size(320, 294);
+            this.grpProfileDifficulty.Size = new System.Drawing.Size(320, 356);
             this.grpProfileDifficulty.TabIndex = 32;
             this.grpProfileDifficulty.TabStop = false;
             this.grpProfileDifficulty.Text = "Profile Difficulty Settings";
@@ -1820,7 +1872,7 @@
             this.tabPerformance.Location = new System.Drawing.Point(4, 23);
             this.tabPerformance.Name = "tabPerformance";
             this.tabPerformance.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPerformance.Size = new System.Drawing.Size(564, 310);
+            this.tabPerformance.Size = new System.Drawing.Size(564, 372);
             this.tabPerformance.TabIndex = 5;
             this.tabPerformance.Text = "Performance";
             this.tabPerformance.Click += new System.EventHandler(this.tabPerformance_Click);
@@ -2233,7 +2285,7 @@
             this.tabServerScripts.Location = new System.Drawing.Point(4, 23);
             this.tabServerScripts.Name = "tabServerScripts";
             this.tabServerScripts.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServerScripts.Size = new System.Drawing.Size(564, 310);
+            this.tabServerScripts.Size = new System.Drawing.Size(564, 372);
             this.tabServerScripts.TabIndex = 6;
             this.tabServerScripts.Text = "Server Side Scripting";
             // 
@@ -2255,7 +2307,7 @@
             this.groupBox4.Controls.Add(this.onUserDisconnectedLBL);
             this.groupBox4.Location = new System.Drawing.Point(7, 64);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(552, 226);
+            this.groupBox4.Size = new System.Drawing.Size(552, 302);
             this.groupBox4.TabIndex = 68;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Server Scripts";
@@ -2271,7 +2323,7 @@
             // onDifferentDataLBL
             // 
             this.onDifferentDataLBL.AutoSize = true;
-            this.onDifferentDataLBL.Location = new System.Drawing.Point(48, 138);
+            this.onDifferentDataLBL.Location = new System.Drawing.Point(48, 176);
             this.onDifferentDataLBL.Name = "onDifferentDataLBL";
             this.onDifferentDataLBL.Size = new System.Drawing.Size(91, 13);
             this.onDifferentDataLBL.TabIndex = 35;
@@ -2279,7 +2331,7 @@
             // 
             // txtOnUserConnected
             // 
-            this.txtOnUserConnected.Location = new System.Drawing.Point(145, 57);
+            this.txtOnUserConnected.Location = new System.Drawing.Point(145, 67);
             this.txtOnUserConnected.Name = "txtOnUserConnected";
             this.txtOnUserConnected.Size = new System.Drawing.Size(398, 20);
             this.txtOnUserConnected.TabIndex = 27;
@@ -2296,7 +2348,7 @@
             // 
             // txtOnDifferentData
             // 
-            this.txtOnDifferentData.Location = new System.Drawing.Point(145, 135);
+            this.txtOnDifferentData.Location = new System.Drawing.Point(145, 173);
             this.txtOnDifferentData.Name = "txtOnDifferentData";
             this.txtOnDifferentData.Size = new System.Drawing.Size(398, 20);
             this.txtOnDifferentData.TabIndex = 30;
@@ -2305,7 +2357,7 @@
             // regularCheckLBL
             // 
             this.regularCheckLBL.AutoSize = true;
-            this.regularCheckLBL.Location = new System.Drawing.Point(60, 190);
+            this.regularCheckLBL.Location = new System.Drawing.Point(60, 246);
             this.regularCheckLBL.Name = "regularCheckLBL";
             this.regularCheckLBL.Size = new System.Drawing.Size(79, 13);
             this.regularCheckLBL.TabIndex = 39;
@@ -2315,7 +2367,7 @@
             // onUserConnectedLBL
             // 
             this.onUserConnectedLBL.AutoSize = true;
-            this.onUserConnectedLBL.Location = new System.Drawing.Point(37, 60);
+            this.onUserConnectedLBL.Location = new System.Drawing.Point(37, 70);
             this.onUserConnectedLBL.Name = "onUserConnectedLBL";
             this.onUserConnectedLBL.Size = new System.Drawing.Size(102, 13);
             this.onUserConnectedLBL.TabIndex = 37;
@@ -2323,7 +2375,7 @@
             // 
             // txtOnUnsignedData
             // 
-            this.txtOnUnsignedData.Location = new System.Drawing.Point(145, 161);
+            this.txtOnUnsignedData.Location = new System.Drawing.Point(145, 208);
             this.txtOnUnsignedData.Name = "txtOnUnsignedData";
             this.txtOnUnsignedData.Size = new System.Drawing.Size(398, 20);
             this.txtOnUnsignedData.TabIndex = 31;
@@ -2331,7 +2383,7 @@
             // 
             // txtOnHackedData
             // 
-            this.txtOnHackedData.Location = new System.Drawing.Point(145, 109);
+            this.txtOnHackedData.Location = new System.Drawing.Point(145, 137);
             this.txtOnHackedData.Name = "txtOnHackedData";
             this.txtOnHackedData.Size = new System.Drawing.Size(398, 20);
             this.txtOnHackedData.TabIndex = 29;
@@ -2339,7 +2391,7 @@
             // 
             // txtRegularCheck
             // 
-            this.txtRegularCheck.Location = new System.Drawing.Point(145, 187);
+            this.txtRegularCheck.Location = new System.Drawing.Point(145, 243);
             this.txtRegularCheck.Name = "txtRegularCheck";
             this.txtRegularCheck.Size = new System.Drawing.Size(398, 20);
             this.txtRegularCheck.TabIndex = 32;
@@ -2347,7 +2399,7 @@
             // 
             // txtOnUserDisconnected
             // 
-            this.txtOnUserDisconnected.Location = new System.Drawing.Point(145, 83);
+            this.txtOnUserDisconnected.Location = new System.Drawing.Point(145, 102);
             this.txtOnUserDisconnected.Name = "txtOnUserDisconnected";
             this.txtOnUserDisconnected.Size = new System.Drawing.Size(398, 20);
             this.txtOnUserDisconnected.TabIndex = 28;
@@ -2356,7 +2408,7 @@
             // onUnSignedDataLBL
             // 
             this.onUnSignedDataLBL.AutoSize = true;
-            this.onUnSignedDataLBL.Location = new System.Drawing.Point(41, 164);
+            this.onUnSignedDataLBL.Location = new System.Drawing.Point(41, 211);
             this.onUnSignedDataLBL.Name = "onUnSignedDataLBL";
             this.onUnSignedDataLBL.Size = new System.Drawing.Size(99, 13);
             this.onUnSignedDataLBL.TabIndex = 33;
@@ -2366,7 +2418,7 @@
             // onHackedDataLBL
             // 
             this.onHackedDataLBL.AutoSize = true;
-            this.onHackedDataLBL.Location = new System.Drawing.Point(50, 112);
+            this.onHackedDataLBL.Location = new System.Drawing.Point(50, 140);
             this.onHackedDataLBL.Name = "onHackedDataLBL";
             this.onHackedDataLBL.Size = new System.Drawing.Size(89, 13);
             this.onHackedDataLBL.TabIndex = 34;
@@ -2375,7 +2427,7 @@
             // onUserDisconnectedLBL
             // 
             this.onUserDisconnectedLBL.AutoSize = true;
-            this.onUserDisconnectedLBL.Location = new System.Drawing.Point(23, 86);
+            this.onUserDisconnectedLBL.Location = new System.Drawing.Point(23, 105);
             this.onUserDisconnectedLBL.Name = "onUserDisconnectedLBL";
             this.onUserDisconnectedLBL.Size = new System.Drawing.Size(116, 13);
             this.onUserDisconnectedLBL.TabIndex = 38;
@@ -2403,7 +2455,7 @@
             // btnLaunch
             // 
             this.btnLaunch.BackColor = System.Drawing.SystemColors.Control;
-            this.btnLaunch.Location = new System.Drawing.Point(486, 558);
+            this.btnLaunch.Location = new System.Drawing.Point(486, 616);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(70, 43);
             this.btnLaunch.TabIndex = 38;
@@ -2415,7 +2467,7 @@
             // lblParameters
             // 
             this.lblParameters.AutoSize = true;
-            this.lblParameters.Location = new System.Drawing.Point(5, 409);
+            this.lblParameters.Location = new System.Drawing.Point(5, 460);
             this.lblParameters.Name = "lblParameters";
             this.lblParameters.Size = new System.Drawing.Size(87, 13);
             this.lblParameters.TabIndex = 920;
@@ -2424,7 +2476,7 @@
             // 
             // txtExtraParameters
             // 
-            this.txtExtraParameters.Location = new System.Drawing.Point(94, 406);
+            this.txtExtraParameters.Location = new System.Drawing.Point(94, 457);
             this.txtExtraParameters.Name = "txtExtraParameters";
             this.txtExtraParameters.Size = new System.Drawing.Size(461, 20);
             this.txtExtraParameters.TabIndex = 16;
@@ -2435,7 +2487,7 @@
             // lblServerExe
             // 
             this.lblServerExe.AutoSize = true;
-            this.lblServerExe.Location = new System.Drawing.Point(35, 439);
+            this.lblServerExe.Location = new System.Drawing.Point(35, 490);
             this.lblServerExe.Name = "lblServerExe";
             this.lblServerExe.Size = new System.Drawing.Size(57, 13);
             this.lblServerExe.TabIndex = 916;
@@ -2444,7 +2496,7 @@
             // 
             // btnBrowseExe
             // 
-            this.btnBrowseExe.Location = new System.Drawing.Point(527, 434);
+            this.btnBrowseExe.Location = new System.Drawing.Point(527, 485);
             this.btnBrowseExe.Name = "btnBrowseExe";
             this.btnBrowseExe.Size = new System.Drawing.Size(30, 23);
             this.btnBrowseExe.TabIndex = 31;
@@ -2456,7 +2508,7 @@
             // txtServerExe
             // 
             this.txtServerExe.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtServerExe.Location = new System.Drawing.Point(94, 436);
+            this.txtServerExe.Location = new System.Drawing.Point(94, 487);
             this.txtServerExe.Name = "txtServerExe";
             this.txtServerExe.Size = new System.Drawing.Size(427, 20);
             this.txtServerExe.TabIndex = 15;
@@ -2469,7 +2521,7 @@
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExport.ImageIndex = 12;
             this.btnExport.ImageList = this.imageList1;
-            this.btnExport.Location = new System.Drawing.Point(486, 496);
+            this.btnExport.Location = new System.Drawing.Point(486, 554);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(70, 24);
             this.btnExport.TabIndex = 36;
@@ -2484,7 +2536,7 @@
             this.btnPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPreview.ImageIndex = 11;
             this.btnPreview.ImageList = this.imageList1;
-            this.btnPreview.Location = new System.Drawing.Point(486, 527);
+            this.btnPreview.Location = new System.Drawing.Point(486, 585);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(70, 24);
             this.btnPreview.TabIndex = 37;
@@ -2500,7 +2552,7 @@
             this.btnHelp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHelp.ImageIndex = 13;
             this.btnHelp.ImageList = this.imageList1;
-            this.btnHelp.Location = new System.Drawing.Point(486, 466);
+            this.btnHelp.Location = new System.Drawing.Point(486, 524);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(71, 24);
             this.btnHelp.TabIndex = 928;
@@ -2513,7 +2565,7 @@
             // chkAutoExit
             // 
             this.chkAutoExit.AutoSize = true;
-            this.chkAutoExit.Location = new System.Drawing.Point(385, 584);
+            this.chkAutoExit.Location = new System.Drawing.Point(385, 642);
             this.chkAutoExit.Name = "chkAutoExit";
             this.chkAutoExit.Size = new System.Drawing.Size(81, 17);
             this.chkAutoExit.TabIndex = 20;
@@ -2527,7 +2579,7 @@
             this.chkTooltips.AutoSize = true;
             this.chkTooltips.Checked = true;
             this.chkTooltips.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTooltips.Location = new System.Drawing.Point(385, 538);
+            this.chkTooltips.Location = new System.Drawing.Point(385, 596);
             this.chkTooltips.Name = "chkTooltips";
             this.chkTooltips.Size = new System.Drawing.Size(63, 17);
             this.chkTooltips.TabIndex = 19;
@@ -2546,7 +2598,7 @@
             this.grpProfile.Controls.Add(this.btnProfileNew);
             this.grpProfile.Controls.Add(this.cmbProfiles);
             this.grpProfile.Controls.Add(this.btnResetSettings);
-            this.grpProfile.Location = new System.Drawing.Point(17, 505);
+            this.grpProfile.Location = new System.Drawing.Point(12, 565);
             this.grpProfile.Name = "grpProfile";
             this.grpProfile.Size = new System.Drawing.Size(354, 99);
             this.grpProfile.TabIndex = 939;
@@ -2644,7 +2696,7 @@
             // 
             // txtStartupParameters
             // 
-            this.txtStartupParameters.Location = new System.Drawing.Point(94, 356);
+            this.txtStartupParameters.Location = new System.Drawing.Point(94, 407);
             this.txtStartupParameters.Multiline = true;
             this.txtStartupParameters.Name = "txtStartupParameters";
             this.txtStartupParameters.ReadOnly = true;
@@ -2657,7 +2709,7 @@
             // chkStartAsIs
             // 
             this.chkStartAsIs.AutoSize = true;
-            this.chkStartAsIs.Location = new System.Drawing.Point(385, 561);
+            this.chkStartAsIs.Location = new System.Drawing.Point(385, 619);
             this.chkStartAsIs.Name = "chkStartAsIs";
             this.chkStartAsIs.Size = new System.Drawing.Size(86, 17);
             this.chkStartAsIs.TabIndex = 941;
@@ -2669,7 +2721,7 @@
             // chkBeta
             // 
             this.chkBeta.AutoSize = true;
-            this.chkBeta.Location = new System.Drawing.Point(385, 515);
+            this.chkBeta.Location = new System.Drawing.Point(385, 573);
             this.chkBeta.Name = "chkBeta";
             this.chkBeta.Size = new System.Drawing.Size(85, 17);
             this.chkBeta.TabIndex = 944;
@@ -2681,7 +2733,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(31, 359);
+            this.label17.Location = new System.Drawing.Point(31, 410);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(60, 13);
             this.label17.TabIndex = 943;
@@ -2692,7 +2744,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 616);
+            this.ClientSize = new System.Drawing.Size(574, 676);
             this.Controls.Add(this.chkBeta);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.txtStartupParameters);
@@ -2970,6 +3022,10 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtServerCommandPassword;
         private System.Windows.Forms.CheckBox chkEnableUpnp;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ComboBox cmbAllowedFilePatching;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtLocalIp;
     }
 }
 

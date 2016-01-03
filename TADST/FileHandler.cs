@@ -193,6 +193,7 @@ namespace TADST
                 "maxPlayers = " + ActiveProfile.MaxPlayers + ";" + NewLine() +
                 "kickduplicate = " + Convert.ToInt32(ActiveProfile.KickDuplicates) + ";" + NewLine() +
                 "verifySignatures = " + ActiveProfile.VerifySignatures + ";" + NewLine() +
+                "allowedFilePatching = " + ActiveProfile.AllowFilePatching + ";" + NewLine() +
                 "requiredSecureId = " + ActiveProfile.RequiredSecureId + ";" + NewLine();
 
             if (ActiveProfile.Upnp)
@@ -207,7 +208,8 @@ namespace TADST
 
             if (ActiveProfile.HeadlessEnabled)
             {
-                configString += "localClient[]={" + string.Join(",", ActiveProfile.HeadlessIps) + "};" + NewLine(2);
+                configString += "headlessClients[]={" + string.Join(",", ActiveProfile.HeadlessIps) + "};" + NewLine();
+                configString += "localClient[]={" + string.Join(",", ActiveProfile.LocalIps) + "};" + NewLine(2);
             }
 
             configString += NewLine() +
@@ -219,9 +221,14 @@ namespace TADST
                             "persistent = " + Convert.ToInt32(ActiveProfile.PersistantBattlefield) + ";" + NewLine() +
                             "timeStampFormat = \"" + ActiveProfile.RptTimeStamps[ActiveProfile.RptTimeStampIndex] +
                             "\";" + NewLine() +
-                            "BattlEye = " + Convert.ToInt32(ActiveProfile.BattlEye) + ";" + NewLine(2) +
+                            "BattlEye = " + Convert.ToInt32(ActiveProfile.BattlEye) + ";" + NewLine();
+                             if (ActiveProfile.HeadlessEnabled)
+                             {
+                                 configString += "battleyeLicense = 1;" + NewLine();
+                             }
 
-                            "doubleIdDetected = \"" + ActiveProfile.DoubleIdDetected + "\";" + NewLine() +
+
+                             configString += NewLine() + "doubleIdDetected = \"" + ActiveProfile.DoubleIdDetected + "\";" + NewLine() +
                             "onUserConnected = \"" + ActiveProfile.OnUserConnected + "\";" + NewLine() +
                             "onUserDisconnected = \"" + ActiveProfile.OnUserDisconnected + "\";" + NewLine() +
                             "onHackedData = \"" + ActiveProfile.OnHackedData + "\";" + NewLine() +

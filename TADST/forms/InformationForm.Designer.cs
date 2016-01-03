@@ -93,7 +93,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(333, 100);
             this.label3.TabIndex = 57;
-            this.label3.Text = "Tophe\'s Arma Dedicated Server Tool v2.7\r\nreleased 2015-07-01\r\n\r\nBy Tophe of Östgö" +
+            this.label3.Text = "Tophe\'s Arma Dedicated Server Tool v2.7\r\nreleased 2016-01-03\r\n\r\nBy Tophe of Östgö" +
     "ta Ops [oops]\r\nThank you for using TADST!\r\n\r\n\r\n";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -103,8 +103,8 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(329, 37);
             this.label2.TabIndex = 58;
-            this.label2.Text = "Contact: cwadensten@gmail.com\r\nCopyright © 2015 Christoffer Wadensten, Sweden\r\n\r\n" +
-    "";
+            this.label2.Text = "Contact: christoffer@jymden.com\r\nCopyright © 2016 Christoffer Wadensten, Sweden\r\n" +
+    "\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label4
