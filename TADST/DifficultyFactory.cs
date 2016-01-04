@@ -85,29 +85,29 @@
             var diffSetting = new DifficultySetting(0.85m, 0.73m, 0.85m, 0.73m);
 
             diffSetting.AddDifficultyItem(new DifficultyItem("3rd Person View", "3rdPersonView", true, true, "3rd Person View\n\nTurn 3rd person view and group leader view on or off."));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Extended Armor", "armor", false, false, "Armor\n\nDecreases damage of player and his associated group"));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Auto Aim", "autoAim", false, false, "Auto Aim\n\nEnables auto aim when you're not looking through your weapon's scope. \nAlso works with crosshair off.\n\nNot available at this difficulty level"));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Auto Guide AT", "autoGuideAT", false, false, "Auto Guide AT\n\nAT missiles will be automatically guided to their target. If switched off, player has to lock onto the target.\n\nNot available at this difficulty level"));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Auto Spot", "autoSpot", false, false, "Auto Spot\n\nIf you're close enough to an enemy, you'll report it without right-clicking.\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Extended Armor", "armor", false, false, "Armor\n\nDecreases damage of player and his associated group"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Auto Aim", "autoAim", false, false, "Auto Aim\n\nEnables auto aim when you're not looking through your weapon's scope. \nAlso works with crosshair off.\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Auto Guide AT", "autoGuideAT", false, false, "Auto Guide AT\n\nAT missiles will be automatically guided to their target. If switched off, player has to lock onto the target.\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Auto Spot", "autoSpot", false, false, "Auto Spot\n\nIf you're close enough to an enemy, you'll report it without right-clicking.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Camera Shake", "cameraShake", true, true, "Camera Shake\n\nView will shake when an impact occurs close by."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Clock Indicator", "clockIndicator", false, true, "Clock Indicator\n\nDisplay the clock indicator on the left of your screen when giving/receiving orders like 'At 11 o'clock, enemy man at 200 meters'"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Death Messages", "deathMessages", true, true, "Death Message\n\nDisplay death messages \ni.e. 'playerA kill playerB'"));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Enemy Tag", "enemyTag", false, false, "Enemy Tag\n\nDisplays information on enemy units\n\nNot available at this difficulty level"));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Friendly Tag", "friendlyTag", false, false, "Friendly Tag\n\nDisplays information on friendly units. \nONLY WORKS WITH \n'Weapon Cursor' on.\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Enemy Tag", "enemyTag", false, false, "Enemy Tag\n\nDisplays information on enemy units\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Friendly Tag", "friendlyTag", false, false, "Friendly Tag\n\nDisplays information on friendly units. \nONLY WORKS WITH \n'Weapon Cursor' on.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Hud", "hud", true, true, "Hud\n\nDisplay leaders location and your position in formation."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Hud Group Info", "hudGroupInfo", false, true, "Hud Group Information\n\nResult not verified."));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Hud Perm", "hudPerm", false, false, "Hud Permanent\n\nShows HUD permanently.\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Hud Perm", "hudPerm", false, false, "Hud Permanent\n\nShows HUD permanently.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Hud Wp", "hudWp", true, true, "Hud Waypoint\n\nDisplay Waypoints right after they're ordered."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Hud Wp Perm", "hudWpPerm", false, true, "Hud Waypoint Permanent\n\nShows Waypoints permanently."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Map", "map", false, true, "Map\n\nShows symbols for all objects known to your gruop on the map. \n\nNote that this will NOT disable the map itself."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Net Stats", "netStats", true, true, "Net Stats\n\nDisplays score board."));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Tracers", "tracers", false, false, "Tracers\n\nDisplay tracers even from small arms that in reality don't have tracers.\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Tracers", "tracers", false, false, "Tracers\n\nDisplay tracers even from small arms that in reality don't have tracers.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Ultra AI", "ultraAI", false, true, "Ultra AI\n\nEnables super AI, hear and see more and increased tactics. Affects both friendly and enemy sides."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Unlimited Saves", "unlimitedSaves", false, true, "Unlimited Saves\n\nEnables unlimited saving for single player missions. But you can only load the last save state. \n\nOnly kept for reference, since it does nothing in Multiplayer."));
             diffSetting.AddDifficultyItem(new DifficultyItem("VoN ID", "vonID", true, true, "Voice over Net ID\n\nDisplay Voice over Net player name in window."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Weapon Cursor", "weaponCursor", true, true, "Weapon Cursor\n\nShows the crosshair for your weapon."));
             diffSetting.AddDifficultyItem(new DifficultyItem("(A3) Extended Info Type", "ExtendetInfoType", false, true, "Extended Info Type\n\nNo information available. Only applies to ArmA 3."));
-            diffSetting.AddDifficultyItem(new DifficultyItem("(A3) Mine Tag", "MineTag", false, false, "Mine Tag\n\nNo information available. Only applies to ArmA 3.\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("(A3) Mine Tag", "MineTag", false, false, "Mine Tag\n\nNo information available. Only applies to ArmA 3.\n\nNot available at this difficulty level"));
 
             return diffSetting;
         }
@@ -120,6 +120,7 @@
         {
             var diffSetting = new DifficultySetting(1.00m, 1.00m, 0.85m, 0.73m);
 
+            /*
             diffSetting.AddDifficultyItem(new DifficultyItem("3rd Person View", "3rdPersonView", false, false, "3rd Person View\n\nTurn 3rd person view and group leader view on or off.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Extended Armor", "armor", false, false, "Armor\n\nDecreases damage of player and his associated group"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Auto Aim", "autoAim", false, false, "Auto Aim\n\nEnables auto aim when you're not looking through your weapon's scope. \nAlso works with crosshair off.\n\nNot available at this difficulty level"));
@@ -127,7 +128,10 @@
             diffSetting.AddDifficultyItem(new DifficultyItem("Auto Spot", "autoSpot", false, false, "Auto Spot\n\nIf you're close enough to an enemy, you'll report it without right-clicking.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Camera Shake", "cameraShake", true, false, "Camera Shake\n\nView will shake when an impact occurs close by.\n\nAlways set at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Clock Indicator", "clockIndicator", false, false, "Clock Indicator\n\nDisplay the clock indicator on the left of your screen when giving/receiving orders like 'At 11 o'clock, enemy man at 200 meters'\n\nNot available at this difficulty level"));
+            */
             diffSetting.AddDifficultyItem(new DifficultyItem("Death Messages", "deathMessages", false, true, "Death Message\n\nDisplay death messages \ni.e. 'playerA kill playerB'\n\nNot available at this difficulty level"));
+            
+            /*
             diffSetting.AddDifficultyItem(new DifficultyItem("Enemy Tag", "enemyTag", false, false, "Enemy Tag\n\nDisplays information on enemy units\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Friendly Tag", "friendlyTag", false, false, "Friendly Tag\n\nDisplays information on friendly units. \nONLY WORKS WITH \n'Weapon Cursor' on.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Hud", "hud", false, false, "Hud\n\nDisplay leaders location and your position in formation.\n\nNot available at this difficulty level"));
@@ -136,15 +140,17 @@
             diffSetting.AddDifficultyItem(new DifficultyItem("Hud Wp", "hudWp", false, false, "Hud Waypoint\n\nDisplay Waypoints right after they're ordered.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Hud Wp Perm", "hudWpPerm", false, false, "Hud Waypoint Permanent\n\nShows Waypoints permanently.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Map", "map", false, false, "Map\n\nShows symbols for all objects known to your gruop on the map. \n\nNote that this will NOT disable the map itself.\n\nNot available at this difficulty level"));
+            */
             diffSetting.AddDifficultyItem(new DifficultyItem("Net Stats", "netStats", false, true, "Net Stats\n\nDisplays score board."));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Tracers", "tracers", false, false, "Tracers\n\nDisplay tracers even from small arms that in reality don't have tracers.\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Tracers", "tracers", false, false, "Tracers\n\nDisplay tracers even from small arms that in reality don't have tracers.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("Ultra AI", "ultraAI", false, true, "Ultra AI\n\nEnables super AI, hear and see more and increased tactics. Affects both friendly and enemy sides."));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Unlimited Saves", "unlimitedSaves", false, false, "Unlimited Saves\n\nEnables unlimited saving for single player missions. But you can only load the last save state. \n\nOnly kept for reference, since it does nothing in Multiplayer.\n\nNot available at this difficulty level"));
+            //diffSetting.AddDifficultyItem(new DifficultyItem("Unlimited Saves", "unlimitedSaves", false, false, "Unlimited Saves\n\nEnables unlimited saving for single player missions. But you can only load the last save state. \n\nOnly kept for reference, since it does nothing in Multiplayer.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("VoN ID", "vonID", false, true, "Voice over Net ID\n\nDisplay Voice over Net player name in window."));
+            /*
             diffSetting.AddDifficultyItem(new DifficultyItem("Weapon Cursor", "weaponCursor", false, false, "Weapon Cursor\n\nShows the crosshair for your weapon.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("(A3) Extended Info Type", "ExtendetInfoType", false, false, "Extended Info Type\n\nNo information available. Only applies to ArmA 3.\n\nNot available at this difficulty level"));
             diffSetting.AddDifficultyItem(new DifficultyItem("(A3) Mine Tag", "MineTag", false, false, "Mine Tag\n\nNo information available. Only applies to ArmA 3.\n\nNot available at this difficulty level"));
-
+            */
             return diffSetting;
         }
 
