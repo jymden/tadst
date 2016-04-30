@@ -70,7 +70,9 @@ namespace TADST
         private DifficultySetting _diffRegular;
         private DifficultySetting _diffVeteran;
         private DifficultySetting _diffExpert;
+        private DifficultySetting _diffCustom;
         private int _defaultDifficulty;
+        private int _aiLevelPreset;
 
         // Performance tab
         private int _maxMsgSend;
@@ -199,6 +201,7 @@ namespace TADST
             DiffRegular = diffFactory.CreateRegularDifficulty();
             DiffVeteran = diffFactory.CreateVeteranDifficulty();
             DiffExpert = diffFactory.CreateExpertDifficulty();
+            DiffCustom = diffFactory.CreateCustomDifficulty();
         }
 
         
@@ -650,6 +653,18 @@ namespace TADST
         {
             get { return _diffExpert; }
             set { _diffExpert = value; }
+        }
+
+        public DifficultySetting DiffCustom
+        {
+            get { return _diffCustom; }
+            set { _diffCustom = value; }
+        }
+
+        public int AILevelPreset
+        {
+            get { return _aiLevelPreset; }
+            set { _aiLevelPreset = value; }
         }
 
         public int MaxMsgSend
