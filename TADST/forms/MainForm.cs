@@ -321,10 +321,9 @@ namespace TADST
         /// </summary>
         private void GetSkillValues(DifficultySetting difficulty)
         {
-            numSkillFriendly.Value = difficulty.SkillFriendly;
-            numPrecisionFriendly.Value = difficulty.PrecisionFriendly;
-            numSkillEnemy.Value = difficulty.SkillEnemy;
-            numPrecisionEnemy.Value = difficulty.PrecisionEnemy;
+            numSkillAI.Value = difficulty.SkillAI;
+            numPrecisionAI.Value = difficulty.PrecisionAI;
+            cmbAILevelPreset.SelectedIndex = difficulty.AILevelPreset;
         }
 
         /// <summary>
@@ -458,24 +457,14 @@ namespace TADST
             }
         }
 
-        private void numSkillFriendly_Click(object sender, EventArgs e)
+        private void numSkillAI_Click(object sender, EventArgs e)
         {
-            lblProfileDifficultyInfo.Text = "Friendly AI tactics skill";
+            lblProfileDifficultyInfo.Text = "AI tactics skill";
         }
 
-        private void numPrecisionFriendly_Click(object sender, EventArgs e)
+        private void numPrecisionAI_Click(object sender, EventArgs e)
         {
-            lblProfileDifficultyInfo.Text = "Friendly AI shooting precision";
-        }
-
-        private void numSkillEnemy_Click(object sender, EventArgs e)
-        {
-            lblProfileDifficultyInfo.Text = "Enemy AI tactics skill";
-        }
-
-        private void lblPrecisionEnemy_Click(object sender, EventArgs e)
-        {
-            lblProfileDifficultyInfo.Text = "Enemy AI shooting precision";
+            lblProfileDifficultyInfo.Text = "AI shooting precision";
         }
 
         private void tabContainer_Click(object sender, EventArgs e)
@@ -509,21 +498,31 @@ namespace TADST
 
         private void rbRecruit_CheckedChanged(object sender, EventArgs e)
         {
+            this.clbDifficultyItems.Enabled = false;
             UpdateGuiDifficulty(GetCurrentDifficulty());
         }
 
         private void rbRegular_CheckedChanged(object sender, EventArgs e)
         {
+            this.clbDifficultyItems.Enabled = false;
             UpdateGuiDifficulty(GetCurrentDifficulty());
         }
 
         private void rbVeteran_CheckedChanged(object sender, EventArgs e)
         {
+            this.clbDifficultyItems.Enabled = false;
             UpdateGuiDifficulty(GetCurrentDifficulty());
         }
 
         private void rbExpert_CheckedChanged(object sender, EventArgs e)
         {
+            this.clbDifficultyItems.Enabled = false;
+            UpdateGuiDifficulty(GetCurrentDifficulty());
+        }
+
+        private void rbCustom_CheckedChanged(object sender, EventArgs e)
+        {
+            this.clbDifficultyItems.Enabled = true;
             UpdateGuiDifficulty(GetCurrentDifficulty());
         }
 
@@ -559,10 +558,16 @@ namespace TADST
                 UpdateGuiDifficulty(_activeProfile.DiffVeteran);
                 IsDirty = true;
             }
-            else
+            else if(rbExpert.Checked)
             {
                 _activeProfile.DiffExpert = factory.CreateExpertDifficulty();
                 UpdateGuiDifficulty(_activeProfile.DiffExpert);
+                IsDirty = true;
+            }
+            else
+            {
+                _activeProfile.DiffCustom = factory.CreateCustomDifficulty();
+                UpdateGuiDifficulty(_activeProfile.DiffCustom);
                 IsDirty = true;
             }
         }
@@ -741,29 +746,24 @@ namespace TADST
                 SelectedDifficulty = "veteran";
                 return _activeProfile.DiffVeteran;
             }
+            if (rbCustom.Checked)
+            {
+                SelectedDifficulty = "custom";
+                return _activeProfile.DiffCustom;
+            }
 
             SelectedDifficulty = "expert";
             return _activeProfile.DiffExpert;
         }
 
-        private void numSkillFriendly_ValueChanged(object sender, EventArgs e)
+        private void numSkillAI_ValueChanged(object sender, EventArgs e)
         {
-            GetCurrentDifficulty().SkillFriendly = numSkillFriendly.Value;
+            GetCurrentDifficulty().SkillAI = numSkillAI.Value;
         }
 
-        private void numPrecisionFriendly_ValueChanged(object sender, EventArgs e)
+        private void numPrecisionAI_ValueChanged(object sender, EventArgs e)
         {
-            GetCurrentDifficulty().PrecisionFriendly = numPrecisionFriendly.Value;
-        }
-
-        private void numSkillEnemy_ValueChanged(object sender, EventArgs e)
-        {
-            GetCurrentDifficulty().SkillEnemy = numSkillEnemy.Value;
-        }
-
-        private void numPrecisionEnemy_ValueChanged(object sender, EventArgs e)
-        {
-            GetCurrentDifficulty().PrecisionEnemy = numPrecisionEnemy.Value;
+            GetCurrentDifficulty().PrecisionAI = numPrecisionAI.Value;
         }
 
         private void txtMaxMessagesSend_Click(object sender, EventArgs e)
@@ -2198,6 +2198,30 @@ namespace TADST
         private void txtLocalIp_TextChanged(object sender, EventArgs e)
         {
             _activeProfile.LocalIps = txtLocalIp.Text;
+        }
+
+        private void cmbAILevelPreset_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbAILevelPreset.SelectedIndex == 3)
+            {
+                numSkillAI.Enabled = true;
+                numPrecisionAI.Enabled = true;
+            }
+            else
+            {
+                numSkillAI.Enabled = false;
+                numPrecisionAI.Enabled = false;
+            }
+            this.GetCurrentDifficulty().AILevelPreset = this.cmbAILevelPreset.SelectedIndex;
+        }
+
+        private void cmbAILevelPreset_Click(object sender, EventArgs e)
+        {
+            lblProfileDifficultyInfo.Text = "AI Level Preset" + Environment.NewLine + Environment.NewLine +
+                                            "0 - AI Level Low" + Environment.NewLine +
+                                            "1 - AI Level Normal" + Environment.NewLine +
+                                            "2 - AI Level High" + Environment.NewLine +
+                                            "3 - AI Level Custom" + Environment.NewLine;
         }
 
     }

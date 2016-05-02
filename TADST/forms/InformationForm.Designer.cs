@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -84,8 +85,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(223, 71);
             this.label1.TabIndex = 55;
-            this.label1.Text = "Also support my musical project Meadows ever Bleeding by liking it on facebook. T" +
-    "hat makes me equally happy.\r\n";
+            this.label1.Text = "Also support my musical project Meadows by liking it on facebook. That makes me e" +
+    "qually happy.\r\n";
             // 
             // label3
             // 
@@ -93,13 +94,13 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(333, 100);
             this.label3.TabIndex = 57;
-            this.label3.Text = "Tophe\'s Arma Dedicated Server Tool v2.7\r\nreleased 2016-01-03\r\n\r\nBy Tophe of Östgö" +
+            this.label3.Text = "Tophe\'s Arma Dedicated Server Tool v2.8\r\nreleased 2016-05-02\r\n\r\nBy Tophe of Östgö" +
     "ta Ops [oops]\r\nThank you for using TADST!\r\n\r\n\r\n";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(9, 475);
+            this.label2.Location = new System.Drawing.Point(12, 494);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(329, 37);
             this.label2.TabIndex = 58;
@@ -131,20 +132,30 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(8, 400);
+            this.label5.Location = new System.Drawing.Point(12, 428);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(329, 75);
+            this.label5.Size = new System.Drawing.Size(329, 56);
             this.label5.TabIndex = 61;
-            this.label5.Text = "Kind donators:\r\n[AusTac] Matr1x, Mat, Rune \"TheFlyingCorpse\" Darrud, Dave, Bill, " +
-    "Krijn and Rafael\r\n\r\n\r\n";
+            this.label5.Text = "Kind donators:\r\nKrijn, [AusTac] Matr1x, Mat, Rune \"TheFlyingCorpse\" Darrud, Dave," +
+    " Bill and Rafael\r\n\r\n\r\n";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(15, 375);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(329, 44);
+            this.label6.TabIndex = 62;
+            this.label6.Text = "Code contributors: \r\nBaconeo, James Kingsley";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // InformationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(353, 523);
+            this.ClientSize = new System.Drawing.Size(353, 540);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label4);
@@ -184,6 +195,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
 
     }
 }
