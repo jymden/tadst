@@ -83,7 +83,7 @@
             // 
             this.label1.Location = new System.Drawing.Point(114, 218);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(223, 71);
+            this.label1.Size = new System.Drawing.Size(223, 56);
             this.label1.TabIndex = 55;
             this.label1.Text = "Also support my musical project Meadows by liking it on facebook. That makes me e" +
     "qually happy.\r\n";
@@ -110,12 +110,12 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(114, 314);
+            this.label4.Location = new System.Drawing.Point(114, 306);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(208, 37);
+            this.label4.Size = new System.Drawing.Size(208, 50);
             this.label4.TabIndex = 59;
-            this.label4.Text = "For feedback and bug reports, please use the thread at the official BIS forums.\r\n" +
-    "";
+            this.label4.Text = "For feedback, change log and bug reports, please use the thread at the official B" +
+    "IS forums.\r\n";
             // 
             // pictureBox3
             // 
