@@ -6,10 +6,9 @@ namespace TADST
     [Serializable]
     internal class DifficultySetting
     {
-        private decimal _skillFriendly;
-        private decimal _precisionFriendly;
-        private decimal _skillEnemy;
-        private decimal _precisionEnemy;
+        private decimal _skillAI;
+        private decimal _precisionAI;
+        private int _aiLevelPreset;
 
         private List<DifficultyItem> _difficultyItems;
 
@@ -17,26 +16,22 @@ namespace TADST
         /// DifficultySettings
         /// </summary>
         /// <param name="skillFriendly">Friendly units skill (0-1)</param>
-        /// <param name="precisionFriendly">Friendly units precicion (0-1)</param>
+        /// <param name="PrecisionAI">Friendly units precicion (0-1)</param>
         /// <param name="skillEnemy">Enemy units skill (0-1)</param>
         /// <param name="precicionEnemy">Enemy units precicio (0-1)</param>
-        public DifficultySetting(decimal skillFriendly, decimal precisionFriendly, decimal skillEnemy,
-                                 decimal precicionEnemy)
+        public DifficultySetting(decimal skillAI, decimal precisionAI, int aiLevelPreset)
         {
             _difficultyItems = new List<DifficultyItem>();
 
-            SkillFriendly = skillFriendly;
-            PrecisionFriendly = precisionFriendly;
-            SkillEnemy = skillEnemy;
-            PrecisionEnemy = precicionEnemy;
+            SkillAI = skillAI;
+            PrecisionAI = precisionAI;
+            AILevelPreset = aiLevelPreset;
         }
 
         public DifficultySetting(DifficultySetting original)
         {
-            SkillFriendly = original.SkillFriendly;
-            PrecisionFriendly = original.PrecisionFriendly;
-            SkillEnemy = original.SkillEnemy;
-            PrecisionEnemy = original.PrecisionEnemy;
+            SkillAI = original.SkillAI;
+            PrecisionAI = original.PrecisionAI;
             
             DifficultyItems = new List<DifficultyItem>(original.DifficultyItems);
         }
@@ -48,28 +43,22 @@ namespace TADST
             set { _difficultyItems = value; }
         }
 
-        public decimal SkillFriendly
+        public decimal SkillAI
         {
-            get { return _skillFriendly; }
-            set { _skillFriendly = value; }
+            get { return _skillAI; }
+            set { _skillAI = value; }
         }
 
-        public decimal PrecisionFriendly
+        public decimal PrecisionAI
         {
-            get { return _precisionFriendly; }
-            set { _precisionFriendly = value; }
+            get { return _precisionAI; }
+            set { _precisionAI = value; }
         }
 
-        public decimal SkillEnemy
+        public int AILevelPreset
         {
-            get { return _skillEnemy; }
-            set { _skillEnemy = value; }
-        }
-
-        public decimal PrecisionEnemy
-        {
-            get { return _precisionEnemy; }
-            set { _precisionEnemy = value; }
+            get { return _aiLevelPreset; }
+            set { _aiLevelPreset = value; }
         }
 
         public void AddDifficultyItem(DifficultyItem diffItem)

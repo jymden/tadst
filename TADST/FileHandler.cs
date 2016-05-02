@@ -302,6 +302,9 @@ namespace TADST
                 case 3:
                     difficulty = "mercenary";
                     break;
+                case 4:
+                    difficulty = "custom";
+                    break;
                 default:
                     difficulty = "";
                     break;
@@ -399,42 +402,27 @@ namespace TADST
                 case 3:
                     defaultDiff = "expert";
                     break;
+                case 4:
+                    defaultDiff = "custom";
+                    break;
                 default:
                     defaultDiff = "regular";
                     break;
             }
 
             profileString +=
-                "class Difficulties" + NewLine() +
+                "difficulty=\"" + defaultDiff + "\";" + NewLine() +
+
+                "class DifficultyPresets" + NewLine() +
                 "{" + NewLine() +
 
-                "\tclass Recruit" + NewLine() +
+                "\tclass CustomDifficulty" + NewLine() +
                 "\t{" + NewLine() +
-                GetProfileFlags(ActiveProfile.DiffRecruit, game) +
-                GetProfileSkills(ActiveProfile.DiffRecruit) +
+                GetProfileOptions(ActiveProfile.DiffCustom, game) +
+                GetProfileSkills(ActiveProfile.DiffCustom) +
                 "\t};" + NewLine(2) +
 
-                "\tclass Regular" + NewLine() +
-                "\t{" + NewLine() +
-                GetProfileFlags(ActiveProfile.DiffRegular, game) +
-                GetProfileSkills(ActiveProfile.DiffRegular) +
-                "\t};" + NewLine(2) +
-
-                "\tclass Veteran" + NewLine() +
-                "\t{" + NewLine() +
-                GetProfileFlags(ActiveProfile.DiffVeteran, game) +
-                GetProfileSkills(ActiveProfile.DiffVeteran) +
-                "\t};" + NewLine(2) +
-
-                "\tclass Mercenary" + NewLine() +
-                "\t{" + NewLine() +
-                GetProfileFlags(ActiveProfile.DiffExpert, game) +
-                GetProfileSkills(ActiveProfile.DiffExpert) +
-                "\t};" + NewLine() +
-
-                "};" + NewLine(2) +
-
-                "difficulty=\"" + defaultDiff + "\";";
+                "};";
 
             return profileString;
         }
@@ -444,10 +432,17 @@ namespace TADST
             var profileSkills = "";
 
             profileSkills +=
-                "\t\tskillFriendly=" + difficultySetting.SkillFriendly.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
-                "\t\tprecisionFriendly=" + difficultySetting.PrecisionFriendly.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
-                "\t\tskillEnemy=" + difficultySetting.SkillEnemy.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
-                "\t\tprecisionEnemy=" + difficultySetting.PrecisionEnemy.ToString(CultureInfo.InvariantCulture) + ";" + NewLine();
+				"\t\taiLevelPreset=" +
+				difficultySetting.AILevelPreset.ToString(CultureInfo.InvariantCulture) +
+                ";" + NewLine() +
+
+                "\t\tclass CustomAILevel" + NewLine() +
+                "\t\t{" + NewLine() +
+
+                "\t\tskillAI=" + difficultySetting.SkillAI.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
+                "\t\tprecisionAI=" + difficultySetting.PrecisionAI.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
+
+                "\t\t};";
 
             return profileSkills;
         }
@@ -458,19 +453,19 @@ namespace TADST
         /// <param name="diff">The difficulty settings object that contains the items</param>
         /// <param name="game">If this is "a3" special Arma3 settings will be added </param>
         /// <returns></returns>
-        private static string GetProfileFlags(DifficultySetting diff, string game)
+        private static string GetProfileOptions(DifficultySetting diff, string game)
         {
-            var profileFlags = "";
+            var profileOptions = "";
 
-            profileFlags += "\t\tclass Flags" + NewLine() + "\t\t{" + NewLine();
+            profileOptions += "\t\tclass Options" + NewLine() + "\t\t{" + NewLine();
             foreach (var diffItem in diff.DifficultyItems)
             {
                 if (diffItem.Name.Contains("(A3)") && game != "a3") continue;           
-                profileFlags += "\t\t\t" + diffItem.GetConfigString() + NewLine();         
+                profileOptions += "\t\t\t" + diffItem.GetConfigString() + NewLine();         
             }
-            profileFlags += "\t\t};" + NewLine();
+            profileOptions += "\t\t};" + NewLine();
 
-            return profileFlags;
+            return profileOptions;
         }
 
         /// <summary>
