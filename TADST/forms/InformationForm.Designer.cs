@@ -94,7 +94,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(333, 100);
             this.label3.TabIndex = 57;
-            this.label3.Text = "Tophe\'s Arma Dedicated Server Tool v2.8\r\nreleased 2016-05-02\r\n\r\nBy Tophe of Östgö" +
+            this.label3.Text = "Tophe\'s Arma Dedicated Server Tool v2.9\r\nreleased 2016-05-02\r\n\r\nBy Tophe of Östgö" +
     "ta Ops [oops]\r\nThank you for using TADST!\r\n\r\n\r\n";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 

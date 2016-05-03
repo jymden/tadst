@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace TADST
 {
-    class FileHandler
+    internal class FileHandler
     {
         public Profile ActiveProfile { get; set; }
 
@@ -44,12 +44,10 @@ namespace TADST
         private static string GetTADSTPath()
         {
             return Path.Combine(Environment.CurrentDirectory, "TADST");
-
         }
 
         public bool OpenRpt()
         {
-           
             var serverExe = ActiveProfile.ServerExePath.Trim().ToLower();
             string file = "";
 
@@ -83,7 +81,6 @@ namespace TADST
             {
                 File.Delete(file);
             }
-
         }
 
         public bool OpenNetlog()
@@ -122,7 +119,7 @@ namespace TADST
         internal bool OpenLogFile()
         {
             var file = Path.Combine(GetTADSTPath(), ActiveProfile.ProfileName, ActiveProfile.ConsoleLogfile);
-            if(File.Exists(file))
+            if (File.Exists(file))
             {
                 Process.Start("notepad.exe", file);
                 return true;
@@ -180,16 +177,13 @@ namespace TADST
             configString +=
                 "// Config file generated " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() +
                 " with TADST." + NewLine(2) +
-
                 "hostName = \"" + ActiveProfile.ServerName + "\";" + NewLine() +
                 "password = \"" + ActiveProfile.Password + "\";" + NewLine() +
                 "passwordAdmin = \"" + ActiveProfile.AdminPassword + "\";" + NewLine() +
                 "serverCommandPassword = \"" + ActiveProfile.ServerCommandPassword + "\";" + NewLine() +
                 "logFile = \"" + ActiveProfile.ConsoleLogfile + "\";" + NewLine(2) +
-
                 "motd[] = {" + NewLine() + GetMotd() + "};" + NewLine() +
                 "motdInterval = " + ActiveProfile.MotdInterval + ";" + NewLine(2) +
-
                 "maxPlayers = " + ActiveProfile.MaxPlayers + ";" + NewLine() +
                 "kickduplicate = " + Convert.ToInt32(ActiveProfile.KickDuplicates) + ";" + NewLine() +
                 "verifySignatures = " + ActiveProfile.VerifySignatures + ";" + NewLine() +
@@ -215,27 +209,25 @@ namespace TADST
             configString += NewLine() +
                             "voteMissionPlayers = " + ActiveProfile.VoteMissionPlayers + ";" + NewLine() +
                             "voteThreshold = " + voteThreshold.ToString(CultureInfo.InvariantCulture) + ";" + NewLine(2) +
-
                             "disableVoN = " + Convert.ToInt32(ActiveProfile.DisableVon) + ";" + NewLine() +
                             "vonCodecQuality = " + ActiveProfile.VonQuality + ";" + NewLine() +
                             "persistent = " + Convert.ToInt32(ActiveProfile.PersistantBattlefield) + ";" + NewLine() +
                             "timeStampFormat = \"" + ActiveProfile.RptTimeStamps[ActiveProfile.RptTimeStampIndex] +
                             "\";" + NewLine() +
                             "BattlEye = " + Convert.ToInt32(ActiveProfile.BattlEye) + ";" + NewLine();
-                             if (ActiveProfile.HeadlessEnabled)
-                             {
-                                 configString += "battleyeLicense = 1;" + NewLine();
-                             }
+            if (ActiveProfile.HeadlessEnabled)
+            {
+                configString += "battleyeLicense = 1;" + NewLine();
+            }
 
 
-                             configString += NewLine() + "doubleIdDetected = \"" + ActiveProfile.DoubleIdDetected + "\";" + NewLine() +
+            configString += NewLine() + "doubleIdDetected = \"" + ActiveProfile.DoubleIdDetected + "\";" + NewLine() +
                             "onUserConnected = \"" + ActiveProfile.OnUserConnected + "\";" + NewLine() +
                             "onUserDisconnected = \"" + ActiveProfile.OnUserDisconnected + "\";" + NewLine() +
                             "onHackedData = \"" + ActiveProfile.OnHackedData + "\";" + NewLine() +
                             "onDifferentData = \"" + ActiveProfile.OnDifferentData + "\";" + NewLine() +
                             "onUnsignedData = \"" + ActiveProfile.OnUnsignedData + "\";" + NewLine() +
                             "regularCheck = \"" + ActiveProfile.RegularCheck + "\";" + NewLine(2) +
-
                             "class Missions" + NewLine() + "{" + NewLine() + GetMissions() + NewLine() + "};";
 
 
@@ -275,7 +267,8 @@ namespace TADST
                                     "\t{" + Environment.NewLine +
                                     "\t\ttemplate = \"" + mission.Name.Replace(".pbo", "").Trim() + "\";" +
                                     Environment.NewLine +
-                                    "\t\tdifficulty = \"" + GetDifficulty(mission.Difficulty) + "\";" + Environment.NewLine +
+                                    "\t\tdifficulty = \"" + GetDifficulty(mission.Difficulty) + "\";" +
+                                    Environment.NewLine +
                                     "\t};" + Environment.NewLine + Environment.NewLine;
                 }
             }
@@ -300,9 +293,6 @@ namespace TADST
                     difficulty = "veteran";
                     break;
                 case 3:
-                    difficulty = "mercenary";
-                    break;
-                case 4:
                     difficulty = "custom";
                     break;
                 default:
@@ -317,7 +307,7 @@ namespace TADST
         public void CreateBasicConfigFile()
         {
             var path = Path.Combine(GetTADSTPath(), ActiveProfile.ProfileName);
-            var file = Path.Combine(path, "TADST_basic.cfg");  
+            var file = Path.Combine(path, "TADST_basic.cfg");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -348,15 +338,14 @@ namespace TADST
                 "MinErrorToSendNear = " + ActiveProfile.MinErrorToSendNear.ToString(CultureInfo.InvariantCulture) + ";" +
                 NewLine() +
                 "MaxCustomFileSize = " + ActiveProfile.MaxCustomFileSize + ";" + NewLine() +
-                "class sockets{maxPacketSize = " + ActiveProfile.MaxPacketSize + ";};" + NewLine() + 
-
+                "class sockets{maxPacketSize = " + ActiveProfile.MaxPacketSize + ";};" + NewLine() +
                 "adapter=-1;" + NewLine() +
                 "3D_Performance=1;" + NewLine() +
                 "Resolution_W=0;" + NewLine() +
                 "Resolution_H=0;" + NewLine() +
                 "Resolution_Bpp=32;" + NewLine() +
                 "terrainGrid=" + ActiveProfile.TerrainGrid.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
-                 "viewDistance=" + ActiveProfile.ViewDistance + ";" + NewLine() +
+                "viewDistance=" + ActiveProfile.ViewDistance + ";" + NewLine() +
                 "Windowed=0;";
 
             return basicConfig;
@@ -378,17 +367,15 @@ namespace TADST
             File.WriteAllText(fileOA, GetProfileString("oa"));
             File.WriteAllText(fileA, GetProfileString("a2"));
             File.WriteAllText(fileA3, GetProfileString("a3"));
-
         }
 
         private string GetProfileString(string game)
         {
-           
             var profileString = "";
 
             string defaultDiff = "";
 
-            switch(ActiveProfile.DefaultDifficulty)
+            switch (ActiveProfile.DefaultDifficulty)
             {
                 case 0:
                     defaultDiff = "recruit";
@@ -412,16 +399,13 @@ namespace TADST
 
             profileString +=
                 "difficulty=\"" + defaultDiff + "\";" + NewLine() +
-
                 "class DifficultyPresets" + NewLine() +
                 "{" + NewLine() +
-
                 "\tclass CustomDifficulty" + NewLine() +
                 "\t{" + NewLine() +
                 GetProfileOptions(ActiveProfile.DiffCustom, game) +
                 GetProfileSkills(ActiveProfile.DiffCustom) +
                 "\t};" + NewLine(2) +
-
                 "};";
 
             return profileString;
@@ -432,17 +416,15 @@ namespace TADST
             var profileSkills = "";
 
             profileSkills +=
-				"\t\taiLevelPreset=" +
-				difficultySetting.AILevelPreset.ToString(CultureInfo.InvariantCulture) +
-                ";" + NewLine() +
-
+                "\t\taiLevelPreset=" +
+                difficultySetting.AILevelPreset.ToString(CultureInfo.InvariantCulture) +
+                ";" + NewLine() + NewLine() +
                 "\t\tclass CustomAILevel" + NewLine() +
                 "\t\t{" + NewLine() +
-
-                "\t\tskillAI=" + difficultySetting.SkillAI.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
-                "\t\tprecisionAI=" + difficultySetting.PrecisionAI.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
-
-                "\t\t};";
+                "\t\t\tskillAI=" + difficultySetting.SkillAI.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
+                "\t\t\tprecisionAI=" + difficultySetting.PrecisionAI.ToString(CultureInfo.InvariantCulture) + ";" +
+                NewLine() +
+                "\t\t};" + NewLine();
 
             return profileSkills;
         }
@@ -460,8 +442,8 @@ namespace TADST
             profileOptions += "\t\tclass Options" + NewLine() + "\t\t{" + NewLine();
             foreach (var diffItem in diff.DifficultyItems)
             {
-                if (diffItem.Name.Contains("(A3)") && game != "a3") continue;           
-                profileOptions += "\t\t\t" + diffItem.GetConfigString() + NewLine();         
+                if (diffItem.Name.Contains("(A3)") && game != "a3") continue;
+                profileOptions += "\t\t\t" + diffItem.GetConfigString() + NewLine();
             }
             profileOptions += "\t\t};" + NewLine();
 
@@ -516,10 +498,10 @@ namespace TADST
             foreach (var file in fileArray)
             {
                 if (!File.Exists(file)) continue;
-                var target = Path.Combine(targetPath, file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1));
+                var target = Path.Combine(targetPath,
+                                          file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1));
                 File.Copy(file, target, true);
             }
-
         }
 
         private IEnumerable<string> GetFileArray()
@@ -532,7 +514,7 @@ namespace TADST
             var arma2OAProfile = Path.Combine(path, "Users", ActiveProfile.ProfileName,
                                               ActiveProfile.ProfileName + ".ArmA2OAProfile");
 
-            var fileArray = new string[] {configFile, basicConfigFile, arma2Profile, arma2OAProfile};      
+            var fileArray = new string[] {configFile, basicConfigFile, arma2Profile, arma2OAProfile};
 
             return fileArray;
         }
@@ -585,12 +567,13 @@ namespace TADST
 
             if (Directory.Exists(path))
             {
-              
                 try
                 {
                     Directory.Delete(path, true);
                 }
-                catch (Exception){}
+                catch (Exception)
+                {
+                }
             }
         }
 
@@ -615,7 +598,8 @@ namespace TADST
 
         private string GetArma3Rpt()
         {
-            var folder = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "TADST", ActiveProfile.ProfileName));
+            var folder =
+                new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "TADST", ActiveProfile.ProfileName));
             FileInfo[] fileInfo = folder.GetFiles("*.rpt");
             List<String> fileNames = fileInfo.Select(info => info.Name).ToList();
 
@@ -625,6 +609,4 @@ namespace TADST
             return fileNames[fileNames.Count - 1];
         }
     }
-
 }
- 

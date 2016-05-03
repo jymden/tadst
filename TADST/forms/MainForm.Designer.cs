@@ -140,18 +140,13 @@
             this.grpProfileDifficulty = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbAILevelPreset = new System.Windows.Forms.ComboBox();
-            this.rbCustom = new System.Windows.Forms.RadioButton();
             this.label22 = new System.Windows.Forms.Label();
             this.cmbDefaultDifficulty = new System.Windows.Forms.ComboBox();
             this.resetProfile = new System.Windows.Forms.Button();
             this.numPrecisionAI = new System.Windows.Forms.NumericUpDown();
             this.numSkillAI = new System.Windows.Forms.NumericUpDown();
             this.clbDifficultyItems = new System.Windows.Forms.CheckedListBox();
-            this.rbRecruit = new System.Windows.Forms.RadioButton();
-            this.rbRegular = new System.Windows.Forms.RadioButton();
-            this.rbExpert = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.rbVeteran = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPerformance = new System.Windows.Forms.TabPage();
             this.chkEnableHT = new System.Windows.Forms.CheckBox();
@@ -1601,6 +1596,8 @@
             this.tabDiffSettings.BackColor = System.Drawing.Color.LightSteelBlue;
             this.tabDiffSettings.Controls.Add(this.groupBox9);
             this.tabDiffSettings.Controls.Add(this.grpProfileDifficulty);
+            this.tabDiffSettings.Controls.Add(this.label22);
+            this.tabDiffSettings.Controls.Add(this.cmbDefaultDifficulty);
             this.tabDiffSettings.ImageIndex = 4;
             this.tabDiffSettings.Location = new System.Drawing.Point(4, 23);
             this.tabDiffSettings.Name = "tabDiffSettings";
@@ -1612,18 +1609,18 @@
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.lblProfileDifficultyInfo);
-            this.groupBox9.Location = new System.Drawing.Point(338, 10);
+            this.groupBox9.Location = new System.Drawing.Point(364, 10);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(215, 356);
+            this.groupBox9.Size = new System.Drawing.Size(189, 329);
             this.groupBox9.TabIndex = 33;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Info";
             // 
             // lblProfileDifficultyInfo
             // 
-            this.lblProfileDifficultyInfo.Location = new System.Drawing.Point(14, 29);
+            this.lblProfileDifficultyInfo.Location = new System.Drawing.Point(6, 29);
             this.lblProfileDifficultyInfo.Name = "lblProfileDifficultyInfo";
-            this.lblProfileDifficultyInfo.Size = new System.Drawing.Size(195, 156);
+            this.lblProfileDifficultyInfo.Size = new System.Drawing.Size(177, 279);
             this.lblProfileDifficultyInfo.TabIndex = 0;
             this.lblProfileDifficultyInfo.Click += new System.EventHandler(this.lblProfileDifficultyInfo_Click);
             // 
@@ -1631,30 +1628,23 @@
             // 
             this.grpProfileDifficulty.Controls.Add(this.label10);
             this.grpProfileDifficulty.Controls.Add(this.cmbAILevelPreset);
-            this.grpProfileDifficulty.Controls.Add(this.rbCustom);
-            this.grpProfileDifficulty.Controls.Add(this.label22);
-            this.grpProfileDifficulty.Controls.Add(this.cmbDefaultDifficulty);
             this.grpProfileDifficulty.Controls.Add(this.resetProfile);
             this.grpProfileDifficulty.Controls.Add(this.numPrecisionAI);
             this.grpProfileDifficulty.Controls.Add(this.numSkillAI);
             this.grpProfileDifficulty.Controls.Add(this.clbDifficultyItems);
-            this.grpProfileDifficulty.Controls.Add(this.rbRecruit);
-            this.grpProfileDifficulty.Controls.Add(this.rbRegular);
-            this.grpProfileDifficulty.Controls.Add(this.rbExpert);
             this.grpProfileDifficulty.Controls.Add(this.label9);
-            this.grpProfileDifficulty.Controls.Add(this.rbVeteran);
             this.grpProfileDifficulty.Controls.Add(this.label8);
             this.grpProfileDifficulty.Location = new System.Drawing.Point(12, 10);
             this.grpProfileDifficulty.Name = "grpProfileDifficulty";
-            this.grpProfileDifficulty.Size = new System.Drawing.Size(320, 356);
+            this.grpProfileDifficulty.Size = new System.Drawing.Size(346, 356);
             this.grpProfileDifficulty.TabIndex = 32;
             this.grpProfileDifficulty.TabStop = false;
-            this.grpProfileDifficulty.Text = "Profile Difficulty Settings";
+            this.grpProfileDifficulty.Text = "Custom Difficulty Settings";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(176, 63);
+            this.label10.Location = new System.Drawing.Point(199, 22);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 13);
             this.label10.TabIndex = 55;
@@ -1670,28 +1660,17 @@
             "1",
             "2",
             "3"});
-            this.cmbAILevelPreset.Location = new System.Drawing.Point(255, 60);
+            this.cmbAILevelPreset.Location = new System.Drawing.Point(281, 19);
             this.cmbAILevelPreset.Name = "cmbAILevelPreset";
             this.cmbAILevelPreset.Size = new System.Drawing.Size(55, 21);
             this.cmbAILevelPreset.TabIndex = 54;
             this.cmbAILevelPreset.SelectedIndexChanged += new System.EventHandler(this.cmbAILevelPreset_SelectedIndexChanged);
             this.cmbAILevelPreset.Click += new System.EventHandler(this.cmbAILevelPreset_Click);
             // 
-            // rbCustom
-            // 
-            this.rbCustom.AutoSize = true;
-            this.rbCustom.Location = new System.Drawing.Point(256, 25);
-            this.rbCustom.Name = "rbCustom";
-            this.rbCustom.Size = new System.Drawing.Size(60, 17);
-            this.rbCustom.TabIndex = 53;
-            this.rbCustom.Text = "Custom";
-            this.rbCustom.UseVisualStyleBackColor = true;
-            this.rbCustom.CheckedChanged += new System.EventHandler(this.rbCustom_CheckedChanged);
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(157, 261);
+            this.label22.Location = new System.Drawing.Point(398, 348);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(84, 13);
             this.label22.TabIndex = 52;
@@ -1706,9 +1685,8 @@
             "Recruit",
             "Regular",
             "Veteran",
-            "Expert",
             "Custom"});
-            this.cmbDefaultDifficulty.Location = new System.Drawing.Point(243, 257);
+            this.cmbDefaultDifficulty.Location = new System.Drawing.Point(486, 345);
             this.cmbDefaultDifficulty.Name = "cmbDefaultDifficulty";
             this.cmbDefaultDifficulty.Size = new System.Drawing.Size(67, 21);
             this.cmbDefaultDifficulty.TabIndex = 51;
@@ -1716,7 +1694,7 @@
             // 
             // resetProfile
             // 
-            this.resetProfile.Location = new System.Drawing.Point(255, 204);
+            this.resetProfile.Location = new System.Drawing.Point(279, 315);
             this.resetProfile.Name = "resetProfile";
             this.resetProfile.Size = new System.Drawing.Size(57, 23);
             this.resetProfile.TabIndex = 10;
@@ -1733,7 +1711,7 @@
             0,
             0,
             131072});
-            this.numPrecisionAI.Location = new System.Drawing.Point(257, 125);
+            this.numPrecisionAI.Location = new System.Drawing.Point(283, 92);
             this.numPrecisionAI.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1753,7 +1731,7 @@
             0,
             0,
             131072});
-            this.numSkillAI.Location = new System.Drawing.Point(257, 90);
+            this.numSkillAI.Location = new System.Drawing.Point(283, 55);
             this.numSkillAI.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1769,74 +1747,30 @@
             // 
             this.clbDifficultyItems.BackColor = System.Drawing.SystemColors.Control;
             this.clbDifficultyItems.FormattingEnabled = true;
-            this.clbDifficultyItems.Location = new System.Drawing.Point(12, 64);
+            this.clbDifficultyItems.Location = new System.Drawing.Point(6, 19);
             this.clbDifficultyItems.Name = "clbDifficultyItems";
-            this.clbDifficultyItems.Size = new System.Drawing.Size(132, 214);
+            this.clbDifficultyItems.Size = new System.Drawing.Size(191, 319);
             this.clbDifficultyItems.TabIndex = 25;
             this.clbDifficultyItems.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbDifficultyItems_ItemCheck);
             this.clbDifficultyItems.SelectedIndexChanged += new System.EventHandler(this.clbDifficultyItems_SelectedIndexChanged);
             // 
-            // rbRecruit
-            // 
-            this.rbRecruit.AutoSize = true;
-            this.rbRecruit.Location = new System.Drawing.Point(6, 25);
-            this.rbRecruit.Name = "rbRecruit";
-            this.rbRecruit.Size = new System.Drawing.Size(59, 17);
-            this.rbRecruit.TabIndex = 1;
-            this.rbRecruit.Text = "Recruit";
-            this.rbRecruit.UseVisualStyleBackColor = true;
-            this.rbRecruit.CheckedChanged += new System.EventHandler(this.rbRecruit_CheckedChanged);
-            // 
-            // rbRegular
-            // 
-            this.rbRegular.AutoSize = true;
-            this.rbRegular.Location = new System.Drawing.Point(68, 25);
-            this.rbRegular.Name = "rbRegular";
-            this.rbRegular.Size = new System.Drawing.Size(62, 17);
-            this.rbRegular.TabIndex = 2;
-            this.rbRegular.Text = "Regular";
-            this.rbRegular.UseVisualStyleBackColor = true;
-            this.rbRegular.CheckedChanged += new System.EventHandler(this.rbRegular_CheckedChanged);
-            // 
-            // rbExpert
-            // 
-            this.rbExpert.AutoSize = true;
-            this.rbExpert.Location = new System.Drawing.Point(198, 25);
-            this.rbExpert.Name = "rbExpert";
-            this.rbExpert.Size = new System.Drawing.Size(55, 17);
-            this.rbExpert.TabIndex = 4;
-            this.rbExpert.Text = "Expert";
-            this.rbExpert.UseVisualStyleBackColor = true;
-            this.rbExpert.CheckedChanged += new System.EventHandler(this.rbExpert_CheckedChanged);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(188, 127);
+            this.label9.Location = new System.Drawing.Point(215, 94);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(63, 13);
             this.label9.TabIndex = 34;
-            this.label9.Text = "Precision AI";
-            // 
-            // rbVeteran
-            // 
-            this.rbVeteran.AutoSize = true;
-            this.rbVeteran.Location = new System.Drawing.Point(133, 25);
-            this.rbVeteran.Name = "rbVeteran";
-            this.rbVeteran.Size = new System.Drawing.Size(62, 17);
-            this.rbVeteran.TabIndex = 3;
-            this.rbVeteran.Text = "Veteran";
-            this.rbVeteran.UseVisualStyleBackColor = true;
-            this.rbVeteran.CheckedChanged += new System.EventHandler(this.rbVeteran_CheckedChanged);
+            this.label9.Text = "AI Precision";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(212, 92);
+            this.label8.Location = new System.Drawing.Point(239, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(39, 13);
             this.label8.TabIndex = 31;
-            this.label8.Text = "Skill AI";
+            this.label8.Text = "AI Skill";
             // 
             // tabPerformance
             // 
@@ -2744,7 +2678,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(590, 572);
             this.Name = "MainForm";
-            this.Text = "TADST v2.8  - Tophe\'s Arma Dedicated Server Tool";
+            this.Text = "TADST v2.9  - Tophe\'s Arma Dedicated Server Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabContainer.ResumeLayout(false);
@@ -2774,6 +2708,7 @@
             this.grpMods.ResumeLayout(false);
             this.grpMods.PerformLayout();
             this.tabDiffSettings.ResumeLayout(false);
+            this.tabDiffSettings.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.grpProfileDifficulty.ResumeLayout(false);
             this.grpProfileDifficulty.PerformLayout();
@@ -2901,11 +2836,7 @@
         private System.Windows.Forms.NumericUpDown numPrecisionAI;
         private System.Windows.Forms.NumericUpDown numSkillAI;
         private System.Windows.Forms.CheckedListBox clbDifficultyItems;
-        private System.Windows.Forms.RadioButton rbRecruit;
-        private System.Windows.Forms.RadioButton rbRegular;
-        private System.Windows.Forms.RadioButton rbExpert;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.RadioButton rbVeteran;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.NumericUpDown numViewDistance;
@@ -2999,7 +2930,6 @@
         private System.Windows.Forms.TextBox txtLocalIp;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbAILevelPreset;
-        private System.Windows.Forms.RadioButton rbCustom;
     }
 }
 

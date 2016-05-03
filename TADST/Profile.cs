@@ -197,10 +197,6 @@ namespace TADST
         {
             var diffFactory = new DifficultyFactory();
 
-            DiffRecruit = diffFactory.CreateRecruitDifficulty();
-            DiffRegular = diffFactory.CreateRegularDifficulty();
-            DiffVeteran = diffFactory.CreateVeteranDifficulty();
-            DiffExpert = diffFactory.CreateExpertDifficulty();
             DiffCustom = diffFactory.CreateCustomDifficulty();
         }
 
