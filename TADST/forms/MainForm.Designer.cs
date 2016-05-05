@@ -140,14 +140,14 @@
             this.grpProfileDifficulty = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbAILevelPreset = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cmbDefaultDifficulty = new System.Windows.Forms.ComboBox();
             this.resetProfile = new System.Windows.Forms.Button();
             this.numPrecisionAI = new System.Windows.Forms.NumericUpDown();
             this.numSkillAI = new System.Windows.Forms.NumericUpDown();
             this.clbDifficultyItems = new System.Windows.Forms.CheckedListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cmbDefaultDifficulty = new System.Windows.Forms.ComboBox();
             this.tabPerformance = new System.Windows.Forms.TabPage();
             this.chkEnableHT = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -1611,7 +1611,7 @@
             this.groupBox9.Controls.Add(this.lblProfileDifficultyInfo);
             this.groupBox9.Location = new System.Drawing.Point(364, 10);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(189, 329);
+            this.groupBox9.Size = new System.Drawing.Size(189, 320);
             this.groupBox9.TabIndex = 33;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Info";
@@ -1620,7 +1620,7 @@
             // 
             this.lblProfileDifficultyInfo.Location = new System.Drawing.Point(6, 29);
             this.lblProfileDifficultyInfo.Name = "lblProfileDifficultyInfo";
-            this.lblProfileDifficultyInfo.Size = new System.Drawing.Size(177, 279);
+            this.lblProfileDifficultyInfo.Size = new System.Drawing.Size(177, 276);
             this.lblProfileDifficultyInfo.TabIndex = 0;
             this.lblProfileDifficultyInfo.Click += new System.EventHandler(this.lblProfileDifficultyInfo_Click);
             // 
@@ -1666,31 +1666,6 @@
             this.cmbAILevelPreset.TabIndex = 54;
             this.cmbAILevelPreset.SelectedIndexChanged += new System.EventHandler(this.cmbAILevelPreset_SelectedIndexChanged);
             this.cmbAILevelPreset.Click += new System.EventHandler(this.cmbAILevelPreset_Click);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(398, 348);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(84, 13);
-            this.label22.TabIndex = 52;
-            this.label22.Text = "Default Difficulty";
-            // 
-            // cmbDefaultDifficulty
-            // 
-            this.cmbDefaultDifficulty.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.cmbDefaultDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDefaultDifficulty.FormattingEnabled = true;
-            this.cmbDefaultDifficulty.Items.AddRange(new object[] {
-            "Recruit",
-            "Regular",
-            "Veteran",
-            "Custom"});
-            this.cmbDefaultDifficulty.Location = new System.Drawing.Point(486, 345);
-            this.cmbDefaultDifficulty.Name = "cmbDefaultDifficulty";
-            this.cmbDefaultDifficulty.Size = new System.Drawing.Size(67, 21);
-            this.cmbDefaultDifficulty.TabIndex = 51;
-            this.cmbDefaultDifficulty.SelectedIndexChanged += new System.EventHandler(this.cmbDefaultDifficulty_SelectedIndexChanged);
             // 
             // resetProfile
             // 
@@ -1771,6 +1746,31 @@
             this.label8.Size = new System.Drawing.Size(39, 13);
             this.label8.TabIndex = 31;
             this.label8.Text = "AI Skill";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(398, 348);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(84, 13);
+            this.label22.TabIndex = 52;
+            this.label22.Text = "Default Difficulty";
+            // 
+            // cmbDefaultDifficulty
+            // 
+            this.cmbDefaultDifficulty.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cmbDefaultDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDefaultDifficulty.FormattingEnabled = true;
+            this.cmbDefaultDifficulty.Items.AddRange(new object[] {
+            "Recruit",
+            "Regular",
+            "Veteran",
+            "Custom"});
+            this.cmbDefaultDifficulty.Location = new System.Drawing.Point(486, 345);
+            this.cmbDefaultDifficulty.Name = "cmbDefaultDifficulty";
+            this.cmbDefaultDifficulty.Size = new System.Drawing.Size(67, 21);
+            this.cmbDefaultDifficulty.TabIndex = 51;
+            this.cmbDefaultDifficulty.SelectedIndexChanged += new System.EventHandler(this.cmbDefaultDifficulty_SelectedIndexChanged);
             // 
             // tabPerformance
             // 
