@@ -1322,7 +1322,6 @@
             "recruit",
             "regular",
             "veteran",
-            "expert",
             "custom"});
             this.cmbDifficulty.Location = new System.Drawing.Point(280, 326);
             this.cmbDifficulty.Name = "cmbDifficulty";
