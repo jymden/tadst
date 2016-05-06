@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.tabServerDetails = new System.Windows.Forms.TabPage();
+            this.chkLoopback = new System.Windows.Forms.CheckBox();
             this.chkEnableUpnp = new System.Windows.Forms.CheckBox();
             this.btnPortCheck = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -224,7 +225,6 @@
             this.chkStartAsIs = new System.Windows.Forms.CheckBox();
             this.chkBeta = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.chkLoopback = new System.Windows.Forms.CheckBox();
             this.tabContainer.SuspendLayout();
             this.tabServerDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -301,6 +301,18 @@
             this.tabServerDetails.Size = new System.Drawing.Size(564, 372);
             this.tabServerDetails.TabIndex = 0;
             this.tabServerDetails.Text = "Details";
+            // 
+            // chkLoopback
+            // 
+            this.chkLoopback.AutoSize = true;
+            this.chkLoopback.Location = new System.Drawing.Point(403, 117);
+            this.chkLoopback.Name = "chkLoopback";
+            this.chkLoopback.Size = new System.Drawing.Size(74, 17);
+            this.chkLoopback.TabIndex = 39;
+            this.chkLoopback.Text = "Loopback";
+            this.toolTip1.SetToolTip(this.chkLoopback, resources.GetString("chkLoopback.ToolTip"));
+            this.chkLoopback.UseVisualStyleBackColor = true;
+            this.chkLoopback.CheckedChanged += new System.EventHandler(this.chkLoopback_CheckedChanged);
             // 
             // chkEnableUpnp
             // 
@@ -2653,18 +2665,6 @@
             this.label17.Text = "Parameters";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // chkLoopback
-            // 
-            this.chkLoopback.AutoSize = true;
-            this.chkLoopback.Location = new System.Drawing.Point(403, 117);
-            this.chkLoopback.Name = "chkLoopback";
-            this.chkLoopback.Size = new System.Drawing.Size(74, 17);
-            this.chkLoopback.TabIndex = 39;
-            this.chkLoopback.Text = "Loopback";
-            this.toolTip1.SetToolTip(this.chkLoopback, resources.GetString("chkLoopback.ToolTip"));
-            this.chkLoopback.UseVisualStyleBackColor = true;
-            this.chkLoopback.CheckedChanged += new System.EventHandler(this.chkLoopback_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2692,7 +2692,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(590, 572);
             this.Name = "MainForm";
-            this.Text = "TADST v2.9  - Tophe\'s Arma Dedicated Server Tool";
+            this.Text = "TADST v2.91  - Tophe\'s Arma Dedicated Server Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabContainer.ResumeLayout(false);

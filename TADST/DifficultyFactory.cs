@@ -18,7 +18,6 @@
             diffSetting.AddDifficultyItem(new DifficultyItem("Group Indicators", "groupIndicators", true, true, "Group Indicators\n\nShows indication icons on units in player's group."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Friendly Name Tags", "friendlyTags", true, true, "Enemy Name Tags\n\nFriendly  unit identification. Works only when the player aims at a unit."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Enemy Name Tags", "enemyTags", true, true, "Enemy Name Tags\n\nEnemy unit identification. Works only when the player aims at a unit."));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Enemy Name Tags", "enemyTags", false, true, "Enemy Name Tags\n\nEnemy unit identification. Works only when the player aims at a unit."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Detected Mines", "detectedMines", true, true, "Detected Mines\n\nShows icons indicating exact positions of mines. show = display the indicators on mines at 200m and closer."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Commands", "commands", true, true, "Commands\n\nDisplays command icons like target markers, get in command and others."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Waypoints", "waypoints", true, true, "Commands\n\nManages visibility of waypoint markers."));
