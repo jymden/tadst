@@ -265,6 +265,7 @@ namespace TADST
             txtAdminPassword.Text = _activeProfile.AdminPassword;
             txtPort.Text = _activeProfile.Port.ToString();
             numMaxPlayers.Value = _activeProfile.MaxPlayers;
+            chkLoopback.Checked = _activeProfile.Loopback;
 
             chkHeadlessEnabled.Checked = _activeProfile.HeadlessEnabled;
             txtHeadlessIp.Text = _activeProfile.HeadlessIps;
@@ -2181,6 +2182,11 @@ namespace TADST
                                             "1 - AI Level Normal" + Environment.NewLine +
                                             "2 - AI Level High" + Environment.NewLine +
                                             "3 - AI Level Custom" + Environment.NewLine;
+        }
+
+        private void chkLoopback_CheckedChanged(object sender, EventArgs e)
+        {
+            _activeProfile.Loopback = chkLoopback.Checked;
         }
     }
 }

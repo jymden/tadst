@@ -224,6 +224,7 @@
             this.chkStartAsIs = new System.Windows.Forms.CheckBox();
             this.chkBeta = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.chkLoopback = new System.Windows.Forms.CheckBox();
             this.tabContainer.SuspendLayout();
             this.tabServerDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -277,6 +278,7 @@
             // tabServerDetails
             // 
             this.tabServerDetails.BackColor = System.Drawing.Color.DarkOrange;
+            this.tabServerDetails.Controls.Add(this.chkLoopback);
             this.tabServerDetails.Controls.Add(this.chkEnableUpnp);
             this.tabServerDetails.Controls.Add(this.btnPortCheck);
             this.tabServerDetails.Controls.Add(this.groupBox1);
@@ -2651,6 +2653,18 @@
             this.label17.Text = "Parameters";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // chkLoopback
+            // 
+            this.chkLoopback.AutoSize = true;
+            this.chkLoopback.Location = new System.Drawing.Point(403, 117);
+            this.chkLoopback.Name = "chkLoopback";
+            this.chkLoopback.Size = new System.Drawing.Size(74, 17);
+            this.chkLoopback.TabIndex = 39;
+            this.chkLoopback.Text = "Loopback";
+            this.toolTip1.SetToolTip(this.chkLoopback, resources.GetString("chkLoopback.ToolTip"));
+            this.chkLoopback.UseVisualStyleBackColor = true;
+            this.chkLoopback.CheckedChanged += new System.EventHandler(this.chkLoopback_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2930,6 +2944,7 @@
         private System.Windows.Forms.TextBox txtLocalIp;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbAILevelPreset;
+        private System.Windows.Forms.CheckBox chkLoopback;
     }
 }
 

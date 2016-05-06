@@ -40,6 +40,8 @@ namespace TADST
         private bool _disableVon;
         private int _vonQuality;
 
+        private bool _loopback;
+
         // Server rules tab
         private bool _votingEnabled;
         private int _voteMissionPlayers;
@@ -158,6 +160,8 @@ namespace TADST
             MotdInterval = 3;
 
             MissionDifficulty = 1;
+
+            Loopback = false;
         }
 
         private void SetDefaultView()
@@ -841,6 +845,12 @@ namespace TADST
         {
             get { return _localIps; }
             set { _localIps = value; }
+        }
+
+        public bool Loopback
+        {
+            get { return _loopback; }
+            set { _loopback = value; }
         }
     }
 }

@@ -193,6 +193,12 @@ namespace TADST
             if (ActiveProfile.Upnp)
             {
                 configString += "upnp = 1;" + NewLine();
+
+            }
+
+            if (ActiveProfile.Loopback)
+            {
+                configString += "loopback = true;" + NewLine();
             }
 
             if (ActiveProfile.RequiredBuildEnabled && ActiveProfile.RequiredBuild > 0)
