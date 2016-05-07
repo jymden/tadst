@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.tabServerDetails = new System.Windows.Forms.TabPage();
+            this.chkAutoinit = new System.Windows.Forms.CheckBox();
+            this.chkPersistentBattlefield = new System.Windows.Forms.CheckBox();
             this.chkLoopback = new System.Windows.Forms.CheckBox();
             this.chkEnableUpnp = new System.Windows.Forms.CheckBox();
             this.btnPortCheck = new System.Windows.Forms.Button();
@@ -77,11 +79,13 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.txtServerName = new System.Windows.Forms.TextBox();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.autoInitShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.autoInitShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.tabServerRules = new System.Windows.Forms.TabPage();
+            this.chkBattlEye = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cmbAllowedFilePatching = new System.Windows.Forms.ComboBox();
-            this.chkBattlEye = new System.Windows.Forms.CheckBox();
-            this.chkPersistentBattlefield = new System.Windows.Forms.CheckBox();
             this.cmbRequiredSecureId = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -278,6 +282,8 @@
             // tabServerDetails
             // 
             this.tabServerDetails.BackColor = System.Drawing.Color.DarkOrange;
+            this.tabServerDetails.Controls.Add(this.chkAutoinit);
+            this.tabServerDetails.Controls.Add(this.chkPersistentBattlefield);
             this.tabServerDetails.Controls.Add(this.chkLoopback);
             this.tabServerDetails.Controls.Add(this.chkEnableUpnp);
             this.tabServerDetails.Controls.Add(this.btnPortCheck);
@@ -294,6 +300,7 @@
             this.tabServerDetails.Controls.Add(this.lblPassword);
             this.tabServerDetails.Controls.Add(this.lblHostName);
             this.tabServerDetails.Controls.Add(this.txtServerName);
+            this.tabServerDetails.Controls.Add(this.shapeContainer1);
             this.tabServerDetails.ImageIndex = 0;
             this.tabServerDetails.Location = new System.Drawing.Point(4, 23);
             this.tabServerDetails.Name = "tabServerDetails";
@@ -302,10 +309,38 @@
             this.tabServerDetails.TabIndex = 0;
             this.tabServerDetails.Text = "Details";
             // 
+            // chkAutoinit
+            // 
+            this.chkAutoinit.AutoSize = true;
+            this.chkAutoinit.Enabled = false;
+            this.chkAutoinit.Location = new System.Drawing.Point(404, 122);
+            this.chkAutoinit.Name = "chkAutoinit";
+            this.chkAutoinit.Size = new System.Drawing.Size(62, 17);
+            this.chkAutoinit.TabIndex = 69;
+            this.chkAutoinit.Text = "AutoInit";
+            this.toolTip1.SetToolTip(this.chkAutoinit, "If Persistent Battlefield is enabled this option automatically initialize mission" +
+        " just like first client does.\r\nNote that only default mission parameters values " +
+        "are used!\r\n\r\nDefault is off\r\n");
+            this.chkAutoinit.UseVisualStyleBackColor = true;
+            this.chkAutoinit.CheckedChanged += new System.EventHandler(this.chkAutoinit_CheckedChanged);
+            // 
+            // chkPersistentBattlefield
+            // 
+            this.chkPersistentBattlefield.AutoSize = true;
+            this.chkPersistentBattlefield.Location = new System.Drawing.Point(385, 103);
+            this.chkPersistentBattlefield.Name = "chkPersistentBattlefield";
+            this.chkPersistentBattlefield.Size = new System.Drawing.Size(121, 17);
+            this.chkPersistentBattlefield.TabIndex = 67;
+            this.chkPersistentBattlefield.Text = "Persistent Battlefield";
+            this.toolTip1.SetToolTip(this.chkPersistentBattlefield, "Missions will continue to run even after the last player disconnected. \r\nThe miss" +
+        "ion must either have base or instant respawn.\r\n\r\nDefault is off\r\n");
+            this.chkPersistentBattlefield.UseVisualStyleBackColor = true;
+            this.chkPersistentBattlefield.CheckedChanged += new System.EventHandler(this.chkPersistentBattlefield_CheckedChanged);
+            // 
             // chkLoopback
             // 
             this.chkLoopback.AutoSize = true;
-            this.chkLoopback.Location = new System.Drawing.Point(403, 117);
+            this.chkLoopback.Location = new System.Drawing.Point(385, 167);
             this.chkLoopback.Name = "chkLoopback";
             this.chkLoopback.Size = new System.Drawing.Size(74, 17);
             this.chkLoopback.TabIndex = 39;
@@ -869,13 +904,42 @@
             this.txtServerName.TextChanged += new System.EventHandler(this.txtServerName_TextChanged);
             this.txtServerName.DoubleClick += new System.EventHandler(this.txtServerName_DoubleClick);
             // 
+            // shapeContainer1
+            // 
+            this.shapeContainer1.Location = new System.Drawing.Point(3, 3);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.autoInitShape2,
+            this.autoInitShape1});
+            this.shapeContainer1.Size = new System.Drawing.Size(558, 366);
+            this.shapeContainer1.TabIndex = 70;
+            this.shapeContainer1.TabStop = false;
+            // 
+            // autoInitShape2
+            // 
+            this.autoInitShape2.Enabled = false;
+            this.autoInitShape2.Name = "autoInitShape2";
+            this.autoInitShape2.X1 = 389;
+            this.autoInitShape2.X2 = 397;
+            this.autoInitShape2.Y1 = 126;
+            this.autoInitShape2.Y2 = 126;
+            // 
+            // autoInitShape1
+            // 
+            this.autoInitShape1.Enabled = false;
+            this.autoInitShape1.Name = "autoInitShape1";
+            this.autoInitShape1.X1 = 388;
+            this.autoInitShape1.X2 = 388;
+            this.autoInitShape1.Y1 = 114;
+            this.autoInitShape1.Y2 = 126;
+            // 
             // tabServerRules
             // 
             this.tabServerRules.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.tabServerRules.Controls.Add(this.chkBattlEye);
             this.tabServerRules.Controls.Add(this.label19);
             this.tabServerRules.Controls.Add(this.cmbAllowedFilePatching);
-            this.tabServerRules.Controls.Add(this.chkBattlEye);
-            this.tabServerRules.Controls.Add(this.chkPersistentBattlefield);
             this.tabServerRules.Controls.Add(this.cmbRequiredSecureId);
             this.tabServerRules.Controls.Add(this.label21);
             this.tabServerRules.Controls.Add(this.label14);
@@ -892,6 +956,20 @@
             this.tabServerRules.Size = new System.Drawing.Size(564, 372);
             this.tabServerRules.TabIndex = 1;
             this.tabServerRules.Text = "Rules";
+            // 
+            // chkBattlEye
+            // 
+            this.chkBattlEye.AutoSize = true;
+            this.chkBattlEye.Location = new System.Drawing.Point(24, 257);
+            this.chkBattlEye.Name = "chkBattlEye";
+            this.chkBattlEye.Size = new System.Drawing.Size(65, 17);
+            this.chkBattlEye.TabIndex = 69;
+            this.chkBattlEye.Text = "BattlEye";
+            this.toolTip1.SetToolTip(this.chkBattlEye, "Enables or disables the BattlEye anti-cheat engine. \r\nNote that this requires spe" +
+        "cific dlls to be installed on the server and all clients joining the game.\r\n\r\nDe" +
+        "fault is off");
+            this.chkBattlEye.UseVisualStyleBackColor = true;
+            this.chkBattlEye.CheckedChanged += new System.EventHandler(this.chkBattlEye_CheckedChanged);
             // 
             // label19
             // 
@@ -915,33 +993,6 @@
             this.cmbAllowedFilePatching.Size = new System.Drawing.Size(72, 21);
             this.cmbAllowedFilePatching.TabIndex = 51;
             this.cmbAllowedFilePatching.SelectedIndexChanged += new System.EventHandler(this.cmbAllowedFilePatching_SelectedIndexChanged);
-            // 
-            // chkBattlEye
-            // 
-            this.chkBattlEye.AutoSize = true;
-            this.chkBattlEye.Location = new System.Drawing.Point(24, 280);
-            this.chkBattlEye.Name = "chkBattlEye";
-            this.chkBattlEye.Size = new System.Drawing.Size(65, 17);
-            this.chkBattlEye.TabIndex = 50;
-            this.chkBattlEye.Text = "BattlEye";
-            this.toolTip1.SetToolTip(this.chkBattlEye, "Enables or disables the BattlEye anti-cheat engine. \r\nNote that this requires spe" +
-        "cific dlls to be installed on the server and all clients joining the game.\r\n\r\nDe" +
-        "fault is off");
-            this.chkBattlEye.UseVisualStyleBackColor = true;
-            this.chkBattlEye.CheckedChanged += new System.EventHandler(this.chkBattlEye_CheckedChanged_1);
-            // 
-            // chkPersistentBattlefield
-            // 
-            this.chkPersistentBattlefield.AutoSize = true;
-            this.chkPersistentBattlefield.Location = new System.Drawing.Point(24, 257);
-            this.chkPersistentBattlefield.Name = "chkPersistentBattlefield";
-            this.chkPersistentBattlefield.Size = new System.Drawing.Size(121, 17);
-            this.chkPersistentBattlefield.TabIndex = 49;
-            this.chkPersistentBattlefield.Text = "Persistent Battlefield";
-            this.toolTip1.SetToolTip(this.chkPersistentBattlefield, "Missions will continue to run even after the last player disconnected. \r\nThe miss" +
-        "ion must either have base or instant respawn.\r\n\r\nDefault is off\r\n");
-            this.chkPersistentBattlefield.UseVisualStyleBackColor = true;
-            this.chkPersistentBattlefield.CheckedChanged += new System.EventHandler(this.chkPersistentBattlefield_CheckedChanged_1);
             // 
             // cmbRequiredSecureId
             // 
@@ -2691,7 +2742,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(590, 572);
             this.Name = "MainForm";
-            this.Text = "TADST v2.91  - Tophe\'s Arma Dedicated Server Tool";
+            this.Text = "TADST v2.95  - Tophe\'s Arma Dedicated Server Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabContainer.ResumeLayout(false);
@@ -2921,12 +2972,10 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox cmbDefaultDifficulty;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox chkBattlEye;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtHeadlessIp;
         private System.Windows.Forms.CheckBox chkHeadlessEnabled;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.CheckBox chkPersistentBattlefield;
         private System.Windows.Forms.Button btnAllMissionsDiff;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Label lblProfileDifficultyInfo;
@@ -2944,6 +2993,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbAILevelPreset;
         private System.Windows.Forms.CheckBox chkLoopback;
+        private System.Windows.Forms.CheckBox chkAutoinit;
+        private System.Windows.Forms.CheckBox chkPersistentBattlefield;
+        private System.Windows.Forms.CheckBox chkBattlEye;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.LineShape autoInitShape2;
+        private Microsoft.VisualBasic.PowerPacks.LineShape autoInitShape1;
     }
 }
 

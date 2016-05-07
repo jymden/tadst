@@ -6,7 +6,7 @@ using System.Linq;
 namespace TADST
 {
     [Serializable]
-    class Profile
+    internal class Profile
     {
         // Profile settings
         private string _profileName;
@@ -20,13 +20,13 @@ namespace TADST
         private bool _autoExit;
 
         // Server details tab
-        private string _serverName;    
-        private string _password;   
+        private string _serverName;
+        private string _password;
         private int _port;
         private int _maxPlayers;
         private string _adminPassword;
         private bool _upnp;
-        
+
         private string _consoleLogfile;
         private string _rankingFile;
         private string _pidFile;
@@ -37,6 +37,9 @@ namespace TADST
         private string _headlessIps;
         private string _localIps;
 
+        private bool _persistantBattlefield;
+        private bool _autoInit;
+
         private bool _disableVon;
         private int _vonQuality;
 
@@ -46,13 +49,12 @@ namespace TADST
         private bool _votingEnabled;
         private int _voteMissionPlayers;
         private decimal _voteThreshold;
-
         private int _verifySignatures;
         private int _requiredSecureId;
         private bool _requiredBuildEnabled;
         private int _requiredBuild;
         private bool _kickDuplicates;
-        private bool _persistantBattlefield;
+
         private bool _battlEye;
         private int _allowFilePatching;
 
@@ -141,7 +143,7 @@ namespace TADST
             ScanMissions();
             ScanMods();
         }
-   
+
         private void SetDefaultServerDetails()
         {
             Port = 2302;
@@ -154,6 +156,8 @@ namespace TADST
             VoteThreshold = 0.33M;
 
             PersistantBattlefield = false;
+            AutoInit = false;
+
             BattlEye = false;
             AllowFilePatching = 0;
 
@@ -167,7 +171,7 @@ namespace TADST
         private void SetDefaultView()
         {
             TerrainGrid = 25;
-            ViewDistance = 2000; 
+            ViewDistance = 2000;
         }
 
         public void SetDefaultPerformance()
@@ -192,9 +196,8 @@ namespace TADST
 
             foreach (string timeStamp in timeStamps)
             {
-                _rptTimeStamps.Add(timeStamp);     
+                _rptTimeStamps.Add(timeStamp);
             }
-
         }
 
         private void CreateDefaultDifficulties()
@@ -204,7 +207,7 @@ namespace TADST
             DiffCustom = diffFactory.CreateCustomDifficulty();
         }
 
-        
+
         /// <summary>
         /// Scan MPMissions folder for mission files
         /// </summary>
@@ -216,7 +219,6 @@ namespace TADST
 
             if (Directory.Exists(mpMissions))
             {
-
                 var fileList = Directory.GetFiles(mpMissions, "*.pbo").Select(Path.GetFileName);
                 var folderList = Directory.GetDirectories(mpMissions).Select(Path.GetFileName);
                 return fileList.Union(folderList).OrderBy(s => s);
@@ -246,10 +248,11 @@ namespace TADST
         /// </summary>
         private void ValidateMissions()
         {
-            for (var index = 0; index < _missions.Count; index++ )
+            for (var index = 0; index < _missions.Count; index++)
             {
-                if (!File.Exists(Path.Combine(Environment.CurrentDirectory, "MPMissions\\" + _missions[index].Name)) 
-                    && !Directory.Exists(Path.Combine(Environment.CurrentDirectory, "MPMissions\\" + _missions[index].Name)))
+                if (!File.Exists(Path.Combine(Environment.CurrentDirectory, "MPMissions\\" + _missions[index].Name))
+                    &&
+                    !Directory.Exists(Path.Combine(Environment.CurrentDirectory, "MPMissions\\" + _missions[index].Name)))
                 {
                     _missions.RemoveAt(index);
                 }
@@ -264,8 +267,8 @@ namespace TADST
             if (nameStrings.Count() > 0)
             {
                 island = (nameStrings[nameStrings.Count() - 1].ToLower() == "pbo")
-                                    ? nameStrings[nameStrings.Count() - 2]
-                                    : nameStrings[nameStrings.Count() - 1];
+                             ? nameStrings[nameStrings.Count() - 2]
+                             : nameStrings[nameStrings.Count() - 1];
             }
 
             return Utilities.ToMixedCase(island.ToLower());
@@ -288,7 +291,7 @@ namespace TADST
         /// Scan game directory for mods and add them to list
         /// </summary>
         public void ScanMods()
-        {       
+        {
             var modFolders = ScanModFolders();
 
             foreach (var modFolder in modFolders)
@@ -326,10 +329,24 @@ namespace TADST
         private void ValidateMods()
         {
             var filesToExclude = new List<string>
-            {
-                "addons", "appcache", "battleye", "common", "expansion", "dta", "keys", "missions", "mpmissions", "tadst", "ta2dst", 
-                "userconfig", "dll", "directx" , "config", "logs"
-            };
+                                     {
+                                         "addons",
+                                         "appcache",
+                                         "battleye",
+                                         "common",
+                                         "expansion",
+                                         "dta",
+                                         "keys",
+                                         "missions",
+                                         "mpmissions",
+                                         "tadst",
+                                         "ta2dst",
+                                         "userconfig",
+                                         "dll",
+                                         "directx",
+                                         "config",
+                                         "logs"
+                                     };
             _mods.RemoveAll(x => filesToExclude.Contains(x.Name.ToLower()));
 
             for (var index = 0; index < _mods.Count; index++)
@@ -338,7 +355,7 @@ namespace TADST
                 {
                     _mods.RemoveAt(index);
                 }
-            }  
+            }
         }
 
         /// <summary>
@@ -360,14 +377,28 @@ namespace TADST
                 " -name=" + ProfileName +
                 " -filePatching";
 
-            if (Netlog) parameters += " -netlog";
+            if (Netlog)
+            {
+                parameters += " -netlog";
+            }
 
-            if (!string.IsNullOrEmpty(PidFile)) parameters += " -pid=" + PidFile;
-            if (!string.IsNullOrEmpty(RankingFile)) parameters += " -ranking=" + RankingFile;
+            if (!string.IsNullOrEmpty(PidFile))
+            {
+                parameters += " -pid=" + PidFile;
+            }
+            if (!string.IsNullOrEmpty(RankingFile))
+            {
+                parameters += " -ranking=" + RankingFile;
+            }
 
             if (NumOfCheckedMods() > 0)
             {
                 parameters += " \"-mod=" + GetModsString() + "\"";
+            }
+
+            if (PersistantBattlefield && AutoInit)
+            {
+                parameters += " -autoInit";
             }
 
             // Create beta commandline
@@ -851,6 +882,12 @@ namespace TADST
         {
             get { return _loopback; }
             set { _loopback = value; }
+        }
+
+        public bool AutoInit
+        {
+            get { return _autoInit; }
+            set { _autoInit = value; }
         }
     }
 }

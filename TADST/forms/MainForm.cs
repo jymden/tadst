@@ -102,7 +102,7 @@ namespace TADST
             chkKickDuplicates.Checked = _activeProfile.KickDuplicates;
 
             chkBattlEye.Checked = _activeProfile.BattlEye;
-            chkPersistentBattlefield.Checked = _activeProfile.PersistantBattlefield;
+
 
             txtMotd.Text = string.Join(Environment.NewLine, _activeProfile.Motd);
             numMotdInterval.Value = _activeProfile.MotdInterval;
@@ -265,7 +265,10 @@ namespace TADST
             txtAdminPassword.Text = _activeProfile.AdminPassword;
             txtPort.Text = _activeProfile.Port.ToString();
             numMaxPlayers.Value = _activeProfile.MaxPlayers;
+            chkPersistentBattlefield.Checked = _activeProfile.PersistantBattlefield;
+            chkAutoinit.Checked = _activeProfile.AutoInit;
             chkLoopback.Checked = _activeProfile.Loopback;
+
 
             chkHeadlessEnabled.Checked = _activeProfile.HeadlessEnabled;
             txtHeadlessIp.Text = _activeProfile.HeadlessIps;
@@ -905,11 +908,9 @@ namespace TADST
         private void chkPersistentBattlefield_CheckedChanged(object sender, EventArgs e)
         {
             _activeProfile.PersistantBattlefield = chkPersistentBattlefield.Checked;
-        }
+            chkAutoinit.Enabled = chkPersistentBattlefield.Checked;
+            UpdateGuiStartupParameters();
 
-        private void chkBattlEye_CheckedChanged(object sender, EventArgs e)
-        {
-            _activeProfile.BattlEye = chkBattlEye.Checked;
         }
 
         private void numCodecQuality_ValueChanged(object sender, EventArgs e)
@@ -2053,12 +2054,8 @@ namespace TADST
             _activeProfile.DefaultDifficulty = cmbDefaultDifficulty.SelectedIndex;
         }
 
-        private void chkPersistentBattlefield_CheckedChanged_1(object sender, EventArgs e)
-        {
-            _activeProfile.PersistantBattlefield = chkPersistentBattlefield.Checked;
-        }
 
-        private void chkBattlEye_CheckedChanged_1(object sender, EventArgs e)
+        private void chkBattlEye_CheckedChanged(object sender, EventArgs e)
         {
             _activeProfile.BattlEye = chkBattlEye.Checked;
         }
@@ -2188,5 +2185,13 @@ namespace TADST
         {
             _activeProfile.Loopback = chkLoopback.Checked;
         }
+
+        private void chkAutoinit_CheckedChanged(object sender, EventArgs e)
+        {
+            _activeProfile.AutoInit = chkAutoinit.Checked;
+            UpdateGuiStartupParameters();
+        }
+
+
     }
 }

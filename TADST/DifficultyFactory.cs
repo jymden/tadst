@@ -16,7 +16,7 @@
 
             diffSetting.AddDifficultyItem(new DifficultyItem("Reduced Damage", "reducedDamage", false, true, "Reduced Damage\n\nDecreases damage dealt to the player and members of his group."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Group Indicators", "groupIndicators", true, true, "Group Indicators\n\nShows indication icons on units in player's group."));
-            diffSetting.AddDifficultyItem(new DifficultyItem("Friendly Name Tags", "friendlyTags", true, true, "Enemy Name Tags\n\nFriendly  unit identification. Works only when the player aims at a unit."));
+            diffSetting.AddDifficultyItem(new DifficultyItem("Friendly Name Tags", "friendlyTags", true, true, "Friendly Name Tags\n\nFriendly unit identification. Works only when the player aims at a unit."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Enemy Name Tags", "enemyTags", true, true, "Enemy Name Tags\n\nEnemy unit identification. Works only when the player aims at a unit."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Detected Mines", "detectedMines", true, true, "Detected Mines\n\nShows icons indicating exact positions of mines. show = display the indicators on mines at 200m and closer."));
             diffSetting.AddDifficultyItem(new DifficultyItem("Commands", "commands", true, true, "Commands\n\nDisplays command icons like target markers, get in command and others."));
