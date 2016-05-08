@@ -393,9 +393,6 @@ namespace TADST
                     defaultDiff = "veteran";
                     break;
                 case 3:
-                    defaultDiff = "expert";
-                    break;
-                case 4:
                     defaultDiff = "custom";
                     break;
                 default:

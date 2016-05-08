@@ -313,7 +313,7 @@
             // 
             this.chkAutoinit.AutoSize = true;
             this.chkAutoinit.Enabled = false;
-            this.chkAutoinit.Location = new System.Drawing.Point(404, 122);
+            this.chkAutoinit.Location = new System.Drawing.Point(404, 125);
             this.chkAutoinit.Name = "chkAutoinit";
             this.chkAutoinit.Size = new System.Drawing.Size(62, 17);
             this.chkAutoinit.TabIndex = 69;
@@ -327,7 +327,7 @@
             // chkPersistentBattlefield
             // 
             this.chkPersistentBattlefield.AutoSize = true;
-            this.chkPersistentBattlefield.Location = new System.Drawing.Point(385, 103);
+            this.chkPersistentBattlefield.Location = new System.Drawing.Point(385, 105);
             this.chkPersistentBattlefield.Name = "chkPersistentBattlefield";
             this.chkPersistentBattlefield.Size = new System.Drawing.Size(121, 17);
             this.chkPersistentBattlefield.TabIndex = 67;
@@ -340,7 +340,7 @@
             // chkLoopback
             // 
             this.chkLoopback.AutoSize = true;
-            this.chkLoopback.Location = new System.Drawing.Point(385, 167);
+            this.chkLoopback.Location = new System.Drawing.Point(385, 163);
             this.chkLoopback.Name = "chkLoopback";
             this.chkLoopback.Size = new System.Drawing.Size(74, 17);
             this.chkLoopback.TabIndex = 39;
@@ -922,8 +922,8 @@
             this.autoInitShape2.Name = "autoInitShape2";
             this.autoInitShape2.X1 = 389;
             this.autoInitShape2.X2 = 397;
-            this.autoInitShape2.Y1 = 126;
-            this.autoInitShape2.Y2 = 126;
+            this.autoInitShape2.Y1 = 129;
+            this.autoInitShape2.Y2 = 129;
             // 
             // autoInitShape1
             // 
@@ -931,8 +931,8 @@
             this.autoInitShape1.Name = "autoInitShape1";
             this.autoInitShape1.X1 = 388;
             this.autoInitShape1.X2 = 388;
-            this.autoInitShape1.Y1 = 114;
-            this.autoInitShape1.Y2 = 126;
+            this.autoInitShape1.Y1 = 117;
+            this.autoInitShape1.Y2 = 129;
             // 
             // tabServerRules
             // 
