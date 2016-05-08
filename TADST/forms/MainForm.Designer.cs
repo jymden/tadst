@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.tabServerDetails = new System.Windows.Forms.TabPage();
+            this.chkAutoinit = new System.Windows.Forms.CheckBox();
+            this.chkPersistentBattlefield = new System.Windows.Forms.CheckBox();
+            this.chkLoopback = new System.Windows.Forms.CheckBox();
             this.chkEnableUpnp = new System.Windows.Forms.CheckBox();
             this.btnPortCheck = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -76,11 +79,13 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.txtServerName = new System.Windows.Forms.TextBox();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.autoInitShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.autoInitShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.tabServerRules = new System.Windows.Forms.TabPage();
+            this.chkBattlEye = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cmbAllowedFilePatching = new System.Windows.Forms.ComboBox();
-            this.chkBattlEye = new System.Windows.Forms.CheckBox();
-            this.chkPersistentBattlefield = new System.Windows.Forms.CheckBox();
             this.cmbRequiredSecureId = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -140,19 +145,14 @@
             this.grpProfileDifficulty = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbAILevelPreset = new System.Windows.Forms.ComboBox();
-            this.rbCustom = new System.Windows.Forms.RadioButton();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cmbDefaultDifficulty = new System.Windows.Forms.ComboBox();
             this.resetProfile = new System.Windows.Forms.Button();
             this.numPrecisionAI = new System.Windows.Forms.NumericUpDown();
             this.numSkillAI = new System.Windows.Forms.NumericUpDown();
             this.clbDifficultyItems = new System.Windows.Forms.CheckedListBox();
-            this.rbRecruit = new System.Windows.Forms.RadioButton();
-            this.rbRegular = new System.Windows.Forms.RadioButton();
-            this.rbExpert = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.rbVeteran = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cmbDefaultDifficulty = new System.Windows.Forms.ComboBox();
             this.tabPerformance = new System.Windows.Forms.TabPage();
             this.chkEnableHT = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -282,6 +282,9 @@
             // tabServerDetails
             // 
             this.tabServerDetails.BackColor = System.Drawing.Color.DarkOrange;
+            this.tabServerDetails.Controls.Add(this.chkAutoinit);
+            this.tabServerDetails.Controls.Add(this.chkPersistentBattlefield);
+            this.tabServerDetails.Controls.Add(this.chkLoopback);
             this.tabServerDetails.Controls.Add(this.chkEnableUpnp);
             this.tabServerDetails.Controls.Add(this.btnPortCheck);
             this.tabServerDetails.Controls.Add(this.groupBox1);
@@ -297,6 +300,7 @@
             this.tabServerDetails.Controls.Add(this.lblPassword);
             this.tabServerDetails.Controls.Add(this.lblHostName);
             this.tabServerDetails.Controls.Add(this.txtServerName);
+            this.tabServerDetails.Controls.Add(this.shapeContainer1);
             this.tabServerDetails.ImageIndex = 0;
             this.tabServerDetails.Location = new System.Drawing.Point(4, 23);
             this.tabServerDetails.Name = "tabServerDetails";
@@ -304,6 +308,46 @@
             this.tabServerDetails.Size = new System.Drawing.Size(564, 372);
             this.tabServerDetails.TabIndex = 0;
             this.tabServerDetails.Text = "Details";
+            // 
+            // chkAutoinit
+            // 
+            this.chkAutoinit.AutoSize = true;
+            this.chkAutoinit.Enabled = false;
+            this.chkAutoinit.Location = new System.Drawing.Point(404, 125);
+            this.chkAutoinit.Name = "chkAutoinit";
+            this.chkAutoinit.Size = new System.Drawing.Size(62, 17);
+            this.chkAutoinit.TabIndex = 69;
+            this.chkAutoinit.Text = "AutoInit";
+            this.toolTip1.SetToolTip(this.chkAutoinit, "If Persistent Battlefield is enabled this option automatically initialize mission" +
+        " just like first client does.\r\nNote that only default mission parameters values " +
+        "are used!\r\n\r\nDefault is off\r\n");
+            this.chkAutoinit.UseVisualStyleBackColor = true;
+            this.chkAutoinit.CheckedChanged += new System.EventHandler(this.chkAutoinit_CheckedChanged);
+            // 
+            // chkPersistentBattlefield
+            // 
+            this.chkPersistentBattlefield.AutoSize = true;
+            this.chkPersistentBattlefield.Location = new System.Drawing.Point(385, 105);
+            this.chkPersistentBattlefield.Name = "chkPersistentBattlefield";
+            this.chkPersistentBattlefield.Size = new System.Drawing.Size(121, 17);
+            this.chkPersistentBattlefield.TabIndex = 67;
+            this.chkPersistentBattlefield.Text = "Persistent Battlefield";
+            this.toolTip1.SetToolTip(this.chkPersistentBattlefield, "Missions will continue to run even after the last player disconnected. \r\nThe miss" +
+        "ion must either have base or instant respawn.\r\n\r\nDefault is off\r\n");
+            this.chkPersistentBattlefield.UseVisualStyleBackColor = true;
+            this.chkPersistentBattlefield.CheckedChanged += new System.EventHandler(this.chkPersistentBattlefield_CheckedChanged);
+            // 
+            // chkLoopback
+            // 
+            this.chkLoopback.AutoSize = true;
+            this.chkLoopback.Location = new System.Drawing.Point(385, 163);
+            this.chkLoopback.Name = "chkLoopback";
+            this.chkLoopback.Size = new System.Drawing.Size(74, 17);
+            this.chkLoopback.TabIndex = 39;
+            this.chkLoopback.Text = "Loopback";
+            this.toolTip1.SetToolTip(this.chkLoopback, resources.GetString("chkLoopback.ToolTip"));
+            this.chkLoopback.UseVisualStyleBackColor = true;
+            this.chkLoopback.CheckedChanged += new System.EventHandler(this.chkLoopback_CheckedChanged);
             // 
             // chkEnableUpnp
             // 
@@ -860,13 +904,42 @@
             this.txtServerName.TextChanged += new System.EventHandler(this.txtServerName_TextChanged);
             this.txtServerName.DoubleClick += new System.EventHandler(this.txtServerName_DoubleClick);
             // 
+            // shapeContainer1
+            // 
+            this.shapeContainer1.Location = new System.Drawing.Point(3, 3);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.autoInitShape2,
+            this.autoInitShape1});
+            this.shapeContainer1.Size = new System.Drawing.Size(558, 366);
+            this.shapeContainer1.TabIndex = 70;
+            this.shapeContainer1.TabStop = false;
+            // 
+            // autoInitShape2
+            // 
+            this.autoInitShape2.Enabled = false;
+            this.autoInitShape2.Name = "autoInitShape2";
+            this.autoInitShape2.X1 = 389;
+            this.autoInitShape2.X2 = 397;
+            this.autoInitShape2.Y1 = 129;
+            this.autoInitShape2.Y2 = 129;
+            // 
+            // autoInitShape1
+            // 
+            this.autoInitShape1.Enabled = false;
+            this.autoInitShape1.Name = "autoInitShape1";
+            this.autoInitShape1.X1 = 388;
+            this.autoInitShape1.X2 = 388;
+            this.autoInitShape1.Y1 = 117;
+            this.autoInitShape1.Y2 = 129;
+            // 
             // tabServerRules
             // 
             this.tabServerRules.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.tabServerRules.Controls.Add(this.chkBattlEye);
             this.tabServerRules.Controls.Add(this.label19);
             this.tabServerRules.Controls.Add(this.cmbAllowedFilePatching);
-            this.tabServerRules.Controls.Add(this.chkBattlEye);
-            this.tabServerRules.Controls.Add(this.chkPersistentBattlefield);
             this.tabServerRules.Controls.Add(this.cmbRequiredSecureId);
             this.tabServerRules.Controls.Add(this.label21);
             this.tabServerRules.Controls.Add(this.label14);
@@ -883,6 +956,20 @@
             this.tabServerRules.Size = new System.Drawing.Size(564, 372);
             this.tabServerRules.TabIndex = 1;
             this.tabServerRules.Text = "Rules";
+            // 
+            // chkBattlEye
+            // 
+            this.chkBattlEye.AutoSize = true;
+            this.chkBattlEye.Location = new System.Drawing.Point(24, 257);
+            this.chkBattlEye.Name = "chkBattlEye";
+            this.chkBattlEye.Size = new System.Drawing.Size(65, 17);
+            this.chkBattlEye.TabIndex = 69;
+            this.chkBattlEye.Text = "BattlEye";
+            this.toolTip1.SetToolTip(this.chkBattlEye, "Enables or disables the BattlEye anti-cheat engine. \r\nNote that this requires spe" +
+        "cific dlls to be installed on the server and all clients joining the game.\r\n\r\nDe" +
+        "fault is off");
+            this.chkBattlEye.UseVisualStyleBackColor = true;
+            this.chkBattlEye.CheckedChanged += new System.EventHandler(this.chkBattlEye_CheckedChanged);
             // 
             // label19
             // 
@@ -906,33 +993,6 @@
             this.cmbAllowedFilePatching.Size = new System.Drawing.Size(72, 21);
             this.cmbAllowedFilePatching.TabIndex = 51;
             this.cmbAllowedFilePatching.SelectedIndexChanged += new System.EventHandler(this.cmbAllowedFilePatching_SelectedIndexChanged);
-            // 
-            // chkBattlEye
-            // 
-            this.chkBattlEye.AutoSize = true;
-            this.chkBattlEye.Location = new System.Drawing.Point(24, 280);
-            this.chkBattlEye.Name = "chkBattlEye";
-            this.chkBattlEye.Size = new System.Drawing.Size(65, 17);
-            this.chkBattlEye.TabIndex = 50;
-            this.chkBattlEye.Text = "BattlEye";
-            this.toolTip1.SetToolTip(this.chkBattlEye, "Enables or disables the BattlEye anti-cheat engine. \r\nNote that this requires spe" +
-        "cific dlls to be installed on the server and all clients joining the game.\r\n\r\nDe" +
-        "fault is off");
-            this.chkBattlEye.UseVisualStyleBackColor = true;
-            this.chkBattlEye.CheckedChanged += new System.EventHandler(this.chkBattlEye_CheckedChanged_1);
-            // 
-            // chkPersistentBattlefield
-            // 
-            this.chkPersistentBattlefield.AutoSize = true;
-            this.chkPersistentBattlefield.Location = new System.Drawing.Point(24, 257);
-            this.chkPersistentBattlefield.Name = "chkPersistentBattlefield";
-            this.chkPersistentBattlefield.Size = new System.Drawing.Size(121, 17);
-            this.chkPersistentBattlefield.TabIndex = 49;
-            this.chkPersistentBattlefield.Text = "Persistent Battlefield";
-            this.toolTip1.SetToolTip(this.chkPersistentBattlefield, "Missions will continue to run even after the last player disconnected. \r\nThe miss" +
-        "ion must either have base or instant respawn.\r\n\r\nDefault is off\r\n");
-            this.chkPersistentBattlefield.UseVisualStyleBackColor = true;
-            this.chkPersistentBattlefield.CheckedChanged += new System.EventHandler(this.chkPersistentBattlefield_CheckedChanged_1);
             // 
             // cmbRequiredSecureId
             // 
@@ -1313,7 +1373,6 @@
             "recruit",
             "regular",
             "veteran",
-            "expert",
             "custom"});
             this.cmbDifficulty.Location = new System.Drawing.Point(280, 326);
             this.cmbDifficulty.Name = "cmbDifficulty";
@@ -1601,6 +1660,8 @@
             this.tabDiffSettings.BackColor = System.Drawing.Color.LightSteelBlue;
             this.tabDiffSettings.Controls.Add(this.groupBox9);
             this.tabDiffSettings.Controls.Add(this.grpProfileDifficulty);
+            this.tabDiffSettings.Controls.Add(this.label22);
+            this.tabDiffSettings.Controls.Add(this.cmbDefaultDifficulty);
             this.tabDiffSettings.ImageIndex = 4;
             this.tabDiffSettings.Location = new System.Drawing.Point(4, 23);
             this.tabDiffSettings.Name = "tabDiffSettings";
@@ -1612,18 +1673,18 @@
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.lblProfileDifficultyInfo);
-            this.groupBox9.Location = new System.Drawing.Point(338, 10);
+            this.groupBox9.Location = new System.Drawing.Point(364, 10);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(215, 356);
+            this.groupBox9.Size = new System.Drawing.Size(189, 320);
             this.groupBox9.TabIndex = 33;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Info";
             // 
             // lblProfileDifficultyInfo
             // 
-            this.lblProfileDifficultyInfo.Location = new System.Drawing.Point(14, 29);
+            this.lblProfileDifficultyInfo.Location = new System.Drawing.Point(6, 29);
             this.lblProfileDifficultyInfo.Name = "lblProfileDifficultyInfo";
-            this.lblProfileDifficultyInfo.Size = new System.Drawing.Size(195, 156);
+            this.lblProfileDifficultyInfo.Size = new System.Drawing.Size(177, 276);
             this.lblProfileDifficultyInfo.TabIndex = 0;
             this.lblProfileDifficultyInfo.Click += new System.EventHandler(this.lblProfileDifficultyInfo_Click);
             // 
@@ -1631,30 +1692,23 @@
             // 
             this.grpProfileDifficulty.Controls.Add(this.label10);
             this.grpProfileDifficulty.Controls.Add(this.cmbAILevelPreset);
-            this.grpProfileDifficulty.Controls.Add(this.rbCustom);
-            this.grpProfileDifficulty.Controls.Add(this.label22);
-            this.grpProfileDifficulty.Controls.Add(this.cmbDefaultDifficulty);
             this.grpProfileDifficulty.Controls.Add(this.resetProfile);
             this.grpProfileDifficulty.Controls.Add(this.numPrecisionAI);
             this.grpProfileDifficulty.Controls.Add(this.numSkillAI);
             this.grpProfileDifficulty.Controls.Add(this.clbDifficultyItems);
-            this.grpProfileDifficulty.Controls.Add(this.rbRecruit);
-            this.grpProfileDifficulty.Controls.Add(this.rbRegular);
-            this.grpProfileDifficulty.Controls.Add(this.rbExpert);
             this.grpProfileDifficulty.Controls.Add(this.label9);
-            this.grpProfileDifficulty.Controls.Add(this.rbVeteran);
             this.grpProfileDifficulty.Controls.Add(this.label8);
             this.grpProfileDifficulty.Location = new System.Drawing.Point(12, 10);
             this.grpProfileDifficulty.Name = "grpProfileDifficulty";
-            this.grpProfileDifficulty.Size = new System.Drawing.Size(320, 356);
+            this.grpProfileDifficulty.Size = new System.Drawing.Size(346, 356);
             this.grpProfileDifficulty.TabIndex = 32;
             this.grpProfileDifficulty.TabStop = false;
-            this.grpProfileDifficulty.Text = "Profile Difficulty Settings";
+            this.grpProfileDifficulty.Text = "Custom Difficulty Settings";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(176, 63);
+            this.label10.Location = new System.Drawing.Point(199, 22);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 13);
             this.label10.TabIndex = 55;
@@ -1670,53 +1724,16 @@
             "1",
             "2",
             "3"});
-            this.cmbAILevelPreset.Location = new System.Drawing.Point(255, 60);
+            this.cmbAILevelPreset.Location = new System.Drawing.Point(281, 19);
             this.cmbAILevelPreset.Name = "cmbAILevelPreset";
             this.cmbAILevelPreset.Size = new System.Drawing.Size(55, 21);
             this.cmbAILevelPreset.TabIndex = 54;
             this.cmbAILevelPreset.SelectedIndexChanged += new System.EventHandler(this.cmbAILevelPreset_SelectedIndexChanged);
             this.cmbAILevelPreset.Click += new System.EventHandler(this.cmbAILevelPreset_Click);
             // 
-            // rbCustom
-            // 
-            this.rbCustom.AutoSize = true;
-            this.rbCustom.Location = new System.Drawing.Point(256, 25);
-            this.rbCustom.Name = "rbCustom";
-            this.rbCustom.Size = new System.Drawing.Size(60, 17);
-            this.rbCustom.TabIndex = 53;
-            this.rbCustom.Text = "Custom";
-            this.rbCustom.UseVisualStyleBackColor = true;
-            this.rbCustom.CheckedChanged += new System.EventHandler(this.rbCustom_CheckedChanged);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(157, 261);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(84, 13);
-            this.label22.TabIndex = 52;
-            this.label22.Text = "Default Difficulty";
-            // 
-            // cmbDefaultDifficulty
-            // 
-            this.cmbDefaultDifficulty.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.cmbDefaultDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDefaultDifficulty.FormattingEnabled = true;
-            this.cmbDefaultDifficulty.Items.AddRange(new object[] {
-            "Recruit",
-            "Regular",
-            "Veteran",
-            "Expert",
-            "Custom"});
-            this.cmbDefaultDifficulty.Location = new System.Drawing.Point(243, 257);
-            this.cmbDefaultDifficulty.Name = "cmbDefaultDifficulty";
-            this.cmbDefaultDifficulty.Size = new System.Drawing.Size(67, 21);
-            this.cmbDefaultDifficulty.TabIndex = 51;
-            this.cmbDefaultDifficulty.SelectedIndexChanged += new System.EventHandler(this.cmbDefaultDifficulty_SelectedIndexChanged);
-            // 
             // resetProfile
             // 
-            this.resetProfile.Location = new System.Drawing.Point(255, 204);
+            this.resetProfile.Location = new System.Drawing.Point(279, 315);
             this.resetProfile.Name = "resetProfile";
             this.resetProfile.Size = new System.Drawing.Size(57, 23);
             this.resetProfile.TabIndex = 10;
@@ -1733,7 +1750,7 @@
             0,
             0,
             131072});
-            this.numPrecisionAI.Location = new System.Drawing.Point(257, 125);
+            this.numPrecisionAI.Location = new System.Drawing.Point(283, 92);
             this.numPrecisionAI.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1753,7 +1770,7 @@
             0,
             0,
             131072});
-            this.numSkillAI.Location = new System.Drawing.Point(257, 90);
+            this.numSkillAI.Location = new System.Drawing.Point(283, 55);
             this.numSkillAI.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1769,74 +1786,55 @@
             // 
             this.clbDifficultyItems.BackColor = System.Drawing.SystemColors.Control;
             this.clbDifficultyItems.FormattingEnabled = true;
-            this.clbDifficultyItems.Location = new System.Drawing.Point(12, 64);
+            this.clbDifficultyItems.Location = new System.Drawing.Point(6, 19);
             this.clbDifficultyItems.Name = "clbDifficultyItems";
-            this.clbDifficultyItems.Size = new System.Drawing.Size(132, 214);
+            this.clbDifficultyItems.Size = new System.Drawing.Size(191, 319);
             this.clbDifficultyItems.TabIndex = 25;
             this.clbDifficultyItems.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbDifficultyItems_ItemCheck);
             this.clbDifficultyItems.SelectedIndexChanged += new System.EventHandler(this.clbDifficultyItems_SelectedIndexChanged);
             // 
-            // rbRecruit
-            // 
-            this.rbRecruit.AutoSize = true;
-            this.rbRecruit.Location = new System.Drawing.Point(6, 25);
-            this.rbRecruit.Name = "rbRecruit";
-            this.rbRecruit.Size = new System.Drawing.Size(59, 17);
-            this.rbRecruit.TabIndex = 1;
-            this.rbRecruit.Text = "Recruit";
-            this.rbRecruit.UseVisualStyleBackColor = true;
-            this.rbRecruit.CheckedChanged += new System.EventHandler(this.rbRecruit_CheckedChanged);
-            // 
-            // rbRegular
-            // 
-            this.rbRegular.AutoSize = true;
-            this.rbRegular.Location = new System.Drawing.Point(68, 25);
-            this.rbRegular.Name = "rbRegular";
-            this.rbRegular.Size = new System.Drawing.Size(62, 17);
-            this.rbRegular.TabIndex = 2;
-            this.rbRegular.Text = "Regular";
-            this.rbRegular.UseVisualStyleBackColor = true;
-            this.rbRegular.CheckedChanged += new System.EventHandler(this.rbRegular_CheckedChanged);
-            // 
-            // rbExpert
-            // 
-            this.rbExpert.AutoSize = true;
-            this.rbExpert.Location = new System.Drawing.Point(198, 25);
-            this.rbExpert.Name = "rbExpert";
-            this.rbExpert.Size = new System.Drawing.Size(55, 17);
-            this.rbExpert.TabIndex = 4;
-            this.rbExpert.Text = "Expert";
-            this.rbExpert.UseVisualStyleBackColor = true;
-            this.rbExpert.CheckedChanged += new System.EventHandler(this.rbExpert_CheckedChanged);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(188, 127);
+            this.label9.Location = new System.Drawing.Point(215, 94);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(63, 13);
             this.label9.TabIndex = 34;
-            this.label9.Text = "Precision AI";
-            // 
-            // rbVeteran
-            // 
-            this.rbVeteran.AutoSize = true;
-            this.rbVeteran.Location = new System.Drawing.Point(133, 25);
-            this.rbVeteran.Name = "rbVeteran";
-            this.rbVeteran.Size = new System.Drawing.Size(62, 17);
-            this.rbVeteran.TabIndex = 3;
-            this.rbVeteran.Text = "Veteran";
-            this.rbVeteran.UseVisualStyleBackColor = true;
-            this.rbVeteran.CheckedChanged += new System.EventHandler(this.rbVeteran_CheckedChanged);
+            this.label9.Text = "AI Precision";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(212, 92);
+            this.label8.Location = new System.Drawing.Point(239, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(39, 13);
             this.label8.TabIndex = 31;
-            this.label8.Text = "Skill AI";
+            this.label8.Text = "AI Skill";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(398, 348);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(84, 13);
+            this.label22.TabIndex = 52;
+            this.label22.Text = "Default Difficulty";
+            // 
+            // cmbDefaultDifficulty
+            // 
+            this.cmbDefaultDifficulty.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cmbDefaultDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDefaultDifficulty.FormattingEnabled = true;
+            this.cmbDefaultDifficulty.Items.AddRange(new object[] {
+            "Recruit",
+            "Regular",
+            "Veteran",
+            "Custom"});
+            this.cmbDefaultDifficulty.Location = new System.Drawing.Point(486, 345);
+            this.cmbDefaultDifficulty.Name = "cmbDefaultDifficulty";
+            this.cmbDefaultDifficulty.Size = new System.Drawing.Size(67, 21);
+            this.cmbDefaultDifficulty.TabIndex = 51;
+            this.cmbDefaultDifficulty.SelectedIndexChanged += new System.EventHandler(this.cmbDefaultDifficulty_SelectedIndexChanged);
             // 
             // tabPerformance
             // 
@@ -2744,7 +2742,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(590, 572);
             this.Name = "MainForm";
-            this.Text = "TADST v2.8  - Tophe\'s Arma Dedicated Server Tool";
+            this.Text = "TADST v2.95  - Tophe\'s Arma Dedicated Server Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabContainer.ResumeLayout(false);
@@ -2774,6 +2772,7 @@
             this.grpMods.ResumeLayout(false);
             this.grpMods.PerformLayout();
             this.tabDiffSettings.ResumeLayout(false);
+            this.tabDiffSettings.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.grpProfileDifficulty.ResumeLayout(false);
             this.grpProfileDifficulty.PerformLayout();
@@ -2901,11 +2900,7 @@
         private System.Windows.Forms.NumericUpDown numPrecisionAI;
         private System.Windows.Forms.NumericUpDown numSkillAI;
         private System.Windows.Forms.CheckedListBox clbDifficultyItems;
-        private System.Windows.Forms.RadioButton rbRecruit;
-        private System.Windows.Forms.RadioButton rbRegular;
-        private System.Windows.Forms.RadioButton rbExpert;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.RadioButton rbVeteran;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.NumericUpDown numViewDistance;
@@ -2977,12 +2972,10 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox cmbDefaultDifficulty;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox chkBattlEye;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtHeadlessIp;
         private System.Windows.Forms.CheckBox chkHeadlessEnabled;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.CheckBox chkPersistentBattlefield;
         private System.Windows.Forms.Button btnAllMissionsDiff;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Label lblProfileDifficultyInfo;
@@ -2999,7 +2992,13 @@
         private System.Windows.Forms.TextBox txtLocalIp;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbAILevelPreset;
-        private System.Windows.Forms.RadioButton rbCustom;
+        private System.Windows.Forms.CheckBox chkLoopback;
+        private System.Windows.Forms.CheckBox chkAutoinit;
+        private System.Windows.Forms.CheckBox chkPersistentBattlefield;
+        private System.Windows.Forms.CheckBox chkBattlEye;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.LineShape autoInitShape2;
+        private Microsoft.VisualBasic.PowerPacks.LineShape autoInitShape1;
     }
 }
 

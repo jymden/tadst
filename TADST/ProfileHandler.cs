@@ -35,7 +35,6 @@ namespace TADST
         {
             if (profile != null)
             {
-                //Profiles.Add(new Profile(profile));
                 Profiles.Add(Utilities.DeepClone(profile));
             }      
         }
@@ -69,7 +68,6 @@ namespace TADST
         {
             if (RangeCheck(index))
             {
-                //Profile profile = new Profile(tempProfile);
                 Profile profile = Utilities.DeepClone(tempProfile);
                 _profiles[index] = profile;
                 return true;

@@ -18,7 +18,7 @@ namespace TADST
         private FileHandler _fileHandler;
         private int _profileIndex;
         public string SelectedDifficulty { get; set; }
-        public bool IsDirty { get; set; } 
+        public bool IsDirty { get; set; }
         public bool IsDirtyEnabled { get; set; }
 
         public MainForm()
@@ -102,17 +102,15 @@ namespace TADST
             chkKickDuplicates.Checked = _activeProfile.KickDuplicates;
 
             chkBattlEye.Checked = _activeProfile.BattlEye;
-            chkPersistentBattlefield.Checked = _activeProfile.PersistantBattlefield;
+
 
             txtMotd.Text = string.Join(Environment.NewLine, _activeProfile.Motd);
             numMotdInterval.Value = _activeProfile.MotdInterval;
         }
 
 
-        private void  UpdateGui()
+        private void UpdateGui()
         {
-            rbRegular.Checked = true;
-
             UpdateGuiProfile();
             UpdateGuiServerDetails();
             UpdateGuiRptTimeStamp();
@@ -267,11 +265,14 @@ namespace TADST
             txtAdminPassword.Text = _activeProfile.AdminPassword;
             txtPort.Text = _activeProfile.Port.ToString();
             numMaxPlayers.Value = _activeProfile.MaxPlayers;
+            chkPersistentBattlefield.Checked = _activeProfile.PersistantBattlefield;
+            chkAutoinit.Checked = _activeProfile.AutoInit;
+            chkLoopback.Checked = _activeProfile.Loopback;
+
 
             chkHeadlessEnabled.Checked = _activeProfile.HeadlessEnabled;
             txtHeadlessIp.Text = _activeProfile.HeadlessIps;
             txtLocalIp.Text = _activeProfile.LocalIps;
-
         }
 
         private void UpdateGuiProfile()
@@ -305,6 +306,7 @@ namespace TADST
             txtOnUnsignedData.Text = _activeProfile.OnUnsignedData;
             txtRegularCheck.Text = _activeProfile.RegularCheck;
         }
+
         /// <summary>
         /// Update difficulty values in Gui
         /// </summary>
@@ -540,36 +542,10 @@ namespace TADST
 
             var factory = new DifficultyFactory();
 
-            if (rbRecruit.Checked)
-            {
-                _activeProfile.DiffRecruit = factory.CreateRecruitDifficulty();
-                UpdateGuiDifficulty(_activeProfile.DiffRecruit);
-                IsDirty = true;
-            }
-            else if (rbRegular.Checked)
-            {
-                _activeProfile.DiffRegular = factory.CreateRegularDifficulty();
-                UpdateGuiDifficulty(_activeProfile.DiffRegular);
-                IsDirty = true;
-            }
-            else if (rbVeteran.Checked)
-            {
-                _activeProfile.DiffVeteran = factory.CreateVeteranDifficulty();
-                UpdateGuiDifficulty(_activeProfile.DiffVeteran);
-                IsDirty = true;
-            }
-            else if(rbExpert.Checked)
-            {
-                _activeProfile.DiffExpert = factory.CreateExpertDifficulty();
-                UpdateGuiDifficulty(_activeProfile.DiffExpert);
-                IsDirty = true;
-            }
-            else
-            {
-                _activeProfile.DiffCustom = factory.CreateCustomDifficulty();
-                UpdateGuiDifficulty(_activeProfile.DiffCustom);
-                IsDirty = true;
-            }
+
+            _activeProfile.DiffCustom = factory.CreateCustomDifficulty();
+            UpdateGuiDifficulty(_activeProfile.DiffCustom);
+            IsDirty = true;
         }
 
         private void lblProfileDifficultyInfo_Click(object sender, EventArgs e)
@@ -584,7 +560,6 @@ namespace TADST
                 var value = string.IsNullOrEmpty(txtMaxBandwidth.Text)
                                 ? 0
                                 : Convert.ToInt32(txtMaxBandwidth.Text)*1048576;
-
                 toolTip1.SetToolTip(txtMaxBandwidth, "Value added to config-file:  " + value + " bits");
                 _activeProfile.MaxBandwidth = value;
             }
@@ -731,29 +706,8 @@ namespace TADST
 
         private DifficultySetting GetCurrentDifficulty()
         {
-            if (rbRecruit.Checked)
-            {
-                SelectedDifficulty = "recruit";
-                return _activeProfile.DiffRecruit;
-            }
-            if (rbRegular.Checked)
-            {
-                SelectedDifficulty = "regular";
-                return _activeProfile.DiffRegular;
-            }
-            if (rbVeteran.Checked)
-            {
-                SelectedDifficulty = "veteran";
-                return _activeProfile.DiffVeteran;
-            }
-            if (rbCustom.Checked)
-            {
-                SelectedDifficulty = "custom";
-                return _activeProfile.DiffCustom;
-            }
-
-            SelectedDifficulty = "expert";
-            return _activeProfile.DiffExpert;
+            SelectedDifficulty = "custom";
+            return _activeProfile.DiffCustom;
         }
 
         private void numSkillAI_ValueChanged(object sender, EventArgs e)
@@ -954,11 +908,9 @@ namespace TADST
         private void chkPersistentBattlefield_CheckedChanged(object sender, EventArgs e)
         {
             _activeProfile.PersistantBattlefield = chkPersistentBattlefield.Checked;
-        }
+            chkAutoinit.Enabled = chkPersistentBattlefield.Checked;
+            UpdateGuiStartupParameters();
 
-        private void chkBattlEye_CheckedChanged(object sender, EventArgs e)
-        {
-            _activeProfile.BattlEye = chkBattlEye.Checked;
         }
 
         private void numCodecQuality_ValueChanged(object sender, EventArgs e)
@@ -974,7 +926,10 @@ namespace TADST
         private void txtServerExe_TextChanged(object sender, EventArgs e)
         {
             _activeProfile.ServerExePath = txtServerExe.Text;
-            chkBeta.Checked = (_activeProfile.ServerExePath.Contains(@"\beta") && _activeProfile.ServerExePath.Contains("arma2")) ? true : false;
+            chkBeta.Checked = (_activeProfile.ServerExePath.Contains(@"\beta") &&
+                               _activeProfile.ServerExePath.Contains("arma2"))
+                                  ? true
+                                  : false;
         }
 
         private void numVoteMissionPlayers_ValueChanged(object sender, EventArgs e)
@@ -1021,7 +976,9 @@ namespace TADST
         {
             if (lstMissions.SelectedIndex > -1)
             {
-                Mission mission = _activeProfile.Missions.Find(mis => mis.Name == lstMissions.Items[lstMissions.SelectedIndex].ToString());
+                Mission mission =
+                    _activeProfile.Missions.Find(
+                        mis => mis.Name == lstMissions.Items[lstMissions.SelectedIndex].ToString());
                 mission.Difficulty = cmbDifficulty.SelectedIndex;
                 IsDirty = true;
             }
@@ -1412,7 +1369,7 @@ namespace TADST
             {
                 string serverPath = txtServerExe.Text; // get server exe filepath
                 int index = serverPath.LastIndexOf(@"\", StringComparison.Ordinal) + 1;
-                    // get index of filename in string
+                // get index of filename in string
                 string serverExeName = serverPath.Substring(index); // get exe name only
                 string serverExePath = serverPath.Substring(0, index); // get folder only
 
@@ -1923,7 +1880,8 @@ namespace TADST
 
             if (chkStartAsIs.Checked)
             {
-                var info = new AsIsInfoForm(Path.Combine(Environment.CurrentDirectory, "TADST", _activeProfile.ProfileName));
+                var info =
+                    new AsIsInfoForm(Path.Combine(Environment.CurrentDirectory, "TADST", _activeProfile.ProfileName));
                 info.ShowDialog();
             }
         }
@@ -2069,7 +2027,9 @@ namespace TADST
         {
             try
             {
-                _activeProfile.MaxPacketSize = string.IsNullOrEmpty(txtMaxPacketSize.Text) ? 0 : Convert.ToInt32(txtMaxPacketSize.Text);
+                _activeProfile.MaxPacketSize = string.IsNullOrEmpty(txtMaxPacketSize.Text)
+                                                   ? 0
+                                                   : Convert.ToInt32(txtMaxPacketSize.Text);
             }
             catch (Exception exception)
             {
@@ -2094,12 +2054,8 @@ namespace TADST
             _activeProfile.DefaultDifficulty = cmbDefaultDifficulty.SelectedIndex;
         }
 
-        private void chkPersistentBattlefield_CheckedChanged_1(object sender, EventArgs e)
-        {
-            _activeProfile.PersistantBattlefield = chkPersistentBattlefield.Checked;
-        }
 
-        private void chkBattlEye_CheckedChanged_1(object sender, EventArgs e)
+        private void chkBattlEye_CheckedChanged(object sender, EventArgs e)
         {
             _activeProfile.BattlEye = chkBattlEye.Checked;
         }
@@ -2155,7 +2111,6 @@ namespace TADST
         private void chkEnableHT_CheckedChanged(object sender, EventArgs e)
         {
             _activeProfile.EnableHt = chkEnableHT.Checked;
-
         }
 
         private void btnPortCheck_Click(object sender, EventArgs e)
@@ -2165,14 +2120,16 @@ namespace TADST
 
         private void CheckPorts()
         {
-
             MessageBox.Show("Open or forward the following UDP ports to this computer in your router/firewall:"
                             + Environment.NewLine
                             + _activeProfile.Port + " - Arma3 Game Port" + Environment.NewLine
                             + (_activeProfile.Port + 1) + " - Steam Server Query" + Environment.NewLine
                             + (_activeProfile.Port + 2) + " - Steam Port" + Environment.NewLine
-                            + (_activeProfile.Port + 3) + " - VON (reserved, but not used yet)" + Environment.NewLine + Environment.NewLine
-                            + "If you start a second server on this machine, suggestion is to leave at least 10 ports between. Set second server port to " + (_activeProfile.Port + 10));
+                            + (_activeProfile.Port + 3) + " - VON (reserved, but not used yet)" + Environment.NewLine +
+                            Environment.NewLine
+                            +
+                            "If you start a second server on this machine, suggestion is to leave at least 10 ports between. Set second server port to " +
+                            (_activeProfile.Port + 10));
         }
 
         private void txtServerCommandPassword_TextChanged(object sender, EventArgs e)
@@ -2223,6 +2180,18 @@ namespace TADST
                                             "2 - AI Level High" + Environment.NewLine +
                                             "3 - AI Level Custom" + Environment.NewLine;
         }
+
+        private void chkLoopback_CheckedChanged(object sender, EventArgs e)
+        {
+            _activeProfile.Loopback = chkLoopback.Checked;
+        }
+
+        private void chkAutoinit_CheckedChanged(object sender, EventArgs e)
+        {
+            _activeProfile.AutoInit = chkAutoinit.Checked;
+            UpdateGuiStartupParameters();
+        }
+
 
     }
 }
