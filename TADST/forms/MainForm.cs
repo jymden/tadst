@@ -340,6 +340,7 @@ namespace TADST
             {
                 clbDifficultyItems.Items.Add(item.ToString(), item.IsChecked);
             }
+
         }
 
         private void btnProfileNew_Click(object sender, EventArgs e)
@@ -910,7 +911,6 @@ namespace TADST
             _activeProfile.PersistantBattlefield = chkPersistentBattlefield.Checked;
             chkAutoinit.Enabled = chkPersistentBattlefield.Checked;
             UpdateGuiStartupParameters();
-
         }
 
         private void numCodecQuality_ValueChanged(object sender, EventArgs e)
@@ -2191,7 +2191,6 @@ namespace TADST
             _activeProfile.AutoInit = chkAutoinit.Checked;
             UpdateGuiStartupParameters();
         }
-
 
     }
 }
