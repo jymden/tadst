@@ -340,7 +340,6 @@ namespace TADST
             {
                 clbDifficultyItems.Items.Add(item.ToString(), item.IsChecked);
             }
-
         }
 
         private void btnProfileNew_Click(object sender, EventArgs e)
@@ -2191,6 +2190,5 @@ namespace TADST
             _activeProfile.AutoInit = chkAutoinit.Checked;
             UpdateGuiStartupParameters();
         }
-
     }
 }

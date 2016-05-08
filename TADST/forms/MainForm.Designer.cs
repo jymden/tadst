@@ -79,9 +79,6 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.txtServerName = new System.Windows.Forms.TextBox();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.autoInitShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.autoInitShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.tabServerRules = new System.Windows.Forms.TabPage();
             this.chkBattlEye = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -300,7 +297,6 @@
             this.tabServerDetails.Controls.Add(this.lblPassword);
             this.tabServerDetails.Controls.Add(this.lblHostName);
             this.tabServerDetails.Controls.Add(this.txtServerName);
-            this.tabServerDetails.Controls.Add(this.shapeContainer1);
             this.tabServerDetails.ImageIndex = 0;
             this.tabServerDetails.Location = new System.Drawing.Point(4, 23);
             this.tabServerDetails.Name = "tabServerDetails";
@@ -903,36 +899,6 @@
             this.toolTip1.SetToolTip(this.txtServerName, "Servername visible in the game browser.");
             this.txtServerName.TextChanged += new System.EventHandler(this.txtServerName_TextChanged);
             this.txtServerName.DoubleClick += new System.EventHandler(this.txtServerName_DoubleClick);
-            // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(3, 3);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.autoInitShape2,
-            this.autoInitShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(558, 366);
-            this.shapeContainer1.TabIndex = 70;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // autoInitShape2
-            // 
-            this.autoInitShape2.Enabled = false;
-            this.autoInitShape2.Name = "autoInitShape2";
-            this.autoInitShape2.X1 = 389;
-            this.autoInitShape2.X2 = 397;
-            this.autoInitShape2.Y1 = 129;
-            this.autoInitShape2.Y2 = 129;
-            // 
-            // autoInitShape1
-            // 
-            this.autoInitShape1.Enabled = false;
-            this.autoInitShape1.Name = "autoInitShape1";
-            this.autoInitShape1.X1 = 388;
-            this.autoInitShape1.X2 = 388;
-            this.autoInitShape1.Y1 = 117;
-            this.autoInitShape1.Y2 = 129;
             // 
             // tabServerRules
             // 
@@ -2742,7 +2708,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(590, 572);
             this.Name = "MainForm";
-            this.Text = "TADST v2.95  - Tophe\'s Arma Dedicated Server Tool";
+            this.Text = "TADST v2.96  - Tophe\'s Arma Dedicated Server Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabContainer.ResumeLayout(false);
@@ -2996,9 +2962,6 @@
         private System.Windows.Forms.CheckBox chkAutoinit;
         private System.Windows.Forms.CheckBox chkPersistentBattlefield;
         private System.Windows.Forms.CheckBox chkBattlEye;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.LineShape autoInitShape2;
-        private Microsoft.VisualBasic.PowerPacks.LineShape autoInitShape1;
     }
 }
 
