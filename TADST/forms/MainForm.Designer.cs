@@ -1556,7 +1556,7 @@
             this.removeModBTN.Name = "removeModBTN";
             this.removeModBTN.Size = new System.Drawing.Size(30, 25);
             this.removeModBTN.TabIndex = 20;
-            this.toolTip1.SetToolTip(this.removeModBTN, "Remove selected folder from list. \r\nThis will NOT delete the folder from disk");
+            this.toolTip1.SetToolTip(this.removeModBTN, "Hide selected folder from list. ");
             this.removeModBTN.UseVisualStyleBackColor = true;
             this.removeModBTN.Click += new System.EventHandler(this.removeModBTN_Click);
             // 
