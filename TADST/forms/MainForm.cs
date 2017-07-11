@@ -1185,7 +1185,7 @@ namespace TADST
             var fileDialog = new OpenFileDialog
                                  {
                                      InitialDirectory = Environment.CurrentDirectory,
-                                     Filter = "Arma Server Files|*server.exe|Any file|*.*"
+                                     Filter = "Arma Server Files|*server.exe;*server_x64.exe|Any file|*.*"
                                  };
 
             fileDialog.ShowDialog();
