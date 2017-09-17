@@ -212,6 +212,11 @@ namespace TADST
                 configString += "localClient[]={" + string.Join(",", ActiveProfile.LocalIps) + "};" + NewLine(2);
             }
 
+            if (!ActiveProfile.VotingEnabled)
+            {
+                configString += NewLine() + "allowedVoteCmds[] = {};";
+            }
+
             configString += NewLine() +
                             "voteMissionPlayers = " + ActiveProfile.VoteMissionPlayers + ";" + NewLine() +
                             "voteThreshold = " + voteThreshold.ToString(CultureInfo.InvariantCulture) + ";" + NewLine(2) +
