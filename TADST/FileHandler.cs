@@ -53,7 +53,7 @@ namespace TADST
 
             if (serverExe.EndsWith("arma2server.exe")) file = "arma2server.RPT";
             else if (serverExe.EndsWith("arma2oaserver.exe")) file = "arma2oaserver.RPT";
-            else if (serverExe.EndsWith("arma3server.exe"))
+            else if (serverExe.EndsWith("arma3server.exe") || serverExe.EndsWith("arma3server_x64.exe"))
             {
                 file = GetArma3Rpt();
             }
@@ -593,7 +593,7 @@ namespace TADST
 
             if (serverExe.EndsWith("arma2server.exe")) file = "arma2server.RPT";
             else if (serverExe.EndsWith("arma2oaserver.exe")) file = "arma2oaserver.RPT";
-            else if (serverExe.EndsWith("arma3server.exe"))
+            else if (serverExe.EndsWith("arma3server.exe") || serverExe.EndsWith("arma3server_x64.exe"))
             {
                 file = GetArma3Rpt();
             }
@@ -616,5 +616,6 @@ namespace TADST
             fileNames.Sort();
             return fileNames[fileNames.Count - 1];
         }
+
     }
 }
