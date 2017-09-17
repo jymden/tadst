@@ -1219,7 +1219,7 @@ namespace TADST
 
         private void btnOpenRpt_Click(object sender, EventArgs e)
         {
-            if (_activeProfile.ServerExePath.ToLower().EndsWith("server.exe"))
+            if (_activeProfile.ServerExePath.ToLower().EndsWith("server.exe") || _activeProfile.ServerExePath.ToLower().EndsWith("server_x64.exe"))
             {
                 if (!_fileHandler.OpenRpt())
                 {
