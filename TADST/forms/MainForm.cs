@@ -95,13 +95,31 @@ namespace TADST
             numVoteThreshold.Value = _activeProfile.VoteThreshold*100;
 
             cmbVerifySignatures.SelectedIndex = _activeProfile.VerifySignatures;
-            cmbRequiredSecureId.SelectedIndex = _activeProfile.RequiredSecureId;
             cmbAllowedFilePatching.SelectedIndex = _activeProfile.AllowFilePatching;
             chkRequiredBuild.Checked = _activeProfile.RequiredBuildEnabled;
             txtRequiredBuild.Text = _activeProfile.RequiredBuild.ToString(CultureInfo.InvariantCulture);
             chkKickDuplicates.Checked = _activeProfile.KickDuplicates;
 
             chkBattlEye.Checked = _activeProfile.BattlEye;
+
+            chkMaxPing.Checked = _activeProfile.MaxPingEnabled;
+            numMaxPing.Value = _activeProfile.MaxPing;
+
+            chkMaxDesync.Checked = _activeProfile.MaxDesyncEnabled;
+            numMaxDesync.Value = _activeProfile.MaxDesync;
+
+            chkMaxPacketloss.Checked = _activeProfile.MaxPacketLossEnabled;
+            numMaxPacketLoss.Value = _activeProfile.MaxPacketLoss;
+
+            chkDisconnectTimeout.Checked = _activeProfile.DisconnectTimeoutEnabled;
+            /*if (_activeProfile.DisconnectTimeout < numDisconnectTimeOut.Minimum || _activeProfile.DisconnectTimeout > numDisconnectTimeOut.Maximum)
+            {
+                _activeProfile.DisconnectTimeout = 90;
+            } */
+            numDisconnectTimeOut.Value = _activeProfile.DisconnectTimeout;
+
+            chkKickClientsOnSlowNetwork.Checked = _activeProfile.KickClientsOnSlowNetworkEnabled;
+            cmbKickClientsOnSlowNetwork.SelectedIndex = _activeProfile.KickClientsOnSlowNetwork;
 
 
             txtMotd.Text = string.Join(Environment.NewLine, _activeProfile.Motd);
@@ -2037,10 +2055,6 @@ namespace TADST
             }
         }
 
-        private void cmbRequiredSecureId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _activeProfile.RequiredSecureId = cmbRequiredSecureId.SelectedIndex;
-        }
 
         private void chkBeta_CheckedChanged(object sender, EventArgs e)
         {
@@ -2190,5 +2204,57 @@ namespace TADST
             _activeProfile.AutoInit = chkAutoinit.Checked;
             UpdateGuiStartupParameters();
         }
+
+        private void chkMaxPacketloss_CheckedChanged(object sender, EventArgs e)
+        {
+            _activeProfile.MaxPacketLossEnabled = numMaxPacketLoss.Enabled = chkMaxPacketloss.Checked;
+        }
+
+        private void chkDisonnectTimeout_CheckedChanged(object sender, EventArgs e)
+        {
+            _activeProfile.DisconnectTimeoutEnabled = numDisconnectTimeOut.Enabled = chkDisconnectTimeout.Checked;
+        }
+
+        private void chkMaxDesync_CheckedChanged(object sender, EventArgs e)
+        {
+            _activeProfile.MaxDesyncEnabled = numMaxDesync.Enabled = chkMaxDesync.Checked;
+        }
+
+        private void chkMaxPing_CheckedChanged(object sender, EventArgs e)
+        {
+            _activeProfile.MaxPingEnabled = numMaxPing.Enabled = chkMaxPing.Checked;
+        }
+
+        private void numMaxPing_ValueChanged(object sender, EventArgs e)
+        {
+            _activeProfile.MaxPing = (int) numMaxPing.Value;
+        }
+
+        private void chkKickClientsOnSlowNetwork_CheckedChanged(object sender, EventArgs e)
+        {
+            _activeProfile.KickClientsOnSlowNetworkEnabled = cmbKickClientsOnSlowNetwork.Enabled = chkKickClientsOnSlowNetwork.Checked;
+        }
+
+        private void cmbKickClientsOnSlowNetwork_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _activeProfile.KickClientsOnSlowNetwork = cmbKickClientsOnSlowNetwork.SelectedIndex;
+        }
+
+        private void numMaxDesync_ValueChanged(object sender, EventArgs e)
+        {
+            _activeProfile.MaxDesync = (int) numMaxDesync.Value;
+        }
+
+        private void numMaxPacketLoss_ValueChanged(object sender, EventArgs e)
+        {
+            _activeProfile.MaxPacketLoss = (int) numMaxPacketLoss.Value;
+        }
+
+        private void numDisconnectTimeOut_ValueChanged(object sender, EventArgs e)
+        {
+            _activeProfile.DisconnectTimeout = (int) numDisconnectTimeOut.Value;
+        }
+
+
     }
 }

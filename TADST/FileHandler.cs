@@ -226,6 +226,32 @@ namespace TADST
                 configString += "battleyeLicense = 1;" + NewLine();
             }
 
+            if (ActiveProfile.MaxPingEnabled)
+            {
+                configString += "maxPing = " + ActiveProfile.MaxPing + ";" + NewLine();
+            }
+
+            if (ActiveProfile.MaxDesyncEnabled)
+            {
+                configString += "maxDesync = " + ActiveProfile.MaxDesync + ";" + NewLine();
+            }
+
+            if (ActiveProfile.MaxPacketLossEnabled)
+            {
+                configString += "maxPacketloss = " + ActiveProfile.MaxPacketLoss + ";" + NewLine();
+            }
+
+            if (ActiveProfile.DisconnectTimeoutEnabled)
+            {
+                configString += "disconnectTimeout = " + ActiveProfile.DisconnectTimeout + ";" + NewLine();
+            }
+
+            if (ActiveProfile.KickClientsOnSlowNetworkEnabled)
+            {
+                configString += "kickClientsOnSlowNetwork = " + ActiveProfile.KickClientsOnSlowNetwork + ";" + NewLine();
+            }
+
+
 
             configString += NewLine() + "doubleIdDetected = \"" + ActiveProfile.DoubleIdDetected + "\";" + NewLine() +
                             "onUserConnected = \"" + ActiveProfile.OnUserConnected + "\";" + NewLine() +

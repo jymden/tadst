@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace TADST
 {
@@ -58,6 +59,22 @@ namespace TADST
         private bool _battlEye;
         private int _allowFilePatching;
 
+
+        private bool _maxPingEnabled;
+        private int _maxPing;
+
+        private bool _maxDesyncEnabled;
+        private int _maxDesync;
+
+        private bool _maxPacketLossEnabled;
+        private int _maxPacketLoss;
+
+        private bool _disconnectTimeoutEnabled;
+        private int? _disconnectTimeout;
+
+        private bool _kickClientsOnSlowNetworkEnabled;
+        private int _kickClientsOnSlowNetwork;
+
         private List<string> _motd;
         private int _motdInterval;
 
@@ -105,6 +122,15 @@ namespace TADST
         private string _onDifferentData;
         private string _onUnsignedData;
         private string _regularCheck;
+
+        [OnDeserialized()]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            if (_disconnectTimeout == null)
+            {
+                DisconnectTimeout = 5;
+            }
+        }
 
         /// <summary>
         /// Default constructor for default profile settings
@@ -161,8 +187,19 @@ namespace TADST
             BattlEye = false;
             AllowFilePatching = 0;
 
-            MotdInterval = 3;
+            MaxPingEnabled = false;
+            MaxPing = 10;
+            MaxDesyncEnabled = false;
+            MaxDesync = 0;
+            MaxPacketLossEnabled = false;
+            MaxPacketLoss = 0;
+            DisconnectTimeoutEnabled = false;
+            DisconnectTimeout = 90;
+            KickClientsOnSlowNetworkEnabled = false;
+            KickClientsOnSlowNetwork = 0;
 
+            MotdInterval = 3;
+            
             MissionDifficulty = 1;
 
             Loopback = false;
@@ -888,6 +925,66 @@ namespace TADST
         {
             get { return _autoInit; }
             set { _autoInit = value; }
+        }
+
+        public bool MaxPingEnabled
+        {
+            get { return _maxPingEnabled; }
+            set { _maxPingEnabled = value; }
+        }
+
+        public int MaxPing
+        {
+            get { return _maxPing; }
+            set { _maxPing = value; }
+        }
+
+        public bool MaxDesyncEnabled
+        {
+            get { return _maxDesyncEnabled; }
+            set { _maxDesyncEnabled = value; }
+        }
+
+        public int MaxDesync
+        {
+            get { return _maxDesync; }
+            set { _maxDesync = value; }
+        }
+
+        public bool MaxPacketLossEnabled
+        {
+            get { return _maxPacketLossEnabled; }
+            set { _maxPacketLossEnabled = value; }
+        }
+
+        public int MaxPacketLoss
+        {
+            get { return _maxPacketLoss; }
+            set { _maxPacketLoss = value; }
+        }
+
+        public bool DisconnectTimeoutEnabled
+        {
+            get { return _disconnectTimeoutEnabled; }
+            set { _disconnectTimeoutEnabled = value; }
+        }
+
+        public bool KickClientsOnSlowNetworkEnabled
+        {
+            get { return _kickClientsOnSlowNetworkEnabled; }
+            set { _kickClientsOnSlowNetworkEnabled = value; }
+        }
+
+        public int KickClientsOnSlowNetwork
+        {
+            get { return _kickClientsOnSlowNetwork; }
+            set { _kickClientsOnSlowNetwork = value; }
+        }
+
+        public int DisconnectTimeout
+        {
+            get { return _disconnectTimeout.Value; }
+            set { _disconnectTimeout = value; }
         }
     }
 }

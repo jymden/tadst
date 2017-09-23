@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TADST")]
 [assembly: AssemblyDescription("Dedicated Server Launcher for Arma")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Christoffer Wadensten")]
+[assembly: AssemblyCompany("jymden.com")]
 [assembly: AssemblyProduct("TADST")]
 [assembly: AssemblyCopyright("© 2016 by Christoffer Wadensten")]
 [assembly: AssemblyTrademark("")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.9.6.0")]
-[assembly: AssemblyFileVersion("2.9.6.0")]
+[assembly: AssemblyVersion("3.0.0.0")]
+[assembly: AssemblyFileVersion("3.0.0.0")]

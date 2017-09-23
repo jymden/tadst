@@ -80,11 +80,22 @@
             this.lblHostName = new System.Windows.Forms.Label();
             this.txtServerName = new System.Windows.Forms.TextBox();
             this.tabServerRules = new System.Windows.Forms.TabPage();
+            this.chkKickClientsOnSlowNetwork = new System.Windows.Forms.CheckBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.cmbKickClientsOnSlowNetwork = new System.Windows.Forms.ComboBox();
+            this.numMaxPing = new System.Windows.Forms.NumericUpDown();
+            this.chkMaxPing = new System.Windows.Forms.CheckBox();
+            this.numMaxDesync = new System.Windows.Forms.NumericUpDown();
+            this.chkMaxDesync = new System.Windows.Forms.CheckBox();
+            this.numMaxPacketLoss = new System.Windows.Forms.NumericUpDown();
+            this.chkMaxPacketloss = new System.Windows.Forms.CheckBox();
+            this.chkDisconnectTimeout = new System.Windows.Forms.CheckBox();
+            this.numDisconnectTimeOut = new System.Windows.Forms.NumericUpDown();
             this.chkBattlEye = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cmbAllowedFilePatching = new System.Windows.Forms.ComboBox();
-            this.cmbRequiredSecureId = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.cmbVerifySignatures = new System.Windows.Forms.ComboBox();
             this.txtRequiredBuild = new System.Windows.Forms.TextBox();
@@ -234,6 +245,10 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxPlayers)).BeginInit();
             this.tabServerRules.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxPing)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxDesync)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxPacketLoss)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDisconnectTimeOut)).BeginInit();
             this.grpMotd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMotdInterval)).BeginInit();
             this.grpVoting.SuspendLayout();
@@ -903,11 +918,22 @@
             // tabServerRules
             // 
             this.tabServerRules.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.tabServerRules.Controls.Add(this.chkKickClientsOnSlowNetwork);
+            this.tabServerRules.Controls.Add(this.label26);
+            this.tabServerRules.Controls.Add(this.label25);
+            this.tabServerRules.Controls.Add(this.label21);
+            this.tabServerRules.Controls.Add(this.cmbKickClientsOnSlowNetwork);
+            this.tabServerRules.Controls.Add(this.numMaxPing);
+            this.tabServerRules.Controls.Add(this.chkMaxPing);
+            this.tabServerRules.Controls.Add(this.numMaxDesync);
+            this.tabServerRules.Controls.Add(this.chkMaxDesync);
+            this.tabServerRules.Controls.Add(this.numMaxPacketLoss);
+            this.tabServerRules.Controls.Add(this.chkMaxPacketloss);
+            this.tabServerRules.Controls.Add(this.chkDisconnectTimeout);
+            this.tabServerRules.Controls.Add(this.numDisconnectTimeOut);
             this.tabServerRules.Controls.Add(this.chkBattlEye);
             this.tabServerRules.Controls.Add(this.label19);
             this.tabServerRules.Controls.Add(this.cmbAllowedFilePatching);
-            this.tabServerRules.Controls.Add(this.cmbRequiredSecureId);
-            this.tabServerRules.Controls.Add(this.label21);
             this.tabServerRules.Controls.Add(this.label14);
             this.tabServerRules.Controls.Add(this.cmbVerifySignatures);
             this.tabServerRules.Controls.Add(this.txtRequiredBuild);
@@ -923,10 +949,188 @@
             this.tabServerRules.TabIndex = 1;
             this.tabServerRules.Text = "Rules";
             // 
+            // chkKickClientsOnSlowNetwork
+            // 
+            this.chkKickClientsOnSlowNetwork.AutoSize = true;
+            this.chkKickClientsOnSlowNetwork.Location = new System.Drawing.Point(7, 327);
+            this.chkKickClientsOnSlowNetwork.Name = "chkKickClientsOnSlowNetwork";
+            this.chkKickClientsOnSlowNetwork.Size = new System.Drawing.Size(124, 30);
+            this.chkKickClientsOnSlowNetwork.TabIndex = 86;
+            this.chkKickClientsOnSlowNetwork.Text = "Kick Clients On Slow\r\nNetwork";
+            this.toolTip1.SetToolTip(this.chkKickClientsOnSlowNetwork, "Optional setting for handling  maxPing, maxDesync, \r\nmaxPacketloss and disconnect" +
+        "Timeout commands\r\n0 - Will only log warnings\r\n1 - Will log warnings and kick cli" +
+        "ents\r\n\r\nDefault is off");
+            this.chkKickClientsOnSlowNetwork.UseVisualStyleBackColor = true;
+            this.chkKickClientsOnSlowNetwork.CheckedChanged += new System.EventHandler(this.chkKickClientsOnSlowNetwork_CheckedChanged);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(181, 305);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(47, 13);
+            this.label26.TabIndex = 84;
+            this.label26.Text = "seconds";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(185, 282);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(15, 13);
+            this.label25.TabIndex = 83;
+            this.label25.Text = "%";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(181, 235);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(20, 13);
+            this.label21.TabIndex = 82;
+            this.label21.Text = "ms";
+            // 
+            // cmbKickClientsOnSlowNetwork
+            // 
+            this.cmbKickClientsOnSlowNetwork.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cmbKickClientsOnSlowNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbKickClientsOnSlowNetwork.Enabled = false;
+            this.cmbKickClientsOnSlowNetwork.FormattingEnabled = true;
+            this.cmbKickClientsOnSlowNetwork.Items.AddRange(new object[] {
+            "0 - Log only ",
+            "1 - Log & kick"});
+            this.cmbKickClientsOnSlowNetwork.Location = new System.Drawing.Point(137, 329);
+            this.cmbKickClientsOnSlowNetwork.Name = "cmbKickClientsOnSlowNetwork";
+            this.cmbKickClientsOnSlowNetwork.Size = new System.Drawing.Size(91, 21);
+            this.cmbKickClientsOnSlowNetwork.TabIndex = 80;
+            this.toolTip1.SetToolTip(this.cmbKickClientsOnSlowNetwork, "Optional setting for handling  maxPing, maxDesync, \r\nmaxPacketloss and disconnect" +
+        "Timeout commands\r\n0 - Will only log warnings\r\n1 - Will log warnings and kick cli" +
+        "ents\r\n\r\nDefault is off\r\n");
+            this.cmbKickClientsOnSlowNetwork.SelectedIndexChanged += new System.EventHandler(this.cmbKickClientsOnSlowNetwork_SelectedIndexChanged);
+            // 
+            // numMaxPing
+            // 
+            this.numMaxPing.Enabled = false;
+            this.numMaxPing.Location = new System.Drawing.Point(137, 231);
+            this.numMaxPing.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.numMaxPing.Name = "numMaxPing";
+            this.numMaxPing.Size = new System.Drawing.Size(42, 20);
+            this.numMaxPing.TabIndex = 77;
+            this.toolTip1.SetToolTip(this.numMaxPing, "Sets default value for server command #MaxPing\r\n\r\nDefault is 0 (disabled)\r\n");
+            this.numMaxPing.ValueChanged += new System.EventHandler(this.numMaxPing_ValueChanged);
+            // 
+            // chkMaxPing
+            // 
+            this.chkMaxPing.AutoSize = true;
+            this.chkMaxPing.Location = new System.Drawing.Point(7, 234);
+            this.chkMaxPing.Name = "chkMaxPing";
+            this.chkMaxPing.Size = new System.Drawing.Size(70, 17);
+            this.chkMaxPing.TabIndex = 76;
+            this.chkMaxPing.Text = "Max Ping";
+            this.toolTip1.SetToolTip(this.chkMaxPing, "Sets default value for server command #MaxPing\r\n\r\nDefault is 0 (disabled)");
+            this.chkMaxPing.UseVisualStyleBackColor = true;
+            this.chkMaxPing.CheckedChanged += new System.EventHandler(this.chkMaxPing_CheckedChanged);
+            // 
+            // numMaxDesync
+            // 
+            this.numMaxDesync.Enabled = false;
+            this.numMaxDesync.Location = new System.Drawing.Point(137, 254);
+            this.numMaxDesync.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numMaxDesync.Name = "numMaxDesync";
+            this.numMaxDesync.Size = new System.Drawing.Size(42, 20);
+            this.numMaxDesync.TabIndex = 75;
+            this.toolTip1.SetToolTip(this.numMaxDesync, "Sets default value for server command #MaxDesync.\r\nMaximal threshold value is 100" +
+        "k (100000).\r\n\r\nDefault: 0");
+            this.numMaxDesync.ValueChanged += new System.EventHandler(this.numMaxDesync_ValueChanged);
+            // 
+            // chkMaxDesync
+            // 
+            this.chkMaxDesync.AutoSize = true;
+            this.chkMaxDesync.Location = new System.Drawing.Point(7, 257);
+            this.chkMaxDesync.Name = "chkMaxDesync";
+            this.chkMaxDesync.Size = new System.Drawing.Size(85, 17);
+            this.chkMaxDesync.TabIndex = 74;
+            this.chkMaxDesync.Text = "Max Desync";
+            this.toolTip1.SetToolTip(this.chkMaxDesync, "Sets default value for server command #MaxDesync.\r\nMaximal threshold value is 100" +
+        "k (100000).\r\n\r\nDefault: 0");
+            this.chkMaxDesync.UseVisualStyleBackColor = true;
+            this.chkMaxDesync.CheckedChanged += new System.EventHandler(this.chkMaxDesync_CheckedChanged);
+            // 
+            // numMaxPacketLoss
+            // 
+            this.numMaxPacketLoss.Enabled = false;
+            this.numMaxPacketLoss.Location = new System.Drawing.Point(137, 278);
+            this.numMaxPacketLoss.Name = "numMaxPacketLoss";
+            this.numMaxPacketLoss.Size = new System.Drawing.Size(42, 20);
+            this.numMaxPacketLoss.TabIndex = 73;
+            this.toolTip1.SetToolTip(this.numMaxPacketLoss, "Sets default value for server command #MaxPacketloss.\r\nValue is percents 0-100\r\n\r" +
+        "\nDefault: 0\r\n");
+            this.numMaxPacketLoss.ValueChanged += new System.EventHandler(this.numMaxPacketLoss_ValueChanged);
+            // 
+            // chkMaxPacketloss
+            // 
+            this.chkMaxPacketloss.AutoSize = true;
+            this.chkMaxPacketloss.Location = new System.Drawing.Point(7, 281);
+            this.chkMaxPacketloss.Name = "chkMaxPacketloss";
+            this.chkMaxPacketloss.Size = new System.Drawing.Size(108, 17);
+            this.chkMaxPacketloss.TabIndex = 72;
+            this.chkMaxPacketloss.Text = "Max Packet Loss";
+            this.toolTip1.SetToolTip(this.chkMaxPacketloss, "Sets default value for server command #MaxPacketloss.\r\nValue is percents 0-100\r\n\r" +
+        "\nDefault: 0");
+            this.chkMaxPacketloss.UseVisualStyleBackColor = true;
+            this.chkMaxPacketloss.CheckedChanged += new System.EventHandler(this.chkMaxPacketloss_CheckedChanged);
+            // 
+            // chkDisconnectTimeout
+            // 
+            this.chkDisconnectTimeout.AutoSize = true;
+            this.chkDisconnectTimeout.Location = new System.Drawing.Point(7, 304);
+            this.chkDisconnectTimeout.Name = "chkDisconnectTimeout";
+            this.chkDisconnectTimeout.Size = new System.Drawing.Size(121, 17);
+            this.chkDisconnectTimeout.TabIndex = 71;
+            this.chkDisconnectTimeout.Text = "Disconnect Timeout";
+            this.toolTip1.SetToolTip(this.chkDisconnectTimeout, "Sets default value for server #disconnectTimeout.\r\nValue is threshold in seconds\r" +
+        "\n\r\nDefault: 0\r\n");
+            this.chkDisconnectTimeout.UseVisualStyleBackColor = true;
+            this.chkDisconnectTimeout.CheckedChanged += new System.EventHandler(this.chkDisonnectTimeout_CheckedChanged);
+            // 
+            // numDisconnectTimeOut
+            // 
+            this.numDisconnectTimeOut.Enabled = false;
+            this.numDisconnectTimeOut.Location = new System.Drawing.Point(137, 301);
+            this.numDisconnectTimeOut.Maximum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.numDisconnectTimeOut.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numDisconnectTimeOut.Name = "numDisconnectTimeOut";
+            this.numDisconnectTimeOut.Size = new System.Drawing.Size(42, 20);
+            this.numDisconnectTimeOut.TabIndex = 39;
+            this.toolTip1.SetToolTip(this.numDisconnectTimeOut, "Sets default value for server #disconnectTimeout.\r\nValue is threshold in seconds\r" +
+        "\n\r\nDefault: 0");
+            this.numDisconnectTimeOut.Value = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.numDisconnectTimeOut.ValueChanged += new System.EventHandler(this.numDisconnectTimeOut_ValueChanged);
+            // 
             // chkBattlEye
             // 
             this.chkBattlEye.AutoSize = true;
-            this.chkBattlEye.Location = new System.Drawing.Point(24, 257);
+            this.chkBattlEye.Location = new System.Drawing.Point(7, 211);
             this.chkBattlEye.Name = "chkBattlEye";
             this.chkBattlEye.Size = new System.Drawing.Size(65, 17);
             this.chkBattlEye.TabIndex = 69;
@@ -940,7 +1144,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(24, 182);
+            this.label19.Location = new System.Drawing.Point(7, 138);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(108, 13);
             this.label19.TabIndex = 52;
@@ -954,43 +1158,16 @@
             "0",
             "1",
             "2"});
-            this.cmbAllowedFilePatching.Location = new System.Drawing.Point(134, 179);
+            this.cmbAllowedFilePatching.Location = new System.Drawing.Point(137, 135);
             this.cmbAllowedFilePatching.Name = "cmbAllowedFilePatching";
-            this.cmbAllowedFilePatching.Size = new System.Drawing.Size(72, 21);
+            this.cmbAllowedFilePatching.Size = new System.Drawing.Size(91, 21);
             this.cmbAllowedFilePatching.TabIndex = 51;
             this.cmbAllowedFilePatching.SelectedIndexChanged += new System.EventHandler(this.cmbAllowedFilePatching_SelectedIndexChanged);
-            // 
-            // cmbRequiredSecureId
-            // 
-            this.cmbRequiredSecureId.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.cmbRequiredSecureId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRequiredSecureId.FormattingEnabled = true;
-            this.cmbRequiredSecureId.Items.AddRange(new object[] {
-            "none",
-            "1",
-            "2"});
-            this.cmbRequiredSecureId.Location = new System.Drawing.Point(134, 326);
-            this.cmbRequiredSecureId.Name = "cmbRequiredSecureId";
-            this.cmbRequiredSecureId.Size = new System.Drawing.Size(72, 21);
-            this.cmbRequiredSecureId.TabIndex = 48;
-            this.toolTip1.SetToolTip(this.cmbRequiredSecureId, resources.GetString("cmbRequiredSecureId.ToolTip"));
-            this.cmbRequiredSecureId.Visible = false;
-            this.cmbRequiredSecureId.SelectedIndexChanged += new System.EventHandler(this.cmbRequiredSecureId_SelectedIndexChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(23, 329);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(101, 13);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "Required Secure ID";
-            this.label21.Visible = false;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(24, 155);
+            this.label14.Location = new System.Drawing.Point(7, 111);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(86, 13);
             this.label14.TabIndex = 46;
@@ -1005,19 +1182,19 @@
             "none",
             "v1",
             "v2"});
-            this.cmbVerifySignatures.Location = new System.Drawing.Point(134, 152);
+            this.cmbVerifySignatures.Location = new System.Drawing.Point(137, 108);
             this.cmbVerifySignatures.Name = "cmbVerifySignatures";
-            this.cmbVerifySignatures.Size = new System.Drawing.Size(72, 21);
+            this.cmbVerifySignatures.Size = new System.Drawing.Size(91, 21);
             this.cmbVerifySignatures.TabIndex = 45;
             this.cmbVerifySignatures.SelectedIndexChanged += new System.EventHandler(this.cmbVerifySignatures_SelectedIndexChanged);
             // 
             // txtRequiredBuild
             // 
             this.txtRequiredBuild.Enabled = false;
-            this.txtRequiredBuild.Location = new System.Drawing.Point(134, 208);
+            this.txtRequiredBuild.Location = new System.Drawing.Point(137, 162);
             this.txtRequiredBuild.MaxLength = 6;
             this.txtRequiredBuild.Name = "txtRequiredBuild";
-            this.txtRequiredBuild.Size = new System.Drawing.Size(72, 20);
+            this.txtRequiredBuild.Size = new System.Drawing.Size(91, 20);
             this.txtRequiredBuild.TabIndex = 44;
             this.txtRequiredBuild.TextChanged += new System.EventHandler(this.txtRequiredBuild_TextChanged);
             this.txtRequiredBuild.DoubleClick += new System.EventHandler(this.txtRequiredBuild_DoubleClick);
@@ -1026,7 +1203,7 @@
             // chkRequiredBuild
             // 
             this.chkRequiredBuild.AutoSize = true;
-            this.chkRequiredBuild.Location = new System.Drawing.Point(24, 211);
+            this.chkRequiredBuild.Location = new System.Drawing.Point(7, 164);
             this.chkRequiredBuild.Name = "chkRequiredBuild";
             this.chkRequiredBuild.Size = new System.Drawing.Size(95, 17);
             this.chkRequiredBuild.TabIndex = 43;
@@ -1039,9 +1216,9 @@
             this.grpMotd.Controls.Add(this.lblMotdInterval);
             this.grpMotd.Controls.Add(this.numMotdInterval);
             this.grpMotd.Controls.Add(this.txtMotd);
-            this.grpMotd.Location = new System.Drawing.Point(220, 12);
+            this.grpMotd.Location = new System.Drawing.Point(234, 12);
             this.grpMotd.Name = "grpMotd";
-            this.grpMotd.Size = new System.Drawing.Size(336, 354);
+            this.grpMotd.Size = new System.Drawing.Size(322, 344);
             this.grpMotd.TabIndex = 42;
             this.grpMotd.TabStop = false;
             this.grpMotd.Text = "Message Of The Day";
@@ -1049,7 +1226,7 @@
             // lblMotdInterval
             // 
             this.lblMotdInterval.AutoSize = true;
-            this.lblMotdInterval.Location = new System.Drawing.Point(129, 331);
+            this.lblMotdInterval.Location = new System.Drawing.Point(113, 317);
             this.lblMotdInterval.Name = "lblMotdInterval";
             this.lblMotdInterval.Size = new System.Drawing.Size(143, 13);
             this.lblMotdInterval.TabIndex = 37;
@@ -1057,7 +1234,7 @@
             // 
             // numMotdInterval
             // 
-            this.numMotdInterval.Location = new System.Drawing.Point(274, 328);
+            this.numMotdInterval.Location = new System.Drawing.Point(262, 315);
             this.numMotdInterval.Maximum = new decimal(new int[] {
             31536000,
             0,
@@ -1071,11 +1248,11 @@
             // txtMotd
             // 
             this.txtMotd.AllowDrop = true;
-            this.txtMotd.Location = new System.Drawing.Point(6, 19);
+            this.txtMotd.Location = new System.Drawing.Point(6, 22);
             this.txtMotd.Multiline = true;
             this.txtMotd.Name = "txtMotd";
             this.txtMotd.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtMotd.Size = new System.Drawing.Size(322, 303);
+            this.txtMotd.Size = new System.Drawing.Size(310, 290);
             this.txtMotd.TabIndex = 5;
             this.toolTip1.SetToolTip(this.txtMotd, "MOTD will scroll by in the server chat, line by line.\r\nBlank lines will count as " +
         "emtpy linebreak and takr the time of\r\na normal line.");
@@ -1092,7 +1269,7 @@
             this.grpVoting.Controls.Add(this.numVoteThreshold);
             this.grpVoting.Location = new System.Drawing.Point(10, 12);
             this.grpVoting.Name = "grpVoting";
-            this.grpVoting.Size = new System.Drawing.Size(204, 125);
+            this.grpVoting.Size = new System.Drawing.Size(218, 90);
             this.grpVoting.TabIndex = 41;
             this.grpVoting.TabStop = false;
             this.grpVoting.Text = "Voting";
@@ -1100,7 +1277,7 @@
             // lblVotingEnabled
             // 
             this.lblVotingEnabled.AutoSize = true;
-            this.lblVotingEnabled.Location = new System.Drawing.Point(58, 22);
+            this.lblVotingEnabled.Location = new System.Drawing.Point(58, 16);
             this.lblVotingEnabled.Name = "lblVotingEnabled";
             this.lblVotingEnabled.Size = new System.Drawing.Size(79, 13);
             this.lblVotingEnabled.TabIndex = 38;
@@ -1109,7 +1286,7 @@
             // chkEnableVoting
             // 
             this.chkEnableVoting.AutoSize = true;
-            this.chkEnableVoting.Location = new System.Drawing.Point(143, 22);
+            this.chkEnableVoting.Location = new System.Drawing.Point(143, 15);
             this.chkEnableVoting.Name = "chkEnableVoting";
             this.chkEnableVoting.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkEnableVoting.Size = new System.Drawing.Size(15, 14);
@@ -1122,7 +1299,7 @@
             // lblVoteMissionPlayers
             // 
             this.lblVoteMissionPlayers.AutoSize = true;
-            this.lblVoteMissionPlayers.Location = new System.Drawing.Point(34, 54);
+            this.lblVoteMissionPlayers.Location = new System.Drawing.Point(34, 38);
             this.lblVoteMissionPlayers.Name = "lblVoteMissionPlayers";
             this.lblVoteMissionPlayers.Size = new System.Drawing.Size(107, 13);
             this.lblVoteMissionPlayers.TabIndex = 3;
@@ -1131,7 +1308,7 @@
             // numVoteMissionPlayers
             // 
             this.numVoteMissionPlayers.Enabled = false;
-            this.numVoteMissionPlayers.Location = new System.Drawing.Point(143, 51);
+            this.numVoteMissionPlayers.Location = new System.Drawing.Point(143, 35);
             this.numVoteMissionPlayers.Maximum = new decimal(new int[] {
             512,
             0,
@@ -1155,7 +1332,7 @@
             // lblVoteThreshold
             // 
             this.lblVoteThreshold.AutoSize = true;
-            this.lblVoteThreshold.Location = new System.Drawing.Point(51, 89);
+            this.lblVoteThreshold.Location = new System.Drawing.Point(51, 64);
             this.lblVoteThreshold.Name = "lblVoteThreshold";
             this.lblVoteThreshold.Size = new System.Drawing.Size(90, 13);
             this.lblVoteThreshold.TabIndex = 1;
@@ -1164,7 +1341,7 @@
             // numVoteThreshold
             // 
             this.numVoteThreshold.Enabled = false;
-            this.numVoteThreshold.Location = new System.Drawing.Point(143, 86);
+            this.numVoteThreshold.Location = new System.Drawing.Point(143, 61);
             this.numVoteThreshold.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1183,7 +1360,7 @@
             // chkKickDuplicates
             // 
             this.chkKickDuplicates.AutoSize = true;
-            this.chkKickDuplicates.Location = new System.Drawing.Point(24, 234);
+            this.chkKickDuplicates.Location = new System.Drawing.Point(7, 188);
             this.chkKickDuplicates.Name = "chkKickDuplicates";
             this.chkKickDuplicates.Size = new System.Drawing.Size(100, 17);
             this.chkKickDuplicates.TabIndex = 40;
@@ -2708,7 +2885,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(590, 572);
             this.Name = "MainForm";
-            this.Text = "TADST v2.96  - Tophe\'s Arma Dedicated Server Tool";
+            this.Text = "TADST v3.0.0  - Tophe\'s Arma Dedicated Server Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabContainer.ResumeLayout(false);
@@ -2724,6 +2901,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMaxPlayers)).EndInit();
             this.tabServerRules.ResumeLayout(false);
             this.tabServerRules.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxPing)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxDesync)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxPacketLoss)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDisconnectTimeOut)).EndInit();
             this.grpMotd.ResumeLayout(false);
             this.grpMotd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMotdInterval)).EndInit();
@@ -2932,8 +3113,6 @@
         private System.Windows.Forms.Button btnMonitorNetLog;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtMaxPacketSize;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox cmbRequiredSecureId;
         private System.Windows.Forms.CheckBox chkBeta;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox cmbDefaultDifficulty;
@@ -2962,6 +3141,19 @@
         private System.Windows.Forms.CheckBox chkAutoinit;
         private System.Windows.Forms.CheckBox chkPersistentBattlefield;
         private System.Windows.Forms.CheckBox chkBattlEye;
+        private System.Windows.Forms.CheckBox chkDisconnectTimeout;
+        private System.Windows.Forms.NumericUpDown numDisconnectTimeOut;
+        private System.Windows.Forms.NumericUpDown numMaxPacketLoss;
+        private System.Windows.Forms.CheckBox chkMaxPacketloss;
+        private System.Windows.Forms.NumericUpDown numMaxPing;
+        private System.Windows.Forms.CheckBox chkMaxPing;
+        private System.Windows.Forms.NumericUpDown numMaxDesync;
+        private System.Windows.Forms.CheckBox chkMaxDesync;
+        private System.Windows.Forms.ComboBox cmbKickClientsOnSlowNetwork;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.CheckBox chkKickClientsOnSlowNetwork;
     }
 }
 
