@@ -146,7 +146,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(329, 44);
             this.label6.TabIndex = 62;
-            this.label6.Text = "Code contributors: \r\nBaconeo, James Kingsley";
+            this.label6.Text = "Code contributors:  Bradon Hall, \r\nBaconeo, James Kingsley";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // InformationForm

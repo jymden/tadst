@@ -2885,7 +2885,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(590, 572);
             this.Name = "MainForm";
-            this.Text = "TADST v3.0.0  - Tophe\'s Arma Dedicated Server Tool";
+            this.Text = "TADST v3.1.0  - Tophe\'s Arma Dedicated Server Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabContainer.ResumeLayout(false);
