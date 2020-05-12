@@ -286,7 +286,7 @@ namespace TADST
             for (var i = 0; i < ActiveProfile.Motd.Count; i++)
             {
                 motd += "\t\"" + ActiveProfile.Motd[i] + "\"";
-                motd += i < ActiveProfile.Motd.Count - 1 ? "," + Environment.NewLine : Environment.NewLine;
+                motd += i < ActiveProfile.Motd.Count - 1 ? "," + Environment.NewLine : string.Empty;
             }
             return motd;
         }
