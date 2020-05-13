@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 
 namespace TADST
@@ -171,104 +172,111 @@ namespace TADST
         /// <returns></returns>
         private string GetConfigString()
         {
-            var configString = "";
             var voteThreshold = ActiveProfile.VotingEnabled ? ActiveProfile.VoteThreshold : 1.5m;
 
-            configString +=
-                "// Config file generated " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() +
-                " with TADST." + NewLine(2) +
-                "hostName = \"" + ActiveProfile.ServerName + "\";" + NewLine() +
-                "password = \"" + ActiveProfile.Password + "\";" + NewLine() +
-                "passwordAdmin = \"" + ActiveProfile.AdminPassword + "\";" + NewLine() +
-                "serverCommandPassword = \"" + ActiveProfile.ServerCommandPassword + "\";" + NewLine() +
-                "logFile = \"" + ActiveProfile.ConsoleLogfile + "\";" + NewLine(2) +
-                "motd[] = {" + NewLine() + GetMotd() + "};" + NewLine() +
-                "motdInterval = " + ActiveProfile.MotdInterval + ";" + NewLine(2) +
-                "maxPlayers = " + ActiveProfile.MaxPlayers + ";" + NewLine() +
-                "kickduplicate = " + Convert.ToInt32(ActiveProfile.KickDuplicates) + ";" + NewLine() +
-                "verifySignatures = " + ActiveProfile.VerifySignatures + ";" + NewLine() +
-                "allowedFilePatching = " + ActiveProfile.AllowFilePatching + ";" + NewLine() +
-                "requiredSecureId = " + ActiveProfile.RequiredSecureId + ";" + NewLine();
+            var configSb = new StringBuilder();
+            configSb.AppendLine($"// Server config file generated {DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} with TADST.")
+                .AppendLine()
+                .AppendLine($"hostName = \"{ActiveProfile.ServerName}\";")
+                .AppendLine($"password = \"{ActiveProfile.Password}\";")
+                .AppendLine($"passwordAdmin = \"{ActiveProfile.AdminPassword}\";")
+                .AppendLine($"serverCommandPassword = \"{ActiveProfile.ServerCommandPassword}\";")
+                .AppendLine($"logFile = \"{ActiveProfile.ConsoleLogfile}\";")
+                .AppendLine()
+                .AppendLine("motd[] = {")
+                .AppendLine(GetMotd())
+                .AppendLine("};")
+                .AppendLine($"motdInterval = {ActiveProfile.MotdInterval};")
+                .AppendLine()
+                .AppendLine($"maxPlayers = {ActiveProfile.MaxPlayers};")
+                .AppendLine($"kickduplicate = {Convert.ToInt32(ActiveProfile.KickDuplicates)};")
+                .AppendLine($"verifySignatures = {ActiveProfile.VerifySignatures};")
+                .AppendLine($"allowedFilePatching = {ActiveProfile.AllowFilePatching};")
+                .AppendLine($"requiredSecureId = {ActiveProfile.RequiredSecureId};");
 
             if (ActiveProfile.Upnp)
             {
-                configString += "upnp = 1;" + NewLine();
-
+                configSb.AppendLine("upnp = 1;");
             }
 
             if (ActiveProfile.Loopback)
             {
-                configString += "loopback = true;" + NewLine();
+                configSb.AppendLine("loopback = true;");
             }
 
             if (ActiveProfile.RequiredBuildEnabled && ActiveProfile.RequiredBuild > 0)
             {
-                configString += "requiredBuild = " + ActiveProfile.RequiredBuild + ";" + NewLine();
+                configSb.AppendLine($"requiredBuild = {ActiveProfile.RequiredBuild};");
             }
 
             if (ActiveProfile.HeadlessEnabled)
             {
-                configString += "headlessClients[]={" + string.Join(",", ActiveProfile.HeadlessIps) + "};" + NewLine();
-                configString += "localClient[]={" + string.Join(",", ActiveProfile.LocalIps) + "};" + NewLine(2);
+                configSb.AppendLine($"headlessClients[] = {{ {string.Join(",", ActiveProfile.HeadlessIps)} }};");
+                configSb.AppendLine($"localClient[] = {{ {string.Join(",", ActiveProfile.LocalIps)} }};");
+                configSb.AppendLine();
             }
 
             if (!ActiveProfile.VotingEnabled)
             {
-                configString += NewLine() + "allowedVoteCmds[] = {};";
+                configSb.AppendLine("allowedVoteCmds[] = {};");
             }
 
-            configString += NewLine() +
-                            "voteMissionPlayers = " + ActiveProfile.VoteMissionPlayers + ";" + NewLine() +
-                            "voteThreshold = " + voteThreshold.ToString(CultureInfo.InvariantCulture) + ";" + NewLine(2) +
-                            "disableVoN = " + Convert.ToInt32(ActiveProfile.DisableVon) + ";" + NewLine() +
-                            "vonCodecQuality = " + ActiveProfile.VonQuality + ";" + NewLine() +
-                            "persistent = " + Convert.ToInt32(ActiveProfile.PersistantBattlefield) + ";" + NewLine() +
-                            "timeStampFormat = \"" + ActiveProfile.RptTimeStamps[ActiveProfile.RptTimeStampIndex] +
-                            "\";" + NewLine() +
-                            "BattlEye = " + Convert.ToInt32(ActiveProfile.BattlEye) + ";" + NewLine();
+            configSb.AppendLine($"voteMissionPlayers = {ActiveProfile.VoteMissionPlayers};")
+                .AppendLine($"voteThreshold = {voteThreshold.ToString(CultureInfo.InvariantCulture)};")
+                .AppendLine($"disableVoN = {Convert.ToInt32(ActiveProfile.DisableVon)};")
+                .AppendLine($"vonCodecQuality = {ActiveProfile.VonQuality};")
+                .AppendLine($"persistent = {Convert.ToInt32(ActiveProfile.PersistantBattlefield)};")
+                .AppendLine($"timeStampFormat = \"{ActiveProfile.RptTimeStamps[ActiveProfile.RptTimeStampIndex]}\";")
+                .AppendLine($"BattlEye = {Convert.ToInt32(ActiveProfile.BattlEye)};");
+
             if (ActiveProfile.HeadlessEnabled)
             {
-                configString += "battleyeLicense = 1;" + NewLine();
+                configSb.AppendLine("battleyeLicense = 1;");
             }
 
             if (ActiveProfile.MaxPingEnabled)
             {
-                configString += "maxPing = " + ActiveProfile.MaxPing + ";" + NewLine();
+                configSb.AppendLine($"maxPing = {ActiveProfile.MaxPing};");
             }
 
             if (ActiveProfile.MaxDesyncEnabled)
             {
-                configString += "maxDesync = " + ActiveProfile.MaxDesync + ";" + NewLine();
+                configSb.AppendLine($"maxDesync = {ActiveProfile.MaxDesync};");
             }
 
             if (ActiveProfile.MaxPacketLossEnabled)
             {
-                configString += "maxPacketloss = " + ActiveProfile.MaxPacketLoss + ";" + NewLine();
+                configSb.AppendLine($"maxPacketloss = {ActiveProfile.MaxPacketLoss};");
             }
 
             if (ActiveProfile.DisconnectTimeoutEnabled)
             {
-                configString += "disconnectTimeout = " + ActiveProfile.DisconnectTimeout + ";" + NewLine();
+                configSb.AppendLine($"disconnectTimeout = {ActiveProfile.DisconnectTimeout};");
             }
 
             if (ActiveProfile.KickClientsOnSlowNetworkEnabled)
             {
-                configString += "kickClientsOnSlowNetwork = " + ActiveProfile.KickClientsOnSlowNetwork + ";" + NewLine();
+                configSb.AppendLine($"kickClientsOnSlowNetwork = {ActiveProfile.KickClientsOnSlowNetwork};");
             }
 
+            // Code
+            configSb.AppendLine($"doubleIdDetected = '{ActiveProfile.DoubleIdDetected}';")
+                .AppendLine($"onUserConnected = '{ActiveProfile.OnUserConnected}';")
+                .AppendLine($"onUserDisconnected = '{ActiveProfile.OnUserDisconnected}';")
+                .AppendLine($"onHackedData = '{ActiveProfile.OnHackedData}';")
+                .AppendLine($"onDifferentData = '{ActiveProfile.OnDifferentData}';")
+                .AppendLine($"onUnsignedData = '{ActiveProfile.OnUnsignedData}';")
+                .AppendLine($"regularCheck = '{ActiveProfile.RegularCheck}';");
 
+            // Missions
+            if (ActiveProfile.Missions.Any())
+            {
+                configSb.AppendLine("class Missions {")
+                    .AppendLine(GetMissions())
+                    .AppendLine("};");
+            }
 
-            configString += NewLine() + "doubleIdDetected = \"" + ActiveProfile.DoubleIdDetected + "\";" + NewLine() +
-                            "onUserConnected = \"" + ActiveProfile.OnUserConnected + "\";" + NewLine() +
-                            "onUserDisconnected = \"" + ActiveProfile.OnUserDisconnected + "\";" + NewLine() +
-                            "onHackedData = \"" + ActiveProfile.OnHackedData + "\";" + NewLine() +
-                            "onDifferentData = \"" + ActiveProfile.OnDifferentData + "\";" + NewLine() +
-                            "onUnsignedData = \"" + ActiveProfile.OnUnsignedData + "\";" + NewLine() +
-                            "regularCheck = \"" + ActiveProfile.RegularCheck + "\";" + NewLine(2) +
-                            "class Missions" + NewLine() + "{" + NewLine() + GetMissions() + NewLine() + "};";
-
-
-            return configString;
+            return configSb.ToString();
         }
 
 
@@ -278,11 +286,10 @@ namespace TADST
             for (var i = 0; i < ActiveProfile.Motd.Count; i++)
             {
                 motd += "\t\"" + ActiveProfile.Motd[i] + "\"";
-                motd += i < ActiveProfile.Motd.Count - 1 ? "," + Environment.NewLine : Environment.NewLine;
+                motd += i < ActiveProfile.Motd.Count - 1 ? "," + Environment.NewLine : string.Empty;
             }
             return motd;
         }
-
 
         /// <summary>
         /// Return string with mission classes
@@ -290,8 +297,7 @@ namespace TADST
         /// <returns>All checked missions</returns>
         private string GetMissions()
         {
-            var missionString = "";
-            //var difficulty = GetDifficulty();
+            var missionSb = new StringBuilder();
             var index = 0;
 
             foreach (var mission in ActiveProfile.Missions)
@@ -299,17 +305,15 @@ namespace TADST
                 if (mission.IsChecked)
                 {
                     index++;
-                    missionString = missionString +
-                                    "\tclass Mission_" + index + Environment.NewLine +
-                                    "\t{" + Environment.NewLine +
-                                    "\t\ttemplate = \"" + mission.Name.Replace(".pbo", "").Trim() + "\";" +
-                                    Environment.NewLine +
-                                    "\t\tdifficulty = \"" + GetDifficulty(mission.Difficulty) + "\";" +
-                                    Environment.NewLine +
-                                    "\t};" + Environment.NewLine + Environment.NewLine;
+                    missionSb
+                        .AppendLine($"\tclass Mission_{index} {{")
+                        .AppendLine($"\t\ttemplate = \"{mission.Name.Replace(".pbo", "").Trim()}\";")
+                        .AppendLine($"\t\tdifficulty = \"{GetDifficulty(mission.Difficulty)}\";")
+                        .AppendLine("\t};")
+                        .AppendLine();
                 }
             }
-            return missionString;
+            return missionSb.ToString();
         }
 
 
@@ -359,33 +363,29 @@ namespace TADST
         /// <returns></returns>
         private string GetBasicConfigString()
         {
-            var basicConfig = "";
 
-            basicConfig +=
-                "// Basic config file generated " + DateTime.Now.ToShortDateString() + " " +
-                DateTime.Now.ToShortTimeString() +
-                " with TADST." + NewLine(2) +
-                "MaxMsgSend = " + ActiveProfile.MaxMsgSend + ";" + NewLine() +
-                "MaxSizeGuaranteed = " + ActiveProfile.MaxSizeGuaranteed + ";" + NewLine() +
-                "MaxSizeNonguaranteed = " + ActiveProfile.MaxSizeNonGuaranteed + ";" + NewLine() +
-                "MinBandwidth = " + ActiveProfile.MinBandWidth + ";" + NewLine() +
-                "MaxBandwidth = " + ActiveProfile.MaxBandwidth + ";" + NewLine() +
-                "MinErrorToSend = " + ActiveProfile.MinErrorToSend.ToString(CultureInfo.InvariantCulture) + ";" +
-                NewLine() +
-                "MinErrorToSendNear = " + ActiveProfile.MinErrorToSendNear.ToString(CultureInfo.InvariantCulture) + ";" +
-                NewLine() +
-                "MaxCustomFileSize = " + ActiveProfile.MaxCustomFileSize + ";" + NewLine() +
-                "class sockets{maxPacketSize = " + ActiveProfile.MaxPacketSize + ";};" + NewLine() +
-                "adapter=-1;" + NewLine() +
-                "3D_Performance=1;" + NewLine() +
-                "Resolution_W=0;" + NewLine() +
-                "Resolution_H=0;" + NewLine() +
-                "Resolution_Bpp=32;" + NewLine() +
-                "terrainGrid=" + ActiveProfile.TerrainGrid.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
-                "viewDistance=" + ActiveProfile.ViewDistance + ";" + NewLine() +
-                "Windowed=0;";
-
-            return basicConfig;
+            return new StringBuilder()
+                .AppendLine($"// Basic config file generated {DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} with TADST.")
+                .AppendLine()
+                .AppendLine($"MaxMsgSend = {ActiveProfile.MaxMsgSend};")
+                .AppendLine($"MaxSizeGuaranteed = {ActiveProfile.MaxSizeGuaranteed};")
+                .AppendLine($"MaxSizeNonguaranteed = {ActiveProfile.MaxSizeNonGuaranteed};")
+                .AppendLine($"MinBandwidth = {ActiveProfile.MinBandWidth};")
+                .AppendLine($"MaxBandwidth = {ActiveProfile.MaxBandwidth};")
+                .AppendLine($"MinErrorToSend = {ActiveProfile.MinErrorToSend.ToString(CultureInfo.InvariantCulture)};")
+                .AppendLine($"MinErrorToSendNear = {ActiveProfile.MinErrorToSendNear.ToString(CultureInfo.InvariantCulture)};")
+                .AppendLine("class sockets {")
+                .AppendLine($"\tmaxPacketSize = {ActiveProfile.MaxPacketSize};")
+                .AppendLine("};")
+                .AppendLine("adapter = -1;")
+                .AppendLine("3D_Performance = 1;")
+                .AppendLine("Resolution_W = 0;")
+                .AppendLine("Resolution_H = 0;")
+                .AppendLine("Resolution_Bpp = 32;")
+                .AppendLine($"terrainGrid = {ActiveProfile.TerrainGrid.ToString(CultureInfo.InvariantCulture)};")
+                .AppendLine($"viewDistance = {ActiveProfile.ViewDistance};")
+                .AppendLine("Windowed = 0;")
+                .ToString();
         }
 
 
@@ -408,10 +408,7 @@ namespace TADST
 
         private string GetProfileString(string game)
         {
-            var profileString = "";
-
-            string defaultDiff = "";
-
+            string defaultDiff;
             switch (ActiveProfile.DefaultDifficulty)
             {
                 case 0:
@@ -431,57 +428,53 @@ namespace TADST
                     break;
             }
 
-            profileString +=
-                "difficulty=\"" + defaultDiff + "\";" + NewLine() +
-                "class DifficultyPresets" + NewLine() +
-                "{" + NewLine() +
-                "\tclass CustomDifficulty" + NewLine() +
-                "\t{" + NewLine() +
-                GetProfileOptions(ActiveProfile.DiffCustom, game) +
-                GetProfileSkills(ActiveProfile.DiffCustom) +
-                "\t};" + NewLine(2) +
-                "};";
-
-            return profileString;
-        }
-
-        private static string GetProfileSkills(DifficultySetting difficultySetting)
-        {
-            var profileSkills = "";
-
-            profileSkills +=
-                "\t\taiLevelPreset=" +
-                difficultySetting.AILevelPreset.ToString(CultureInfo.InvariantCulture) +
-                ";" + NewLine() + NewLine() +
-                "\t\tclass CustomAILevel" + NewLine() +
-                "\t\t{" + NewLine() +
-                "\t\t\tskillAI=" + difficultySetting.SkillAI.ToString(CultureInfo.InvariantCulture) + ";" + NewLine() +
-                "\t\t\tprecisionAI=" + difficultySetting.PrecisionAI.ToString(CultureInfo.InvariantCulture) + ";" +
-                NewLine() +
-                "\t\t};" + NewLine();
-
-            return profileSkills;
+            return new StringBuilder()
+                .AppendLine($"difficulty = \"{defaultDiff}\";")
+                .AppendLine("class DifficultyPresets {")
+                .AppendLine("\tclass CustomDifficulty {")
+                .AppendLine(GetProfileOptions(ActiveProfile.DiffCustom, game))
+                .AppendLine(GetProfileSkills(ActiveProfile.DiffCustom))
+                .AppendLine("\t};")
+                .AppendLine("};")
+                .ToString();
         }
 
         /// <summary>
         /// Get difficulty flags string. Formatted for A2 or A3
         /// </summary>
         /// <param name="diff">The difficulty settings object that contains the items</param>
-        /// <param name="game">If this is "a3" special Arma3 settings will be added </param>
+        /// <param name="game">If this is "a3" special Arma 3 settings will be added </param>
         /// <returns></returns>
         private static string GetProfileOptions(DifficultySetting diff, string game)
         {
-            var profileOptions = "";
+            var profileOptionsSb = new StringBuilder();
 
-            profileOptions += "\t\tclass Options" + NewLine() + "\t\t{" + NewLine();
+            profileOptionsSb.AppendLine("\t\tclass Options {");
+
             foreach (var diffItem in diff.DifficultyItems)
             {
-                if (diffItem.Name.Contains("(A3)") && game != "a3") continue;
-                profileOptions += "\t\t\t" + diffItem.GetConfigString() + NewLine();
+                if (diffItem.Name.Contains("(A3)") && game != "a3")
+                {
+                    continue;
+                }
+                profileOptionsSb.AppendLine($"\t\t\t{diffItem.GetConfigString()}");
             }
-            profileOptions += "\t\t};" + NewLine();
 
-            return profileOptions;
+            profileOptionsSb.AppendLine("\t\t};");
+
+            return profileOptionsSb.ToString();
+        }
+
+        private static string GetProfileSkills(DifficultySetting difficultySetting)
+        {
+            return new StringBuilder()
+                .AppendLine($"\t\taiLevelPreset = {difficultySetting.AILevelPreset.ToString(CultureInfo.InvariantCulture)}")
+                .AppendLine()
+                .AppendLine("\t\tclass CustomAILevel {")
+                .AppendLine($"\t\t\tskillAI = {difficultySetting.SkillAI.ToString(CultureInfo.InvariantCulture)};")
+                .AppendLine($"\t\t\tprecisionAI = {difficultySetting.PrecisionAI.ToString(CultureInfo.InvariantCulture)};")
+                .AppendLine("\t\t};")
+                .ToString();
         }
 
         /// <summary>
