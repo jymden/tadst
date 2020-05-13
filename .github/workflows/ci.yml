@@ -1,0 +1,19 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: git checkout
+      uses: actions/checkout@v2
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1
+    - name: Build solution
+      run: msbuild /p:Configuration=Release
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: TADST
+        path: TADST/bin/Release
