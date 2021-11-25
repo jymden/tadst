@@ -323,13 +323,35 @@ namespace TADST
 
             return modFolders.OrderBy(x => x.Name);
         }
+		
+		/// <summary>
+        /// Scan !Workshop directory for mod folders
+        /// </summary>
+        /// <returns></returns>
+		private IEnumerable<DirectoryInfo> ScanWorkshopModFolders()
+        {
+            var runPath = Environment.CurrentDirectory;
+            var runFolder = new DirectoryInfo(Path.GetFullPath(runPath)+"\\!Workshop");
+            IEnumerable<DirectoryInfo> modFolders = runFolder.GetDirectories();
+
+            return modFolders.OrderBy(x => x.Name);
+        }
 
         /// <summary>
-        /// Scan game directory for mods and add them to list
+        /// Scan game directory and !Workshop for mods and add them to list
         /// </summary>
         public void ScanMods()
         {
-            var modFolders = ScanModFolders();
+			var modFolders = ScanWorkshopModFolders();
+			
+			foreach (var modFolder in modFolders)
+            {
+                if (!(_mods.Any(x => x.Name == modFolder.Name)))
+                {
+                    _mods.Add(new Mod("!Workshop\\"+modFolder.Name, false));
+                }
+            }
+            modFolders = ScanModFolders();
 
             foreach (var modFolder in modFolders)
             {
